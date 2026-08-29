@@ -1,0 +1,656 @@
+<title>Duas Frotas, Um País</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+:root{
+  --ground:#F1F4F5;
+  --surface:#FFFFFF;
+  --surface-2:#E8EDEF;
+  --ink:#15222A;
+  --ink-soft:#54666F;
+  --ink-faint:#81959E;
+  --rule:#D6DFE3;
+  --usb:#2E7D9A;
+  --usb-wash:#DCEAF0;
+  --usa:#C1442E;
+  --usa-wash:#F5DCD6;
+  --void:#B9C4C9;
+  --shadow:0 1px 2px rgba(21,34,42,.05),0 8px 24px -12px rgba(21,34,42,.18);
+
+  --display:"IBM Plex Sans Condensed",-apple-system,"Segoe UI",sans-serif;
+  --body:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --data:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1519;
+    --surface:#161E23;
+    --surface-2:#1D272D;
+    --ink:#E2EAED;
+    --ink-soft:#9BADB5;
+    --ink-faint:#6E828B;
+    --rule:#26333A;
+    --usb:#63AECA;
+    --usb-wash:#1B333D;
+    --usa:#E4785F;
+    --usa-wash:#3A2018;
+    --void:#3B4A52;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1519;
+  --surface:#161E23;
+  --surface-2:#1D272D;
+  --ink:#E2EAED;
+  --ink-soft:#9BADB5;
+  --ink-faint:#6E828B;
+  --rule:#26333A;
+  --usb:#63AECA;
+  --usb-wash:#1B333D;
+  --usa:#E4785F;
+  --usa-wash:#3A2018;
+  --void:#3B4A52;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 96px}
+.col{max-width:68ch}
+
+/* ---------------------------------------------------------------- cabeçalho */
+header.top{
+  border-bottom:1px solid var(--rule);
+  padding:56px 0 40px;
+  margin-bottom:44px;
+}
+.eyebrow{
+  font-family:var(--data);
+  font-size:11.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:0 0 20px;
+}
+h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(38px,6.2vw,62px);
+  line-height:1.02;
+  letter-spacing:-.015em;
+  margin:0 0 22px;
+  text-wrap:balance;
+}
+.lede{
+  font-size:20px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  margin:0;
+  max-width:60ch;
+}
+.lede strong{color:var(--ink);font-weight:600}
+
+/* -------------------------------------------------------------- faixa stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  border-radius:3px;
+  margin:40px 0 0;
+  overflow:hidden;
+}
+.stat{background:var(--surface);padding:20px 22px}
+.stat .n{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:34px;
+  line-height:1.05;
+  letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;
+  display:block;
+}
+.stat .k{
+  font-family:var(--data);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-top:9px;
+  display:block;
+  line-height:1.45;
+}
+.stat.usb .n{color:var(--usb)}
+.stat.usa .n{color:var(--usa)}
+
+/* ----------------------------------------------------------------- seções */
+section{margin:64px 0 0}
+.num{
+  font-family:var(--data);
+  font-size:12px;
+  letter-spacing:.1em;
+  color:var(--usa);
+  display:block;
+  margin-bottom:10px;
+}
+h2{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(25px,3.4vw,33px);
+  line-height:1.15;
+  letter-spacing:-.01em;
+  margin:0 0 8px;
+  text-wrap:balance;
+}
+h2 + .sub{
+  color:var(--ink-soft);
+  font-style:italic;
+  margin:0 0 26px;
+}
+h3{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:19px;
+  letter-spacing:.005em;
+  margin:34px 0 8px;
+}
+p{margin:0 0 18px}
+a{color:var(--usb)}
+strong{font-weight:600}
+code,.mono{font-family:var(--data);font-size:.86em}
+code{background:var(--surface-2);padding:1px 5px;border-radius:3px}
+
+ul,ol{margin:0 0 18px;padding-left:22px}
+li{margin-bottom:9px}
+li::marker{color:var(--ink-faint)}
+
+/* --------------------------------------------------------------- a barra */
+.barra{margin:30px 0 8px}
+.barra .track{
+  display:flex;
+  height:52px;
+  border-radius:3px;
+  overflow:hidden;
+  border:1px solid var(--rule);
+}
+.barra .seg{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:15px;
+  color:#fff;
+  font-variant-numeric:tabular-nums;
+}
+.seg.s1{background:var(--usb)}
+.seg.s2{background:var(--usa)}
+.seg.s3{background:var(--void);color:var(--ink)}
+.barra .leg{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 22px;
+  margin-top:12px;
+  font-family:var(--data);
+  font-size:12px;
+  color:var(--ink-soft);
+}
+.barra .leg span{display:flex;align-items:center;gap:7px}
+.barra .leg i{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+/* ---------------------------------------------------------------- figuras */
+/* As figuras são chapas impressas: fundo claro fixo nos dois temas, para que
+   as cores do matplotlib (USB azul, USA vermelho) não sejam falseadas. */
+figure{
+  margin:34px 0;
+  background:#FFFFFF;
+  border:1px solid var(--rule);
+  border-radius:3px;
+  padding:16px 16px 0;
+  box-shadow:var(--shadow);
+}
+figure img{display:block;width:100%;height:auto;border-radius:2px}
+figcaption{
+  font-family:var(--data);
+  font-size:12.5px;
+  line-height:1.55;
+  color:#54666F;
+  border-top:1px solid #E4EAEC;
+  margin-top:16px;
+  padding:12px 2px 14px;
+}
+figcaption b{color:#15222A;font-weight:500}
+
+/* ---------------------------------------------------------------- destaque */
+.callout{
+  border-left:3px solid var(--usa);
+  background:var(--surface);
+  padding:18px 22px;
+  margin:28px 0;
+  border-radius:0 3px 3px 0;
+}
+.callout p:last-child{margin-bottom:0}
+.callout.calm{border-left-color:var(--usb)}
+.callout .rot{
+  font-family:var(--data);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  display:block;
+  margin-bottom:7px;
+}
+
+/* ---------------------------------------------------------------- tabelas */
+.tabela{overflow-x:auto;margin:26px 0;border:1px solid var(--rule);border-radius:3px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-family:var(--data);font-size:13px}
+th,td{padding:9px 14px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{text-align:left}
+thead th{
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  background:var(--surface-2);
+  position:sticky;
+  top:0;
+}
+tbody tr:last-child td{border-bottom:none}
+td{font-variant-numeric:tabular-nums}
+td.usb{color:var(--usb)}
+td.usa{color:var(--usa)}
+.tabela + .nota{
+  font-family:var(--data);
+  font-size:12px;
+  color:var(--ink-faint);
+  margin-top:-14px;
+}
+
+/* --------------------------------------------------------------- consequências */
+.conseq{
+  display:grid;
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  border-radius:3px;
+  margin:28px 0;
+}
+.conseq > div{background:var(--surface);padding:22px 24px}
+.conseq h3{margin:0 0 8px;font-size:18px}
+.conseq p:last-child{margin-bottom:0}
+.conseq .tag{
+  font-family:var(--data);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--usa);
+  display:block;
+  margin-bottom:9px;
+}
+
+.formula{
+  font-family:var(--data);
+  font-size:13px;
+  line-height:1.9;
+  background:var(--surface-2);
+  border-radius:3px;
+  padding:16px 18px;
+  overflow-x:auto;
+  margin:20px 0;
+  color:var(--ink);
+}
+
+footer{
+  margin-top:76px;
+  padding-top:28px;
+  border-top:1px solid var(--rule);
+  font-family:var(--data);
+  font-size:12.5px;
+  line-height:1.7;
+  color:var(--ink-faint);
+}
+footer b{color:var(--ink-soft);font-weight:500}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">EDA · CNES dez/2024 + Censo 2022 · 5.570 municípios</p>
+  <h1>Duas frotas,<br>um país</h1>
+  <p class="lede">O SAMU não tem uma frota — tem duas. A Unidade de Suporte Básico
+  leva técnico e maca; a Unidade de Suporte Avançado leva médico, ventilador e
+  desfibrilador. <strong>Elas não cobrem o mesmo Brasil</strong>, e qualquer modelo de
+  localização que trate ambulância como bem homogêneo esconde justamente a lacuna
+  que importa.</p>
+
+  <div class="stats">
+    <div class="stat"><span class="n">5.522</span><span class="k">unidades públicas ativas</span></div>
+    <div class="stat usb"><span class="n">3.710</span><span class="k">USB · suporte básico</span></div>
+    <div class="stat usa"><span class="n">885</span><span class="k">USA · suporte avançado</span></div>
+    <div class="stat usa"><span class="n">40,6 mi</span><span class="k">pessoas com USB perto e USA longe</span></div>
+  </div>
+</header>
+
+<div class="col">
+
+<section>
+  <span class="num">§ 1</span>
+  <h2>A pergunta</h2>
+  <p class="sub">Antes de otimizar a frota, saber do que ela é feita.</p>
+
+  <p>O protótipo deste projeto resolve um <span class="mono">MCLP</span> — realoca
+  <em>p</em> bases idênticas para maximizar a população coberta em 20 minutos. A
+  hipótese silenciosa é que toda ambulância vale uma ambulância.</p>
+
+  <p>Clinicamente isso é falso. Uma USB atende ocorrência de baixa e média
+  complexidade com técnico de enfermagem. Uma USA é uma UTI móvel com médico a
+  bordo: é ela que trata infarto com supradesnivelamento, AVC na janela
+  terapêutica e trauma grave. Trocar uma pela outra não é trocar um veículo por
+  outro equivalente.</p>
+
+  <p>Esta análise pergunta se a distinção aparece nos dados. Aparece — e é
+  grande.</p>
+</section>
+
+<section>
+  <span class="num">§ 2</span>
+  <h2>Separar USB de USA é o problema difícil</h2>
+  <p class="sub">Não existe campo <span class="mono">tipo_de_ambulancia</span> no CNES.</p>
+
+  <p>O tipo de estabelecimento <span class="mono">42</span> — "unidade móvel de
+  nível pré-hospitalar na área de urgência" — junta USB, USA, motolância, unidade
+  aérea, unidade fluvial, viatura de resgate do Corpo de Bombeiros e ambulância
+  de empresa privada de remoção. Nada disso vem rotulado.</p>
+
+  <p>Há dois caminhos, e o óbvio é o pior:</p>
+
+  <ul>
+    <li><strong>Nome fantasia.</strong> Texto livre. <span class="mono">"SAMU USB
+    03"</span> resolve; <span class="mono">"SAMU 192 BASE DESCENTRALIZADA"</span>
+    não diz nada. <strong>45,6% das unidades ativas têm nome que não classifica.</strong></li>
+    <li><strong>Serviço especializado (grupo SR do CNES).</strong> O serviço
+    <span class="mono">103</span> traz uma classificação estruturada por unidade
+    (<span class="mono">CLASS_SR</span>). Cobre 88% da frota ativa.</li>
+  </ul>
+
+  <p>A tabela oficial que traduz <span class="mono">CLASS_SR</span> não estava
+  acessível pelo FTP do DATASUS, então o mapa foi inferido cruzando código com
+  nome — e a concordância é alta o bastante para confiar:</p>
+
+  <div class="tabela">
+  <table>
+    <thead><tr><th>CLASS_SR</th><th>nomes "USB"</th><th>nomes "USA"</th><th>modalidade atribuída</th></tr></thead>
+    <tbody>
+      <tr><td>002</td><td class="usb">1.810</td><td>10</td><td style="text-align:left">USB</td></tr>
+      <tr><td>003</td><td>7</td><td class="usa">648</td><td style="text-align:left">USA</td></tr>
+      <tr><td>010</td><td>—</td><td>—</td><td style="text-align:left">motolância (293 nomes)</td></tr>
+      <tr><td>012</td><td>—</td><td>—</td><td style="text-align:left">aérea (43 nomes)</td></tr>
+      <tr><td>005 / 011</td><td>—</td><td>—</td><td style="text-align:left">aquática</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="nota">Concordância acima de 98% nos dois códigos principais.</p>
+
+  <div class="callout calm">
+    <span class="rot">Para o texto do trabalho</span>
+    <p>Classificar unidade móvel por nome fantasia erra em quase metade dos casos.
+    Quem repetir esta análise só com o texto do CNES vai descartar ~46% da frota
+    ou classificá-la errado — e o erro não é aleatório: nomes genéricos são mais
+    comuns em municípios pequenos.</p>
+  </div>
+
+  <h3>Limpeza do universo</h3>
+  <p>Das 7.123 unidades tipo 42 cadastradas, 1.132 estão desabilitadas e 468 são
+  privadas. Sobram <strong>5.522 unidades públicas ativas</strong>. Usar o número
+  cheio infla a frota em 29% e mistura ambulância de convênio com SAMU.</p>
+</section>
+
+<section>
+  <span class="num">§ 3</span>
+  <h2>No agregado, a frota está dimensionada</h2>
+  <p class="sub">O problema não é quantidade.</p>
+
+  <figure>
+    <img src="__FIG01__" alt="Barras horizontais com a contagem de unidades por modalidade: USB 3.710, USA 885, motolância 427, resgate/outros 166, indeterminado 236, aérea 44, aquática 45, VIR 9.">
+    <figcaption><b>Composição da frota pública ativa.</b> USB e USA respondem por
+    83% das unidades. Motolâncias (427) são um terceiro modo relevante,
+    concentrado em capitais.</figcaption>
+  </figure>
+
+  <p>São <strong>4,2 USB para cada USA</strong>. Em habitantes: uma USB a cada 55
+  mil pessoas e uma USA a cada 229 mil. Ambos os números ficam dentro da ordem de
+  grandeza das portarias do Ministério da Saúde — que preveem uma USB por
+  100–150 mil habitantes e uma USA por 400–450 mil.</p>
+
+  <p>Ou seja: <strong>o país tem ambulâncias suficientes no papel.</strong> O que
+  a média nacional esconde é onde elas estão.</p>
+</section>
+
+<section>
+  <span class="num">§ 4</span>
+  <h2>Onde elas estão</h2>
+  <p class="sub">Um degrau, não um gradiente.</p>
+
+  <figure>
+    <img src="__FIG04__" alt="Barras comparando, por faixa de população municipal, o percentual de municípios com ao menos uma USB e com ao menos uma USA. A presença de USA sobe de 0,2% nos municípios abaixo de 5 mil habitantes para 100% acima de 500 mil.">
+    <figcaption><b>Presença por faixa de tamanho.</b> Entre os 1.324 municípios com
+    menos de 5 mil habitantes, dois têm USA. Acima de 200 mil, a presença é
+    praticamente universal.</figcaption>
+  </figure>
+
+  <p>Só <strong>619 dos 5.570 municípios</strong> (11,1%) têm alguma USA no
+  próprio território. Eles concentram 61% da população — o que significa que
+  <strong>79 milhões de brasileiros dependem de uma USA que vem de outra
+  cidade</strong>.</p>
+
+  <figure>
+    <img src="__FIG05__" alt="Curvas de Lorenz da frota tomando população como referência: USB com Gini 0,54 e USA com Gini 0,67, ambas bem abaixo da diagonal de proporcionalidade.">
+    <figcaption><b>Concentração.</b> Gini de 0,54 para USB e 0,67 para USA,
+    tomando população como referência de distribuição justa.</figcaption>
+  </figure>
+
+  <p>Um detalhe contraintuitivo: entre os municípios que <em>têm</em> USB, os
+  pequenos têm frota per capita mais folgada que os grandes — 27 mil habitantes
+  por USB nas faixas de 5 a 20 mil, contra 88 mil por USB acima de 500 mil. O
+  problema do município pequeno não é frota rala. É ausência total.</p>
+</section>
+
+<section>
+  <span class="num">§ 5</span>
+  <h2>A lacuna do suporte avançado</h2>
+  <p class="sub">O achado central desta análise.</p>
+
+  <p>Para cada município, a distância até a base mais próxima de cada modalidade,
+  convertida em minutos com o mesmo fator de sinuosidade 1,35 sobre 55 km/h que o
+  protótipo já usa.</p>
+
+  <figure>
+    <img src="__FIG02__" alt="Curvas de cobertura acumulada: percentual da população dentro de um raio de tempo até a USB mais próxima e até a USA mais próxima, de 0 a 120 minutos. A curva de USB fica consistentemente acima da de USA; no limiar de 20 minutos a diferença é de cerca de 20 pontos percentuais.">
+    <figcaption><b>Cobertura por limiar de tempo.</b> Linha cheia: distância medida
+    a partir da sede municipal. Pontilhada: a partir do centroide do polígono, como
+    faz o protótipo. A área entre as curvas azul e vermelha é a lacuna.</figcaption>
+  </figure>
+
+  <p>No limiar de 20 minutos adotado pelo projeto, a população brasileira se
+  divide assim:</p>
+
+  <div class="barra">
+    <div class="track">
+      <div class="seg s1" style="flex:66.0">66,0%</div>
+      <div class="seg s2" style="flex:20.0">20,0%</div>
+      <div class="seg s3" style="flex:13.6">13,6%</div>
+    </div>
+    <div class="leg">
+      <span><i style="background:var(--usb)"></i>USB e USA em até 20 min · 133,9 mi</span>
+      <span><i style="background:var(--usa)"></i>só USB, USA distante · 40,6 mi</span>
+      <span><i style="background:var(--void)"></i>nenhuma das duas · 27,5 mi</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="rot">O número que o trabalho deve reportar</span>
+    <p><strong>40,6 milhões de brasileiros têm socorro básico a 20 minutos e nenhuma
+    unidade avançada nesse raio.</strong> Para infarto, AVC e trauma grave, essa
+    população está descoberta — e aparece como "coberta" em qualquer modelo que
+    trate a frota como homogênea.</p>
+  </div>
+
+  <h3>O ponto de referência vale 15 pontos percentuais</h3>
+  <p>Medindo da sede municipal, a cobertura de USB em 20 minutos é 85,9%. Medindo
+  do centroide do polígono — o que o protótipo faz hoje — cai para 71,2%. Em
+  Altamira (159 mil km²) ou Jutaí, o centroide fica a centenas de quilômetros de
+  onde a população mora.</p>
+  <p>Não é detalhe de implementação: <strong>o protótipo subestima
+  sistematicamente a cobertura atual</strong>, e portanto superestima o ganho da
+  realocação. Vale declarar, ou trocar por setor censitário.</p>
+</section>
+
+<section>
+  <span class="num">§ 6</span>
+  <h2>A desigualdade entre estados</h2>
+  <p class="sub">A taxa de USA varia cinco vezes.</p>
+
+  <figure>
+    <img src="__FIG03__" alt="Gráfico de halteres com as 27 unidades da federação ordenadas pela taxa de USA por 100 mil habitantes, mostrando também a taxa de USB de cada uma.">
+    <figcaption><b>Frota por 100 mil habitantes.</b> Rondônia tem 0,19 USA por 100
+    mil habitantes; a Paraíba tem 1,03. A distância entre os dois pontos de cada
+    linha é a razão USB/USA daquele estado.</figcaption>
+  </figure>
+
+  <div class="tabela">
+  <table>
+    <thead><tr>
+      <th>UF</th><th>pop (mi)</th><th>USB</th><th>USA</th>
+      <th>USB/100k</th><th>USA/100k</th>
+      <th>cob. USB 20′</th><th>cob. USA 20′</th><th>lacuna</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>PA</td><td>8,1</td><td class="usb">120</td><td class="usa">18</td><td>1,48</td><td>0,22</td><td>80,9%</td><td>38,0%</td><td><b>42,9 pp</b></td></tr>
+      <tr><td>TO</td><td>1,5</td><td class="usb">16</td><td class="usa">5</td><td>1,06</td><td>0,33</td><td>52,1%</td><td>39,4%</td><td>12,8 pp</td></tr>
+      <tr><td>MT</td><td>3,7</td><td class="usb">34</td><td class="usa">10</td><td>0,93</td><td>0,27</td><td>56,2%</td><td>42,2%</td><td>14,0 pp</td></tr>
+      <tr><td>RO</td><td>1,6</td><td class="usb">25</td><td class="usa">3</td><td>1,58</td><td>0,19</td><td>51,0%</td><td>43,1%</td><td>7,9 pp</td></tr>
+      <tr><td>PI</td><td>3,3</td><td class="usb">128</td><td class="usa">19</td><td>3,91</td><td>0,58</td><td>82,6%</td><td>48,7%</td><td>33,9 pp</td></tr>
+      <tr><td>MA</td><td>6,8</td><td class="usb">118</td><td class="usa">35</td><td>1,74</td><td>0,52</td><td>66,0%</td><td>50,0%</td><td>16,1 pp</td></tr>
+      <tr><td>AL</td><td>3,1</td><td class="usb">49</td><td class="usa">14</td><td>1,57</td><td>0,45</td><td>84,5%</td><td>51,0%</td><td>33,5 pp</td></tr>
+      <tr><td>AM</td><td>3,9</td><td class="usb">60</td><td class="usa">8</td><td>1,52</td><td>0,20</td><td>68,6%</td><td>52,4%</td><td>16,3 pp</td></tr>
+      <tr><td>BA</td><td>14,1</td><td class="usb">405</td><td class="usa">81</td><td>2,86</td><td>0,57</td><td>88,8%</td><td>57,4%</td><td>31,4 pp</td></tr>
+      <tr><td>MG</td><td>20,5</td><td class="usb">438</td><td class="usa">119</td><td>2,13</td><td>0,58</td><td>85,4%</td><td>64,3%</td><td>21,1 pp</td></tr>
+      <tr><td>RS</td><td>10,9</td><td class="usb">203</td><td class="usa">45</td><td>1,87</td><td>0,41</td><td>91,1%</td><td>64,6%</td><td>26,5 pp</td></tr>
+      <tr><td>PR</td><td>11,4</td><td class="usb">246</td><td class="usa">72</td><td>2,15</td><td>0,63</td><td>89,8%</td><td>70,1%</td><td>19,7 pp</td></tr>
+      <tr><td>SP</td><td>44,4</td><td class="usb">616</td><td class="usa">116</td><td>1,39</td><td>0,26</td><td>86,6%</td><td>77,5%</td><td>9,1 pp</td></tr>
+      <tr><td>RJ</td><td>16,1</td><td class="usb">213</td><td class="usa">91</td><td>1,33</td><td>0,57</td><td>96,3%</td><td>86,7%</td><td>9,6 pp</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="nota">Recorte dos 14 estados mais relevantes, ordenado por cobertura de USA. A tabela completa está em <span class="mono">dados/tabela_uf.csv</span>.</p>
+
+  <p>O Pará é o caso extremo: 42,9 pontos percentuais separam a cobertura básica
+  da avançada. Quase metade da população paraense tem socorro básico perto e
+  socorro avançado longe.</p>
+
+  <h3>A regra populacional explica pouco</h3>
+
+  <figure>
+    <img src="__FIG07__" alt="Dispersão log-log de população municipal contra número de unidades móveis, com reta ajustada de elasticidade 0,42 bem abaixo da reta de proporcionalidade.">
+    <figcaption><b>Elasticidade de 0,42.</b> Dobrar a população de um município
+    multiplica sua frota por 1,3, não por 2. R² de 0,57.</figcaption>
+  </figure>
+
+  <p>A leitura precisa ser honesta: sublinearidade era esperada. Ambulância cobre
+  um raio, e num município denso o mesmo veículo alcança mais gente — não há
+  razão para a frota ser proporcional à população. O que o número mostra é que
+  <strong>população sozinha explica pouco</strong>, que é exatamente o argumento
+  para substituir a regra populacional por um modelo de cobertura.</p>
+</section>
+
+<section>
+  <span class="num">§ 7</span>
+  <h2>O que muda no protótipo</h2>
+  <p class="sub">Três consequências concretas para o modelo.</p>
+
+  <div class="conseq">
+    <div>
+      <span class="tag">Formulação</span>
+      <h3>O MCLP passa a ter dois níveis</h3>
+      <p>Duas frotas, dois conjuntos de variáveis de instalação, uma função
+      objetivo que pondera as duas coberturas:</p>
+      <div class="formula">max &nbsp;Σᵢ wᵢ · [ α·yᵢᴮ + (1−α)·yᵢᴬ ]<br>
+      s.a. &nbsp;yᵢᴮ ≤ Σ<sub>j∈N(i)</sub> xⱼᴮ &nbsp;;&nbsp; yᵢᴬ ≤ Σ<sub>j∈N(i)</sub> xⱼᴬ<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Σⱼ xⱼᴮ = p<sub>B</sub> = 3.710 &nbsp;;&nbsp; Σⱼ xⱼᴬ = p<sub>A</sub> = 885</div>
+      <p>O resultado a reportar deixa de ser um número e passa a ser dois.</p>
+    </div>
+    <div>
+      <span class="tag">Contrafactual</span>
+      <h3>O ganho está na camada avançada</h3>
+      <p>Realocar 3.710 USB rende pouco: a cobertura básica já é 85,9% e cada
+      ponto adicional é caro. As 885 USA partem de 66,4% — é ali que a otimização
+      tem de onde tirar ganho, e é ali que o ganho tem significado clínico.</p>
+    </div>
+    <div>
+      <span class="tag">Cobertura hierárquica</span>
+      <h3>USA cobre os dois níveis; USB, só um</h3>
+      <p>Uma USA atende ocorrência de baixa complexidade; uma USB não atende a de
+      alta. Levar isso a sério transforma o modelo em cobertura hierárquica com
+      <em>backup</em> — e reforça a conclusão de que o gargalo é o suporte
+      avançado.</p>
+    </div>
+  </div>
+
+  <p><strong>Próximo passo:</strong> rodar o protótipo em <span class="mono">MODO
+  = "real"</span> trocando <span class="mono">n_ambulancias</span> pelas colunas
+  <span class="mono">USB</span> e <span class="mono">USA</span>, e comparar o
+  ganho da realocação em cada camada. O arquivo
+  <span class="mono">dados/municipal.parquet</span> já sai pronto para isso, com
+  os tempos até a unidade mais próxima nas duas referências geográficas.</p>
+</section>
+
+<section>
+  <span class="num">§ 8</span>
+  <h2>Limitações a declarar</h2>
+  <p class="sub">O que esta análise não sustenta.</p>
+
+  <ol>
+    <li><strong>Classificação inferida.</strong> O mapa <span class="mono">CLASS_SR
+    → USB/USA</span> foi validado contra nomes, não contra a tabela oficial do
+    CNES. 4,3% das unidades ativas ficaram sem modalidade.</li>
+    <li><strong>Tempo é haversine, não rota.</strong> Fator 1,35 sobre a linha
+    reta a 55 km/h. Serve para comparar USB e USA entre si; não serve como
+    estimativa absoluta de tempo-resposta. Trocar por OSRM local.</li>
+    <li><strong>Um ponto por município.</strong> Sede e centroide são reduções
+    grosseiras — e a escolha entre elas vale 15 pontos percentuais de
+    cobertura.</li>
+    <li><strong>CNES é cadastro, não operação.</strong> Uma unidade ativa no
+    cadastro pode estar parada por falta de equipe. Não há como saber pelos dados
+    abertos.</li>
+    <li><strong>Sem modelo de demanda.</strong> Tudo aqui usa população como
+    proxy. Chamado de urgência não se distribui como população: idosos, rodovias
+    e violência concentram ocorrência.</li>
+  </ol>
+</section>
+
+<footer>
+  <p><b>Fontes.</b> CNES, competência dez/2024 — API de Dados Abertos do Ministério
+  da Saúde (<span class="mono">cnes/estabelecimentos</span>, tipo 42) e grupo SR
+  via <span class="mono">pysus</span>. IBGE, Censo 2022, agregado 4714 (população
+  e área) e malha municipal. Coordenadas de sede municipal do repositório de terceiros <span class="mono">kelvins/municipios-brasileiros</span>, que republica dados de origem IBGE — a API de localidades do IBGE não devolve coordenada de sede.</p>
+  <p><b>Reprodução.</b> Caderno <span class="mono">eda_usb_usa.ipynb</span> e
+  scripts <span class="mono">pull_*.py</span>. Requer numpy ≥ 2 com matplotlib
+  ≥ 3.9 — versões anteriores de matplotlib, scipy e shapely não carregam contra
+  numpy 2.</p>
+</footer>
+
+</div>
+</div>

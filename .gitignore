@@ -1,0 +1,24 @@
+# ambientes virtuais
+.venv*/
+venv*/
+env/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# jupyter
+.ipynb_checkpoints/
+
+# cache das coletas — reconstruído pelos pull_*.py
+cache_samu/
+cnes42/
+cnes_sr/
+cnes_st/
+*.log
+
+# windows / onedrive
+desktop.ini
+Thumbs.db
+*:Zone.Identifier
