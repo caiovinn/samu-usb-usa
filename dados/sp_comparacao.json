@@ -1,0 +1,38 @@
+[
+  {
+    "config": "atual",
+    "huff_tempo": 7.435244243905906,
+    "huff_gini": 0.2242365854490629,
+    "huff_usa20": 98.24225447452449,
+    "classico_t_usa": 8.83698632557921,
+    "classico_t_qualquer": 4.6802590325565,
+    "classico_usa20": 98.31234704089653,
+    "km_mudanca": 0.0,
+    "movidas": 0,
+    "locais": 92
+  },
+  {
+    "config": "p-median (classico)",
+    "huff_tempo": 6.6957202618518785,
+    "huff_gini": 0.07873903102790136,
+    "huff_usa20": 99.3695860434497,
+    "classico_t_usa": 6.808348276800109,
+    "classico_t_qualquer": 3.352626642601706,
+    "classico_usa20": 99.3695860434497,
+    "km_mudanca": 373.0606833547354,
+    "movidas": 120,
+    "locais": 123
+  },
+  {
+    "config": "Huff+2SFCA",
+    "huff_tempo": 6.669011141915926,
+    "huff_gini": 0.02509290170241496,
+    "huff_usa20": 99.3695860434497,
+    "classico_t_usa": 7.166131194147825,
+    "classico_t_qualquer": 3.631617629624149,
+    "classico_usa20": 99.3695860434497,
+    "km_mudanca": 293.25772404670715,
+    "movidas": 110,
+    "locais": 119
+  }
+]

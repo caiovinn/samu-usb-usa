@@ -22,3 +22,7 @@ cnes_st/
 desktop.ini
 Thumbs.db
 *:Zone.Identifier
+
+# fase 2 — brutos e matriz de tempo (reconstruíveis)
+sp/_raw/
+dados/sp_tempos.npy
