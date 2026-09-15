@@ -31,5 +31,3 @@ def tempo_ate_mais_proxima(m, unidades, bloco=400):
                          u.lat.values, u.lon.values)
         mins[s] = d.min(axis=1)
     return mins * SINUOSIDADE / VEL_KMH * 60.0
-
-

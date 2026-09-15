@@ -127,7 +127,8 @@ ocupados, e fatiar linhas contíguas custa 2,6 ms contra 34 ms de fatiar as
 colunas equivalentes. Junto com o decaimento pré-calculado e float32 com BLAS,
 a avaliação caiu de 54 ms para 10,5 ms.
 
-Cada módulo roda sozinho (`python sp/huff2sfca.py`) e executa o próprio teste.
+Cada módulo roda sozinho (`uv run python sp/huff2sfca.py`) e executa o próprio
+teste.
 
 ## Por que a coleta roda fora
 
@@ -136,8 +137,10 @@ Os ambientes do Claude só alcançam PyPI e GitHub; `ftp.ibge.gov.br`,
 `pull_dados.py` é a única etapa que precisa da rede — o resto trabalha sobre
 `sp/_raw/`.
 
+Montagem do ambiente: ver [../SETUP.md](../SETUP.md).
+
 ```bash
-pip install "numpy>=2" pandas pyarrow requests osmnx
-python sp/pull_dados.py            # ou: python sp/pull_dados.py setores
-python sp/monta.py                 # precisa de geopandas; scipy é opcional
+uv sync
+uv run python sp/pull_dados.py     # ou: uv run python sp/pull_dados.py setores
+uv run python sp/monta.py          # geopandas só no fallback .zip/.gpkg
 ```

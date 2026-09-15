@@ -90,7 +90,18 @@ def tempo_esperado(t_sub, P):
 
 
 def gini(x, w):
-    """Gini de x ponderado por w. 0 = todo mundo com a mesma acessibilidade."""
+    """Gini de x ponderado por w. 0 = todo mundo com a mesma acessibilidade.
+
+    A curva de Lorenz comeca na ORIGEM: o (0, 0) tem de entrar no somatorio
+    dos trapezios. Sem ele falta a primeira fatia, (cw[0]-0)*(cx[0]+0), e o
+    Gini de uma distribuicao perfeitamente igual nao da 0 e sim cw[0]*cx[0] —
+    um piso que depende de qual elemento o argsort deixou em primeiro no
+    empate. Com x constante isso ia de 6e-8 a 1,4e-5 conforme o setor que
+    caisse ali, e derrubava a assercao do caso degenerado em _teste().
+
+    O vies e da ordem de 1/n_setores ao quadrado, ~1e-9 nos 26.889 setores de
+    SP: nenhum numero publicado muda. O que ele quebrava era o teste.
+    """
     o = np.argsort(x)
     x, w = np.asarray(x)[o], np.asarray(w)[o]
     cw = np.cumsum(w) / w.sum()
@@ -98,6 +109,9 @@ def gini(x, w):
     if cx[-1] <= 0:
         return 0.0
     cx = cx / cx[-1]
+    z = np.float64(0.0)
+    cw = np.concatenate(([z], cw))      # origem da Lorenz
+    cx = np.concatenate(([z], cx))
     return float(1 - np.sum((cw[1:] - cw[:-1]) * (cx[1:] + cx[:-1])))
 
 
@@ -171,6 +185,11 @@ def _teste():
     r2 = avalia(t, pop, idx_usb, idx_usa, f=prepara(t))
     assert abs(r["f_tempo"] - r2["f_tempo"]) < 1e-4
     assert abs(r["f_gini"] - r2["f_gini"]) < 1e-9
+    # distribuicao perfeitamente igual tem de dar Gini 0 EXATO, qualquer que
+    # seja a ordem em que o argsort desempata (ver a docstring de gini)
+    for ordem in (np.arange(n), np.argsort(pop), np.argsort(-pop)):
+        assert abs(gini(np.full(n, 1.234), pop[ordem])) < 1e-12, "Gini com piso"
+
     # concentrar tudo num ponto piora o tempo e zera a desigualdade
     r3 = avalia(t, pop, np.zeros(30, int), np.zeros(6, int))
     assert r3["f_tempo"] > r["f_tempo"] and r3["f_gini"] < 1e-6

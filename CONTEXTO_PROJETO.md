@@ -20,7 +20,6 @@ Grupo: Paulo Henrique Brasil Ribeiro (coordenador), Caio Oliveira (nUSP
 11932272), Eduardo Próspero Santana (11320731), Lucas Martinuzzo (11930158),
 Matheus de Tulio (11371291).
 
-Pasta: `Documentos/Pós-Grad/MECAI/Trabalhos/eda_usb_usa`.
 
 ### Fase 1 — EDA nacional (concluída)
 
@@ -291,15 +290,17 @@ com a coluna «Hoje» fixando o valor da rede atual em cada uma.
 
 ## 9. Como rodar
 
+Montagem do ambiente: **[SETUP.md](SETUP.md)**, a única lista de dependências
+do projeto. O grupo usa `uv` com Python 3.12 fixado em `.python-version` e as
+versões travadas em `uv.lock` (ambos versionados).
+
 ```bash
-python -m venv .venv-eda
-.venv-eda\Scripts\activate
-pip install "numpy>=2" pandas pyarrow requests osmnx scipy pyogrio
-python sp/pull_dados.py      # SÓ ESTA ETAPA PRECISA DE REDE
-python sp/monta.py
-python sp/roda.py            # varre todos os λ
-python sp/compara.py
-python sp/figuras.py
+uv sync
+uv run python sp/pull_dados.py   # SÓ ESTA ETAPA PRECISA DE REDE
+uv run python sp/monta.py
+uv run python sp/roda.py         # varre todos os λ
+uv run python sp/compara.py
+uv run python sp/figuras.py
 ```
 
 **Restrição de ambiente importante.** Os sandboxes do Claude só alcançam PyPI e
@@ -307,10 +308,18 @@ GitHub; `ftp.ibge.gov.br`, `apidadosabertos.saude.gov.br` e o OpenStreetMap
 respondem 403 na política de egresso. Por isso `pull_dados.py` roda na máquina
 do usuário e todo o resto trabalha sobre `sp/_raw/`.
 
-Requisito herdado da fase 1: **numpy ≥ 2 com matplotlib ≥ 3.9**. O Python
-principal da máquina tem numpy 2.4.6 junto de matplotlib 3.6.2, scipy 1.9.3,
-shapely 2.0.2 e geopandas 0.14.1 — todos compilados contra numpy 1.x, e nenhum
-carrega. Daí o venv.
+Requisito herdado da fase 1: **numpy ≥ 2 com matplotlib ≥ 3.9**. A máquina
+original tinha numpy 2.4.6 junto de matplotlib 3.6.2, scipy 1.9.3, shapely
+2.0.2 e geopandas 0.14.1 — todos compilados contra numpy 1.x, e nenhum
+carregava. **Foi essa dor que motivou trocar o venv manual pelo `uv`:** ele
+fixa o próprio interpretador, não só os pacotes, então a combinação errada não
+volta. O ambiente travado hoje é Python 3.12.14 com numpy 2.5.3, pandas 2.3.3,
+scipy 1.18.1, matplotlib 3.11.2 e pyarrow 25.0.1.
+
+**Um clone novo não roda o modelo.** `sp/_raw/` e `dados/sp_tempos.npy` estão
+no `.gitignore` (grandes e reconstruíveis), e `roda.py`, `compara.py` e
+`figuras.py` abrem a matriz de tempos direto. Rode `pull_dados.py` + `monta.py`
+antes de qualquer outra coisa.
 
 ---
 
@@ -348,6 +357,15 @@ Cada uma destas custou uma rodada de depuração e está corrigida no código.
 - **Processos em background na VM.** Não sobrevivem entre chamadas do shell
   remoto, nem com `setsid`. Daí o checkpoint do NSGA-II e o parâmetro
   `ORCAMENTO`.
+- **A curva de Lorenz tem de começar na origem.** O somatório dos trapézios em
+  `huff2sfca.gini` pulava a primeira fatia, `(cw[0]-0)·(cx[0]+0)`. Com isso o
+  Gini de uma distribuição *perfeitamente igual* não dava 0 e sim `cw[0]·cx[0]`
+  — um piso cujo tamanho depende de qual elemento o `argsort` deixou em
+  primeiro no empate, o que é comportamento indefinido: no caso degenerado do
+  teste ia de 6e-8 a 1,4e-5 conforme a ordem, 200× de diferença. O teste do
+  módulo quebrou ao trocar de versão do numpy, que desempata diferente. O viés
+  é da ordem de 1e-9 nos 26.889 setores de SP — **nenhum número publicado
+  muda** —, mas o caso degenerado agora é asserção fixa em `_teste()`.
 
 ---
 

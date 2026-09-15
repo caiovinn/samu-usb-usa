@@ -46,13 +46,17 @@ Tudo o mais lê de `dados/`.
 
 ## Ambiente
 
-Precisa de **numpy ≥ 2 com matplotlib ≥ 3.9**. O Python principal desta máquina
-tem numpy 2.4.6 junto de matplotlib 3.6.2, scipy 1.9.3, shapely 2.0.2 e
-geopandas 0.14.1 — todos compilados contra numpy 1.x, e nenhum deles carrega.
-Por isso o código aqui não usa scipy nem shapely.
+**Ver [SETUP.md](SETUP.md)** — é a única lista de dependências do projeto.
+
+Resumo: o projeto usa `uv`, com Python 3.12 fixado no repositório.
 
 ```bash
-python -m venv .venv-eda
-.venv-eda/Scripts/activate
-pip install "numpy>=2" pandas pyarrow matplotlib requests pysus
+uv sync                  # monta o ambiente exato do uv.lock
+uv run python tabelas.py
 ```
+
+O motivo de existir um gerenciador: esta fase precisa de **numpy ≥ 2 com
+matplotlib ≥ 3.9**, e a máquina original tinha numpy 2.4.6 ao lado de
+matplotlib 3.6.2, scipy 1.9.3, shapely 2.0.2 e geopandas 0.14.1 — todos
+compilados contra numpy 1.x, e nenhum deles carregava. Daí o código da fase 1
+evitar scipy e shapely.

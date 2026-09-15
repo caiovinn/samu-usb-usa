@@ -1,7 +1,14 @@
 # ambientes virtuais
+# (.venv*/ ja cobre o .venv/ que o uv cria)
 .venv*/
 venv*/
 env/
+
+# node — so o deck (sp/deck_gera.js) usa
+node_modules/
+
+# ATENCAO: uv.lock e package-lock.json NAO entram aqui. Sao eles que fazem
+# as cinco maquinas do grupo terem exatamente as mesmas versoes. Ver SETUP.md.
 
 # python
 __pycache__/
