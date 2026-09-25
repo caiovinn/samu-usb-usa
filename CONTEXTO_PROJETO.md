@@ -35,7 +35,7 @@ Conclusão da fase 1: **o problema é distribuição, não volume.**
 
 ### Fase 2 — Huff + 2SFCA bi-objetivo em São Paulo (concluída)
 
-Tudo em `sp/`. É o objeto deste documento.
+Tudo em `fase2_sao_paulo/`. É o objeto deste documento.
 
 ---
 
@@ -240,39 +240,58 @@ deslocamento.
 
 ## 8. Mapa de arquivos
 
-### Raiz — fase 1
-`pull_ibge.py`, `pull_malha.py`, `pull_sedes.py`, `pull_cnes.py`, `pull_sr.py`
-(coletas) · `classif.py`, `base_frota.py`, `agg_mun.py`, `acesso.py`,
-`build_municipal.py` (pipeline) · `tabelas.py`, `figuras.py` (saídas) ·
-`eda_usb_usa.ipynb`, `relatorio_usb_usa.html`, `resultados.txt`
+O repositório é organizado por fase (`fase1_nacional/`, `fase2_sao_paulo/`) e,
+dentro de cada fase, por responsabilidade: `coleta/` (baixa dados brutos),
+`modelo/` (funções/classes reutilizáveis, sem I/O de arquivo), `experimentos/`
+(scripts que rodam o pipeline e gravam em `dados/`/`figs/`), `docs/` (gera
+relatório/decks — os "produtos finais" para leitura humana) e `testes/`.
+Caminhos (`RAIZ`/`DADOS`/`FIG`/`RAW`) ficam centralizados em
+`<fase>/caminhos.py` — nenhum script deveria montar esses caminhos na mão.
 
-### `sp/` — fase 2
+### `fase1_nacional/`
 ```
-pull_dados.py   coleta bruta — RODA NA MÁQUINA DO USUÁRIO (ver §9)
-monta.py        _raw/ -> sp_setores, sp_candidatos, sp_tempos.npy
-huff2sfca.py    o modelo (Huff, 2SFCA hierárquico, Gini, tempo esperado)
-otimiza.py      NSGA-II com checkpoint + busca local + joelho()
-mudanca.py      custo de realocação (emparelhamento ótimo, Hungaro)
-pmedian.py      baseline clássico (guloso + troca de vértices)
-roda.py         driver: baseline, varredura de λ, fronteiras
-compara.py      as três configurações nas duas métricas
-figuras.py      figs/sp_*.png
-teste_monta.py  testes geométricos contra força bruta
-deck_gera.js    gerador da apresentação (.pptx)
+coleta/       pull_ibge.py, pull_malha.py, pull_sedes.py, pull_cnes.py, pull_sr.py
+modelo/       classif.py, base_frota.py, agg_mun.py, acesso.py
+experimentos/ build_municipal.py, tabelas.py, figuras.py
+docs/         eda_usb_usa.ipynb, relatorio_usb_usa.html, resultados.txt
 ```
-Cada módulo roda sozinho e executa o próprio teste: `python sp/huff2sfca.py`.
 
-### `dados/` — fase 2
+### `fase2_sao_paulo/`
+```
+coleta/pull_dados.py          coleta bruta — RODA NA MÁQUINA DO USUÁRIO (ver §9)
+experimentos/monta.py         _raw/ -> dados/fase2/sp_setores, sp_candidatos, sp_tempos.npy
+modelo/huff2sfca.py           o modelo (Huff, 2SFCA hierárquico, Gini, tempo esperado)
+modelo/otimiza.py             NSGA-II com checkpoint + busca local + joelho()
+modelo/mudanca.py             custo de realocação (emparelhamento ótimo, Hungaro)
+modelo/pmedian.py             baseline clássico (guloso + troca de vértices)
+experimentos/roda.py          driver: baseline, varredura de λ, fronteiras
+experimentos/compara.py       as três configurações nas duas métricas
+experimentos/sensib_beta.py   sensibilidade em β
+experimentos/figuras.py       figs/fase2/sp_*.png
+testes/teste_monta.py         testes geométricos contra força bruta
+docs/deck_gera.js             gerador da apresentação de resultados (.pptx)
+docs/deck_didatico.js         gerador da apresentação didática (.pptx)
+docs/formulas_gera.py         renderiza fórmulas em LaTeX -> figs/fase2/formulas/*.png
+docs/relatorio_gera.py        gerador do relatório HTML
+```
+Cada módulo de `modelo/` roda sozinho e executa o próprio teste:
+`uv run python -m fase2_sao_paulo.modelo.huff2sfca`.
+
+### `dados/fase2/`
 `sp_setores.parquet`, `sp_candidatos.parquet`, `sp_tempos.npy` (matriz,
 reconstruível, fora do git), `sp_pareto_lam*.parquet`, `sp_pareto_x_lam*.npy`,
-`sp_resultado.json`, `sp_comparacao.json`, `sp_pmedian_x.npy`
+`sp_resultado.json`, `sp_comparacao.json`, `sp_pmedian_x.npy`,
+`sp_beta_sens.json`
 
-### `figs/` — fase 2
+### `figs/fase2/`
 `sp_01_pareto.png` · `sp_02_ganho_km.png` · `sp_03_mapa_troca.png` ·
-`sp_04_lorenz.png` · `sp_05_comparacao.png`
+`sp_04_lorenz.png` · `sp_05_comparacao.png` · `formulas/*.png`
 
 ### Entregáveis
-`apresentacao_usb_usa_sp.pptx` (15 slides) · `relatorio_usb_usa.html` (fase 1)
+`fase2_sao_paulo/docs/apresentacao_usb_usa_sp.pptx` (resultados) ·
+`fase2_sao_paulo/docs/apresentacao_didatica_samu.pptx` (didático) ·
+`fase1_nacional/docs/relatorio_usb_usa.html` (fase 1) ·
+`fase2_sao_paulo/docs/relatorio_resultados_sp.html` (fase 2)
 
 O slide 5, **«Como ler os números»**, foi acrescentado depois de a primeira
 versão ser criticada por não definir as métricas. Ele fixa, num lugar só: os
@@ -296,17 +315,17 @@ versões travadas em `uv.lock` (ambos versionados).
 
 ```bash
 uv sync
-uv run python sp/pull_dados.py   # SÓ ESTA ETAPA PRECISA DE REDE
-uv run python sp/monta.py
-uv run python sp/roda.py         # varre todos os λ
-uv run python sp/compara.py
-uv run python sp/figuras.py
+uv run python -m fase2_sao_paulo.coleta.pull_dados   # SÓ ESTA ETAPA PRECISA DE REDE
+uv run python -m fase2_sao_paulo.experimentos.monta
+uv run python -m fase2_sao_paulo.experimentos.roda        # varre todos os λ
+uv run python -m fase2_sao_paulo.experimentos.compara
+uv run python -m fase2_sao_paulo.experimentos.figuras
 ```
 
 **Restrição de ambiente importante.** Os sandboxes do Claude só alcançam PyPI e
 GitHub; `ftp.ibge.gov.br`, `apidadosabertos.saude.gov.br` e o OpenStreetMap
 respondem 403 na política de egresso. Por isso `pull_dados.py` roda na máquina
-do usuário e todo o resto trabalha sobre `sp/_raw/`.
+do usuário e todo o resto trabalha sobre `fase2_sao_paulo/_raw/`.
 
 Requisito herdado da fase 1: **numpy ≥ 2 com matplotlib ≥ 3.9**. A máquina
 original tinha numpy 2.4.6 junto de matplotlib 3.6.2, scipy 1.9.3, shapely
@@ -316,10 +335,10 @@ fixa o próprio interpretador, não só os pacotes, então a combinação errada
 volta. O ambiente travado hoje é Python 3.12.14 com numpy 2.5.3, pandas 2.3.3,
 scipy 1.18.1, matplotlib 3.11.2 e pyarrow 25.0.1.
 
-**Um clone novo não roda o modelo.** `sp/_raw/` e `dados/sp_tempos.npy` estão
-no `.gitignore` (grandes e reconstruíveis), e `roda.py`, `compara.py` e
-`figuras.py` abrem a matriz de tempos direto. Rode `pull_dados.py` + `monta.py`
-antes de qualquer outra coisa.
+**Um clone novo não roda o modelo.** `fase2_sao_paulo/_raw/` e
+`dados/fase2/sp_tempos.npy` estão no `.gitignore` (grandes e reconstruíveis),
+e `roda.py`, `compara.py` e `figuras.py` abrem a matriz de tempos direto. Rode
+`pull_dados.py` + `monta.py` antes de qualquer outra coisa.
 
 ---
 

@@ -4,7 +4,7 @@
 venv*/
 env/
 
-# node — so o deck (sp/deck_gera.js) usa
+# node — so os decks (fase2_sao_paulo/docs/deck_*.js) usam
 node_modules/
 
 # ATENCAO: uv.lock e package-lock.json NAO entram aqui. Sao eles que fazem
@@ -20,9 +20,6 @@ __pycache__/
 
 # cache das coletas — reconstruído pelos pull_*.py
 cache_samu/
-cnes42/
-cnes_sr/
-cnes_st/
 *.log
 
 # windows / onedrive
@@ -30,6 +27,11 @@ desktop.ini
 Thumbs.db
 *:Zone.Identifier
 
-# fase 2 — brutos e matriz de tempo (reconstruíveis)
-sp/_raw/
-dados/sp_tempos.npy
+# brutos e matriz de tempo (reconstruíveis) — um _raw/ por fase
+fase1_nacional/_raw/
+fase2_sao_paulo/_raw/
+dados/fase2/sp_tempos.npy
+
+# lixo acidental que ja apareceu neste repo (nao gerado por nenhum script)
+cache/
+Claude outputs/

@@ -2,9 +2,10 @@
   "name": "samu-usb-usa-deck",
   "version": "0.2.0",
   "private": true,
-  "description": "Gerador da apresentacao .pptx da fase 2 (sp/deck_gera.js)",
+  "description": "Gerador da apresentacao .pptx da fase 2 (fase2_sao_paulo/docs/deck_gera.js)",
   "scripts": {
-    "deck": "node sp/deck_gera.js"
+    "deck": "node fase2_sao_paulo/docs/deck_gera.js",
+    "deck:didatico": "node fase2_sao_paulo/docs/deck_didatico.js"
   },
   "dependencies": {
     "pptxgenjs": "^4.0.1"

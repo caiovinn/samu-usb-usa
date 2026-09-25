@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A matemática da realocação de USB e USA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']], tags: 'none' },
+  chtml: { scale: 1.0 },
+  options: { renderActions: { addMenu: [] } }
+};
+</script>
+<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<style>
+:root{
+  --papel:#F2F5F4;
+  --plate:#FBFCFB;
+  --tinta:#16201E;
+  --tinta-fraca:#5B6864;
+  --regua:#C9D3D0;
+  --regua-fina:#DFE6E4;
+  --feito:#0F5148;
+  --futuro:#39357E;
+  --serif:'Spectral', Georgia, 'Times New Roman', serif;
+  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--papel); color:var(--tinta);
+  font-family:var(--serif); font-weight:400; font-size:17px; line-height:1.66;
+  font-variant-numeric:oldstyle-nums proportional-nums;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px 120px}
+
+/* ---------- capa ---------- */
+.plate-title{padding:64px 0 30px;border-bottom:1.5px solid var(--tinta)}
+h1{
+  font-size:clamp(30px,4.6vw,52px); line-height:1.1; font-weight:600;
+  letter-spacing:-.012em; margin:0 0 14px; max-width:18ch;
+}
+.deck{font-size:18px;color:var(--tinta-fraca);max-width:56ch;margin:0}
+.meta{
+  font-family:var(--mono);font-size:12px;color:var(--tinta-fraca);
+  margin-top:26px;line-height:1.9;font-variant-numeric:lining-nums
+}
+
+/* ---------- hero identidade ---------- */
+.hero{
+  margin:0 0 10px;padding:52px 0 46px;border-bottom:1px solid var(--regua);
+}
+.hero .id{
+  background:var(--plate);border-top:1.5px solid var(--feito);
+  border-bottom:1px solid var(--regua-fina);
+  padding:26px 20px;font-size:1.35em;
+}
+.hero p{max-width:64ch;margin:0 0 16px;font-size:17.5px}
+.hero p:first-of-type{margin-top:28px}
+.hero p:last-child{margin-bottom:0}
+
+/* ---------- grade ---------- */
+.grid{display:grid;grid-template-columns:210px minmax(0,1fr);gap:0 56px;margin-top:48px}
+nav{position:sticky;top:26px;align-self:start;font-size:13.5px;line-height:1.5;padding-top:6px}
+nav a{display:block;color:var(--tinta-fraca);text-decoration:none;padding:3.5px 0 3.5px 11px;border-left:2px solid transparent}
+nav a:hover,nav a:focus{color:var(--tinta);border-left-color:var(--feito)}
+nav a.fut:hover,nav a.fut:focus{border-left-color:var(--futuro)}
+nav .grp{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--tinta-fraca);
+  margin:20px 0 6px;padding-left:11px;text-transform:uppercase;opacity:.75}
+nav .grp:first-child{margin-top:0}
+
+main{min-width:0;max-width:74ch}
+
+/* ---------- seções ---------- */
+section{padding-top:52px;scroll-margin-top:20px}
+h2{
+  font-size:27px;font-weight:600;line-height:1.24;letter-spacing:-.01em;
+  margin:0 0 22px;padding-bottom:12px;border-bottom:1.5px solid var(--tinta);max-width:24ch
+}
+h2 .num{font-family:var(--mono);font-size:14px;font-weight:400;color:var(--feito);
+  display:block;margin-bottom:7px;font-variant-numeric:lining-nums}
+section.fut h2 .num{color:var(--futuro)}
+h3{font-size:19px;font-weight:600;margin:38px 0 12px;line-height:1.3}
+h3 .num{font-family:var(--mono);font-size:13px;font-weight:400;color:var(--tinta-fraca);
+  margin-right:9px;font-variant-numeric:lining-nums}
+p{margin:0 0 16px;max-width:68ch}
+strong{font-weight:600}
+em{font-style:italic}
+main a{color:inherit;text-decoration:underline;text-decoration-color:var(--regua);text-underline-offset:2px}
+main a:hover,main a:focus{color:var(--feito);text-decoration-color:var(--feito)}
+section.fut a:hover,section.fut a:focus{color:var(--futuro);text-decoration-color:var(--futuro)}
+code,.mono{font-family:var(--mono);font-size:.86em;font-variant-numeric:lining-nums}
+code{background:rgba(15,81,72,.07);padding:1px 4px;border-radius:2px}
+
+/* ---------- placas de fórmula ---------- */
+.eq{
+  background:var(--plate);border-top:1px solid var(--regua);border-bottom:1px solid var(--regua);
+  margin:24px 0;padding:6px 18px 6px;position:relative;overflow-x:auto;overflow-y:hidden
+}
+.eq.key{border-top:1.5px solid var(--feito)}
+section.fut .eq.key{border-top:1.5px solid var(--futuro)}
+.eq .tag{
+  position:absolute;right:12px;top:9px;font-family:var(--mono);font-size:11px;
+  color:var(--tinta-fraca);font-variant-numeric:lining-nums
+}
+mjx-container[display="true"]{margin:14px 0 !important}
+
+/* ---------- proposições e avisos ---------- */
+.prop{border-left:2.5px solid var(--feito);padding:2px 0 2px 20px;margin:26px 0}
+.prop .lab{font-family:var(--mono);font-size:11.5px;color:var(--feito);display:block;margin-bottom:6px;
+  font-variant-numeric:lining-nums}
+section.fut .prop{border-left-color:var(--futuro)}
+section.fut .prop .lab{color:var(--futuro)}
+.nota{border-left:2.5px dotted var(--tinta-fraca);padding:2px 0 2px 20px;margin:26px 0;
+  color:var(--tinta-fraca);font-size:16px}
+.nota .lab{font-family:var(--mono);font-size:11.5px;display:block;margin-bottom:6px}
+.nota p:last-child,.prop p:last-child{margin-bottom:0}
+
+/* ---------- tabelas ---------- */
+table{border-collapse:collapse;width:100%;margin:24px 0;font-size:15px;
+  font-variant-numeric:lining-nums tabular-nums}
+th{text-align:left;font-weight:600;font-size:13px;border-bottom:1.5px solid var(--tinta);
+  padding:7px 12px 7px 0;vertical-align:bottom}
+td{padding:7px 12px 7px 0;border-bottom:1px solid var(--regua-fina);vertical-align:top}
+td.n,th.n{text-align:right;padding-right:20px;font-family:var(--mono);font-size:13.5px}
+table .sym{font-family:var(--mono);white-space:nowrap}
+caption{caption-side:bottom;text-align:left;font-size:14px;color:var(--tinta-fraca);padding-top:10px}
+
+ul,ol{margin:0 0 16px;padding-left:22px;max-width:66ch}
+li{margin-bottom:7px}
+li::marker{color:var(--tinta-fraca)}
+
+.refs{font-size:15px;line-height:1.5}
+.refs li{margin-bottom:11px}
+
+/* ---------- exemplo trabalhado ---------- */
+.exemplo{background:var(--plate);border-top:1.5px solid var(--feito);
+  border-bottom:1px solid var(--regua);padding:20px 20px 18px;margin:30px 0}
+.exemplo .lab{font-family:var(--mono);font-size:11.5px;color:var(--feito);
+  display:block;margin-bottom:9px}
+.exemplo p{max-width:64ch}
+.exemplo table{margin:18px 0 8px}
+.exemplo tr.destaque td{font-weight:600;background:rgba(15,81,72,.06)}
+.exemplo p:last-child{margin-bottom:0}
+
+/* ---------- rótulos de estado ---------- */
+.st{font-family:var(--mono);font-size:11px;letter-spacing:.03em;white-space:nowrap;
+  font-variant-numeric:lining-nums}
+.st::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
+  margin-right:6px;vertical-align:.08em}
+.st-feito{color:var(--feito)} .st-feito::before{background:var(--feito)}
+.st-fila{color:var(--futuro)} .st-fila::before{background:var(--futuro)}
+.st-fora{color:var(--tinta-fraca)} .st-fora::before{background:none;border:1px solid var(--tinta-fraca)}
+
+/* ---------- abertura sem numeração ---------- */
+section.abre h2{border-bottom-color:var(--regua)}
+section.abre h2 .num{color:var(--tinta-fraca)}
+
+hr.end{border:0;border-top:1.5px solid var(--tinta);margin:60px 0 0}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr;gap:0}
+  nav{position:static;margin:34px 0 8px;padding:20px 0 4px;border-top:1px solid var(--regua);
+    columns:2;column-gap:26px}
+  nav .grp{break-after:avoid}
+  main{max-width:none}
+  body{font-size:16.5px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="plate-title">
+  <h1>A matemática da realocação de USB e USA</h1>
+  <p class="deck">Guia de referência para as técnicas aplicadas ao município de São Paulo e para as que ainda estão na fila. Pode ser lido do início ao fim ou consultado equação por equação, conforme a dúvida.</p>
+  <p class="meta">
+    MAI5003 · Probabilidade e Estatística<br>
+    Companheiro técnico de <span class="mono">fase2_sao_paulo/</span> e da apresentação de 14 slides<br>
+    Setembro de 2026
+  </p>
+</header>
+
+<div class="hero">
+  <div class="eq key">
+  \[ \sum_{i} D_i\, A_i \;=\; \sum_{j} S_j \]
+  </div>
+
+  <p><strong>Como ler esta igualdade.</strong> \(D_i\) é a população do setor censitário \(i\), e \(A_i\) é a acessibilidade dele — quantas ambulâncias por habitante esse setor "recebe" do sistema. O produto \(D_i A_i\) é, então, quantas viaturas cabem àquele setor. Do outro lado da igualdade, \(S_j\) é quantas unidades estão baseadas no local \(j\). A conta diz que, se você somar essas frações em todos os 26.889 setores de São Paulo, o resultado bate exatamente com o tamanho da frota inteira — 123 ambulâncias. Sempre 123, não importa como elas estejam distribuídas pela cidade.</p>
+
+  <p>Essa é uma identidade contábil, não uma coincidência dos dados. O 2SFCA — o índice que este projeto usa para medir acesso — funciona dividindo as ambulâncias de cada base entre todo mundo que disputa aquela base, e depois somando de volta, do ponto de vista de cada setor, os pedaços que sobraram para ele. Como é só divisão seguida de soma, nada se cria e nada se perde no processo: a soma final tem que voltar a ser 123. A demonstração completa, com três linhas de álgebra, está na <a href="#s3-6">§3.6</a>.</p>
+
+  <p><strong>Por que essa igualdade abre o documento.</strong> Porque o que ela proíbe é mais importante do que o que ela afirma. Quem lê "estudo de acessibilidade a ambulâncias" naturalmente pergunta: então o objetivo não deveria ser simplesmente <em>maximizar a acessibilidade</em>? A resposta é não — e não por um motivo empírico, descoberto olhando os dados, mas por um motivo estrutural: o valor de \(\sum_i D_i A_i\) é sempre 123, seja na configuração de hoje, na melhor configuração possível ou na pior configuração imaginável. É uma quantidade constante em relação a tudo que se está tentando otimizar. Tentar maximizá-la é como tentar maximizar o número 5.</p>
+
+  <p>Em palavras mais diretas: <strong>realocar ambulâncias não cria acesso novo, só redistribui o que já existe.</strong> Dito assim parece óbvio. Mesmo assim, é fácil escrever um objetivo de otimização que ignora esse fato e passar semanas rodando um algoritmo que, sem perceber, está otimizando uma constante.</p>
+
+  <p>O que de fato resta para otimizar é a <em>forma</em> da distribuição de \(A_i\) pela cidade: se as 123 unidades estão espalhadas de modo parecido para todo mundo, ou concentradas nalguns lugares e ausentes de outros. É daí que vem o Gini como segundo objetivo. E como o Gini sozinho também tem um problema — empilhar toda a frota num único ponto central zera a desigualdade e ao mesmo tempo arruína o tempo de resposta, o que a <a href="#prop2">Proposição 2</a> da <a href="#s3-7">§3.7</a> prova formalmente — o número de objetivos que sobra é exatamente dois, nem um nem três. Toda a arquitetura do trabalho decorre dessa observação: por que ele é bi-objetivo, por que a desigualdade entra como critério de otimização e por que a resposta final é uma fronteira de soluções (a fronteira de Pareto) em vez de uma única resposta.</p>
+
+  <p>De brinde, essa igualdade também é o teste automatizado mais barato do projeto: qualquer erro de índice em qualquer uma das duas etapas do 2SFCA a quebra já na quinta casa decimal, então ela funciona como um alarme de bug quase gratuito.</p>
+</div>
+
+<div class="grid">
+<nav>
+  <div class="grp">Base</div>
+  <a href="#ctx">O problema</a>
+  <a href="#s0">0 · Notação</a>
+  <a href="#s1">1 · O que toda técnica usa</a>
+  <a href="#s2">2 · As medidas da fase 1</a>
+  <div class="grp">Implementado</div>
+  <a href="#s3">3 · Huff + 2SFCA hierárquico</a>
+  <a href="#s4">4 · A otimização bi-objetivo</a>
+  <div class="grp">Na fila</div>
+  <a class="fut" href="#s5">5 · RL/GNN por SWAP</a>
+  <a class="fut" href="#s6">6 · ADNet multi-período</a>
+  <a class="fut" href="#s7">7 · BOMCLP-C</a>
+  <a class="fut" href="#s8">8 · Demanda bayesiana CAR</a>
+  <a class="fut" href="#s9">9 · Fila e disponibilidade</a>
+  <div class="grp">Uso</div>
+  <a href="#s10">10 · Sensibilidade em β</a>
+  <a href="#s11">11 · Invariantes de teste</a>
+  <a href="#s12">12 · Referências</a>
+</nav>
+
+<main>
+
+<!-- ================= contexto ================= -->
+<section id="ctx" class="abre">
+<h2><span class="num">Abertura</span>O problema</h2>
+
+<p>Antes de qualquer equação, vale entender o objeto que está sendo modelado. O SAMU opera dois tipos de viatura, e eles não são intercambiáveis nos dois sentidos. A <strong>USB</strong> — Unidade de Suporte Básico — leva um técnico de enfermagem e um condutor socorrista, e dá conta da maior parte dos chamados. A <strong>USA</strong> — Suporte Avançado — leva médico, enfermeiro e desfibrilador, e é a única que consegue atender parada cardiorrespiratória, via aérea difícil ou trauma grave. Uma USA consegue fazer o serviço de uma USB perfeitamente. Uma USB não consegue fazer o de uma USA.</p>
+
+<p>Essa assimetria é a origem de quase toda a dificuldade técnica deste trabalho. Se as duas frotas fossem equivalentes, bastaria somar as unidades e resolver um problema de localização comum, do tipo que qualquer livro-texto de pesquisa operacional trata. Como não são, o mesmo ponto no mapa presta dois serviços diferentes para dois públicos diferentes — e uma USA que está atendendo um chamado básico fica indisponível para o avançado, exatamente quando pode ser mais necessária. É isso que a hierarquia da <a href="#s3-4">§3.4</a> formaliza matematicamente, e é a razão pela qual o modelo precisa manter dois conjuntos de escolha diferentes sobre uma única configuração de frota.</p>
+
+<h3 id="ctx-fase1">O que a fase 1 encontrou</h3>
+
+<p>A primeira metade do projeto foi uma análise exploratória (EDA) nacional, sem nenhuma otimização — só medição. Ela olhou três coisas: cobertura, desigualdade e elasticidade. As três apontaram na mesma direção:</p>
+
+<ul>
+<li>Existem 5.522 unidades públicas ativas no Brasil, sendo 3.710 USB para 885 USA — uma razão de 4,2 USB para cada USA.</li>
+<li>Dentro de 20 minutos de viagem, a USB alcança 85,9% da população; a USA alcança 66,4%. A diferença entre essas duas fatias corresponde a <strong>40,6 milhões de pessoas que têm uma USB por perto e nenhuma USA</strong>.</li>
+<li>O Gini da frota, usando a população como referência de comparação, é 0,54 para USB e 0,67 para USA — ou seja, a USA está distribuída de forma bem mais desigual pelo país do que a USB.</li>
+<li>O tamanho do município explica surpreendentemente pouco da frota que ele tem: uma elasticidade de apenas 0,42, com \(R^2\) de 0,57 (metade da variação fica sem explicação).</li>
+</ul>
+
+<p>A conclusão foi que <strong>o problema é de distribuição, não de volume</strong> — e é essa frase que transforma um diagnóstico descritivo num problema de otimização de verdade. Se faltassem ambulâncias, a resposta certa seria orçamentária: comprar mais. Como elas existem, mas estão nos lugares errados, a resposta é geográfica, e aí surge uma pergunta matematicamente bem definida: dado o mesmo número de viaturas que já existe, onde elas deveriam estar posicionadas?</p>
+
+<p>A fase 2 deste projeto responde essa pergunta dentro de um único município. As seções <a href="#s1">1</a> a <a href="#s4">4</a> deste documento são a matemática por trás dela.</p>
+
+<h3 id="ctx-sp">Escopo: por que São Paulo</h3>
+
+<p>São Paulo não foi escolhida por ser o caso mais grave do país — não é, e a <a href="#ctx-limitacoes">tabela de limitações mais adiante</a> volta a isso. Foi escolhida por ser um ambiente controlado: uma única malha viária, 123 ambulâncias, e cada rodada de experimento leva minutos, não dias. É um piloto. Cada decisão de escopo abaixo restringe o alcance do modelo, e cada uma tem uma razão que precisa aparecer explicada no artigo final:</p>
+
+<table>
+<thead><tr><th style="width:26%">Decisão</th><th>Escolha, e por quê</th></tr></thead>
+<tbody>
+<tr><td>Recorte</td><td>Município de São Paulo (código IBGE 3550308). Uma única malha viária e uma única gestão administrativa tornam a comparação entre configurações mais limpa.</td></tr>
+<tr><td>Demanda</td><td>Setores censitários do Censo 2022, 26.889 deles habitados. Resolução fina o bastante para o Huff ter o que repartir de forma útil; a <a href="#s8">§8</a> troca população por incidência de chamados.</td></tr>
+<tr><td>Candidatos</td><td>Bases do SAMU mais UBS, UPA e hospitais públicos do CNES: 1.107 pontos ao todo. A realocação só move ambulâncias para onde já existe equipamento público — nada de obra nova.</td></tr>
+<tr><td>Distância</td><td>Tempo de viagem pela rede viária do OpenStreetMap, e não a distância em linha reta. Em São Paulo a diferença entre as duas é grande e varia de forma sistemática conforme a geografia da cidade.</td></tr>
+<tr><td>Frota</td><td>USB e USA otimizadas em conjunto, mantendo 107 e 16 unidades, total constante. O estudo realoca a frota existente; não propõe comprar mais nem cortar unidades.</td></tr>
+<tr><td>Custo de mudança</td><td>Penalidade proporcional ao quilômetro percorrido na mudança, e não ao número de unidades movidas. Mover uma ambulância para uma base a 2 km de distância não pode custar o mesmo que mandá-la para o outro lado da cidade — ver <a href="#eq4-2">(4.2)</a>.</td></tr>
+</tbody>
+</table>
+
+<h3 id="ctx-achado">O achado principal</h3>
+
+<p>Vale o leitor saber onde esta história termina antes de acompanhar a álgebra que leva até lá. O resultado central é <em>negativo</em>, e ele reposicionou a tese inteira do trabalho.</p>
+
+<p>O modelo de Huff foi introduzido justamente para abandonar a suposição de que o paciente é sempre atendido pela unidade mais próxima. A expectativa inicial era que derrubar essa suposição mudasse bastante o desenho ótimo da rede. Na prática, mudou muito pouco: planejar pela regra clássica (sempre a mais próxima) custa apenas <strong>+0,4%</strong> de tempo esperado de resposta, mesmo quando a demanda de fato se reparte entre várias unidades. O p-median clássico se mostrou robusto justamente à suposição que a técnica se propunha a demolir, e a <a href="#s3-8">§3.8</a> explica analiticamente por que isso acontece.</p>
+
+<p>O ganho real do modelo aparece em outro lugar. O p-median clássico não enxerga quantas pessoas disputam cada base, porque ele não tem nenhum termo de capacidade — só distância. O 2SFCA tem esse termo. O ganho mensurável está na <strong>equidade da carga</strong>: o Gini cai de 0,224 para 0,025, contra 0,079 do p-median, e com menos deslocamento de unidades. Mover só 12 das 123 unidades, 39 km ao todo, já corta 62% da desigualdade de hoje.</p>
+
+<p>Por isso a tese defensável deste trabalho não é "chegamos mais rápido" — e sim "distribuímos a carga de um jeito muito mais equânime, no mesmo tempo de resposta e com pouca mudança física". Se o artigo prometer ganho de eficiência como resultado principal, qualquer revisor consegue derrubar essa afirmação com o próprio p-median como contraexemplo.</p>
+
+<h3 id="ctx-tecnicas">As quatro técnicas do levantamento</h3>
+
+<p>O trabalho partiu de um levantamento de quatro técnicas recentes de otimização geográfica que ainda não tinham sido aplicadas ao par USB/USA. Uma delas foi implementada; as outras três seguem no radar, cada uma por um motivo diferente.</p>
+
+<table>
+<thead><tr><th style="width:15%">Estado</th><th style="width:30%">Técnica</th><th>O que ela é, e onde entra aqui</th></tr></thead>
+<tbody>
+<tr>
+  <td><span class="st st-feito">implementada</span></td>
+  <td>Huff + 2SFCA bi-objetivo<br><span class="mono">Eng. Optimization, 2025</span></td>
+  <td>Um modelo de demanda probabilística acoplado a um índice de acessibilidade que leva capacidade em conta, otimizado por uma metaheurística. É a técnica 2 do levantamento, e é o assunto das seções <a href="#s3">3</a> e <a href="#s4">4</a> deste documento.</td>
+</tr>
+<tr>
+  <td><span class="st st-fila">na fila</span></td>
+  <td>RL/GNN por operador SWAP<br><span class="mono">arXiv:2409.01588</span></td>
+  <td>Aprende a escolher boas realocações em vez de procurá-las do zero a cada vez, trocando busca local cara por inferência de rede neural, que é barata. Resolve o gargalo de escala para sair de um município e chegar ao estado inteiro. <a href="#s5">Seção 5</a>.</td>
+</tr>
+<tr>
+  <td><span class="st st-fila">na fila</span></td>
+  <td>ADNet multi-período<br><span class="mono">SIGSPATIAL 2024</span></td>
+  <td>Trata a localização das bases como uma sequência de decisões ao longo do tempo, e não como uma fotografia única. Exige uma série histórica do CNES que ainda não existe montada. <a href="#s6">Seção 6</a>.</td>
+</tr>
+<tr>
+  <td><span class="st st-fora">fora</span></td>
+  <td>BOMCLP-C<br><span class="mono">EvoApplications 2026</span></td>
+  <td>Cobertura máxima combinada com compacidade geográfica, resolvida por NSGA-II e MOEA/D. Os objetivos dela reintroduzem exatamente o ponto cego que este trabalho existe para denunciar — mas o otimizador por decomposição que ela usa vale a pena aproveitar. <a href="#s7">Seção 7</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="ctx-limitacoes">Limitações e onde cada uma é tratada</h3>
+
+<p>As seções marcadas como "na fila" não são uma lista de desejos soltos. Cada uma delas responde a uma fraqueza já reconhecida do resultado atual, e é assim que convém lê-las:</p>
+
+<table>
+<thead><tr><th style="width:46%">Limitação do resultado de hoje</th><th>Onde ela é atacada</th></tr></thead>
+<tbody>
+<tr><td>β é escolhido por julgamento, não estimado dos dados — e governa o modelo inteiro</td><td><a href="#s10">§10</a>, o desenho da análise de sensibilidade</td></tr>
+<tr><td>A demanda é população residente, sem idade nem incidência de chamados</td><td><a href="#s8">§8</a>, modelo bayesiano CAR/ICAR</td></tr>
+<tr><td>Não há fila: o 2SFCA mede pressão sobre a base, não disponibilidade real</td><td><a href="#s9">§9</a>, Erlang, MEXCLP e o modelo do hipercubo</td></tr>
+<tr><td>Só um município foi estudado, não a rede estadual inteira — onde a desigualdade era maior</td><td><a href="#s5">§5</a>, escala via aprendizado amortizado</td></tr>
+<tr><td>O modelo é uma fotografia única, sem dimensão temporal</td><td><a href="#s6">§6</a>, formulação multi-período</td></tr>
+<tr><td>A fronteira de soluções pode ter uma região côncava que o NSGA-II não consegue amostrar</td><td><a href="#s7-3">§7.3</a>, MOEA/D como segundo otimizador</td></tr>
+<tr><td>Tempos de viagem em fluxo livre; heurísticas sem garantia de encontrar o ótimo</td><td>sem seção própria — são limitações de dado e de método, para declarar no artigo</td></tr>
+</tbody>
+</table>
+
+<h3 id="ctx-leitura">Como ler este documento</h3>
+
+<p>Ele não é o artigo final nem o relatório de resultados — esses vivem na apresentação e nos outros arquivos do projeto. Este documento é o companheiro matemático da pasta <span class="mono">fase2_sao_paulo/</span>: a definição precisa de cada objeto que o código calcula, junto com as provas que justificam as escolhas de modelagem e as identidades que servem de teste automatizado.</p>
+
+<ul>
+<li><strong>Seções <a href="#s1">1</a> e <a href="#s2">2</a></strong> montam o vocabulário que toda técnica discutida depois vai usar — a matriz de tempos, a demanda, a variável de decisão — e revisam as três medidas da fase 1. São pré-requisito para o resto.</li>
+<li><strong>Seções <a href="#s3">3</a> e <a href="#s4">4</a></strong> descrevem o que está rodando hoje: o modelo de demanda e o otimizador. Se você só vai ler uma parte deste documento, é esta.</li>
+<li><strong>Seções <a href="#s5">5</a> a <a href="#s9">9</a></strong> são prospectivas — técnicas ainda não implementadas, marcadas em outra cor. Cada uma traz a formulação original da técnica, o que precisaria ser adaptado para caber neste projeto, e qual é o obstáculo real para implementá-la.</li>
+<li><strong>Seções <a href="#s10">10</a> e <a href="#s11">11</a></strong> são de uso prático: como desenhar o próximo experimento, e quais igualdades qualquer implementação correta precisa satisfazer.</li>
+</ul>
+
+<div class="nota">
+<span class="lab">Vocabulário mínimo</span>
+<p><strong>Huff</strong> — modelo de escolha probabilística entre destinos concorrentes: em vez de assumir que todo mundo vai ao mais próximo, calcula a chance de ir a cada opção disponível. <strong>2SFCA</strong> — índice de acessibilidade que divide a oferta de cada base pela demanda que a disputa. <strong>p-median</strong> — modelo clássico que minimiza a distância média até a instalação mais próxima, ignorando capacidade; é o ponto de comparação (baseline) deste trabalho. <strong>NSGA-II</strong> — algoritmo evolutivo (genético) usado para otimizar dois objetivos ao mesmo tempo. <strong>Fronteira de Pareto</strong> — o conjunto de soluções em que melhorar um objetivo exige necessariamente piorar o outro. <strong>β</strong> — quão rápido a atratividade de uma base cai conforme o tempo de viagem até ela aumenta. <strong>θ</strong> — fração dos chamados que exige suporte avançado. <strong>λ</strong> — o preço da mudança, em minutos de resposta por quilômetro que a frota precisa se deslocar.</p>
+</div>
+</section>
+
+<!-- ================= 0 ================= -->
+<section id="s0">
+<h2><span class="num">Seção 0</span>Notação usada em todo o texto</h2>
+
+<p>Três conjuntos de índices aparecem o tempo todo neste documento, então vale fixá-los logo no início. Setores censitários são indexados por \(i\), locais candidatos a sediar uma base são indexados por \(j\), e unidades individuais da frota são indexadas por \(u\). A modalidade da unidade aparece como sobrescrito: \(\mathrm{B}\) para suporte básico, \(\mathrm{A}\) para suporte avançado.</p>
+
+<table>
+<thead><tr><th style="width:82px">Símbolo</th><th>Significado</th><th class="n" style="width:110px">Em SP</th></tr></thead>
+<tbody>
+<tr><td class="sym">\(I\), \(n\)</td><td>setores censitários habitados</td><td class="n">26 889</td></tr>
+<tr><td class="sym">\(J\), \(M\)</td><td>locais candidatos (UBS, UPA, hospital, base do SAMU)</td><td class="n">1 107</td></tr>
+<tr><td class="sym">\(J_{\mathrm A}\)</td><td>subconjunto de \(J\) que hospeda ao menos uma USA</td><td class="n">—</td></tr>
+<tr><td class="sym">\(N\)</td><td>unidades da frota, \(N=N^{\mathrm B}+N^{\mathrm A}\)</td><td class="n">123</td></tr>
+<tr><td class="sym">\(D_i\)</td><td>demanda do setor \(i\) (hoje: população residente)</td><td class="n">11,45 mi</td></tr>
+<tr><td class="sym">\(S_j\)</td><td>oferta no local \(j\): número de unidades baseadas ali</td><td class="n">—</td></tr>
+<tr><td class="sym">\(t_{ij}\)</td><td>tempo de viagem de \(j\) até \(i\) pela malha viária, em minutos</td><td class="n">—</td></tr>
+<tr><td class="sym">\(P_{ij}\)</td><td>probabilidade de Huff de \(i\) ser atendido por \(j\)</td><td class="n">—</td></tr>
+<tr><td class="sym">\(R_j\)</td><td>razão oferta/demanda no local \(j\) — etapa 1 do 2SFCA</td><td class="n">—</td></tr>
+<tr><td class="sym">\(A_i\)</td><td>índice de acessibilidade do setor \(i\) — etapa 2</td><td class="n">—</td></tr>
+<tr><td class="sym">\(x\)</td><td>configuração: vetor que aloca cada unidade a um local</td><td class="n">—</td></tr>
+<tr><td class="sym">\(\beta\)</td><td>escala do decaimento gaussiano, em minutos</td><td class="n">4,5</td></tr>
+<tr><td class="sym">\(\alpha\)</td><td>expoente de atratividade da oferta</td><td class="n">1,0</td></tr>
+<tr><td class="sym">\(d_0\)</td><td>raio da área de captação</td><td class="n">30 min</td></tr>
+<tr><td class="sym">\(\theta\)</td><td>fração dos chamados que exige suporte avançado</td><td class="n">0,10</td></tr>
+<tr><td class="sym">\(\lambda\)</td><td>preço da mudança, em minutos por km deslocado</td><td class="n">varrido</td></tr>
+<tr><td class="sym">\(K(x)\)</td><td>quilometragem total da migração até a configuração \(x\)</td><td class="n">—</td></tr>
+<tr><td class="sym">\(G(\cdot)\)</td><td>índice de Gini, ponderado por população</td><td class="n">—</td></tr>
+</tbody>
+</table>
+
+<div class="nota">
+<span class="lab">Cuidado com um nome repetido</span>
+<p>A palavra <em>Gini</em> aparece em dois objetos diferentes neste projeto, e vale não confundi-los. Na fase 1, é o Gini da <strong>frota</strong> entre municípios, usando população como referência (0,54 e 0,67). Na fase 2, é o Gini da <strong>acessibilidade avançada</strong> entre setores de São Paulo (0,224 caindo para 0,025). É a mesma fórmula matemática aplicada a variáveis diferentes, em escalas que não se comparam diretamente. O artigo deveria distingui-los por um subscrito — algo como \(G_{\text{frota}}\) e \(G_{\mathrm A}\) — para evitar que um leitor apressado compare os dois números como se fossem a mesma coisa.</p>
+</div>
+</section>
+
+<!-- ================= 1 ================= -->
+<section id="s1">
+<h2><span class="num">Seção 1</span>O que toda técnica usa</h2>
+
+<p>Toda técnica discutida neste documento — implementada ou ainda na fila — parte dos mesmos três objetos: uma matriz de tempos de viagem, um vetor de demanda e um vetor que representa a decisão a ser tomada. Vale montar esses três objetos com cuidado logo no início, porque erros aqui se propagam silenciosamente para todo o resto.</p>
+
+<h3 id="s1-1"><span class="num">1.1</span>Da malha viária até a matriz de tempos</h3>
+
+<p>A malha do OpenStreetMap é representada como um grafo direcionado \(G=(V,E)\), com \(|V| = 122\,830\) nós (cruzamentos e pontos da via). O peso de cada aresta é o tempo de percurso assumindo fluxo livre, sem trânsito:</p>
+
+<div class="eq" id="eq1-1"><span class="tag">(1.1)</span>
+\[ w_e \;=\; \frac{\ell_e}{v_e}, \qquad e \in E \]
+</div>
+
+<p>onde \(\ell_e\) é o comprimento do trecho e \(v_e\) é a velocidade atribuída pela classificação da via (avenida, rua local, etc.). Quando existem duas arestas paralelas entre o mesmo par de nós — por exemplo, duas ruas diferentes ligando os mesmos dois cruzamentos —, o peso do par ordenado tem que ser o <strong>mínimo</strong> entre as duas, nunca a soma:</p>
+
+<div class="eq" id="eq1-2"><span class="tag">(1.2)</span>
+\[ w(u,v) \;=\; \min\{\, w_e : e = (u,v) \,\} \]
+</div>
+
+<p>Essa distinção não é um detalhe cosmético — é uma armadilha real que já aconteceu no projeto. Construir a matriz esparsa diretamente com <code>csr_matrix((w,(u,v)))</code> soma os pesos de arestas duplicadas automaticamente, então duas ruas de 3 minutos entre os mesmos cruzamentos virariam, sem ninguém perceber, uma única aresta de 6 minutos. A fusão pelo mínimo precisa acontecer antes de a matriz esparsa ser montada, não depois.</p>
+
+<p>A matriz de tempos entre todo candidato e todo setor sai de rodar o algoritmo de Dijkstra uma vez para cada candidato, com um corte em 60 minutos para não gastar tempo computando distâncias que nunca vão importar:</p>
+
+<div class="eq" id="eq1-3"><span class="tag">(1.3)</span>
+\[ t_{ij} \;=\; \mathrm{dist}_G\bigl(\nu(j),\, \nu(i)\bigr), \qquad \nu(\cdot)\ \text{= nó da malha mais próximo do ponto} \]
+</div>
+
+<p>com custo computacional total \(O\bigl(|J|\,(|E| + |V|\log|V|)\bigr)\) — ou seja, um Dijkstra completo por candidato. A orientação de como essa matriz é guardada na memória importa mais do que parece à primeira vista: ela é armazenada com os <strong>candidatos nas linhas</strong>, porque o padrão de acesso mais comum no resto do código é "pegar um candidato e olhar o tempo dele até todos os setores de uma vez". Fatiar uma coluna dessa matriz de 119 MB custa 34 milissegundos; fatiar uma linha custa 2,6 milissegundos — treze vezes mais rápido, só por causa de como os dados ficam dispostos na memória.</p>
+
+<h3 id="s1-2"><span class="num">1.2</span>O encaixe \(\nu(\cdot)\) e suas armadilhas</h3>
+
+<p>Encontrar o nó da malha mais próximo de um ponto geográfico \((\varphi,\lambda)\) — latitude e longitude — usa uma aproximação local da distância na superfície da Terra:</p>
+
+<div class="eq" id="eq1-4"><span class="tag">(1.4)</span>
+\[ \Delta s^2 \;\approx\; R^2\Bigl[ (\Delta\varphi)^2 + \cos^2\!\varphi\,(\Delta\lambda)^2 \Bigr] \]
+</div>
+
+<p>O termo \(\cos\varphi\) é onde mora a armadilha. Uma grade espacial cujas células são indexadas diretamente em graus de latitude/longitude tem células que, medidas em metros de verdade, ficam mais estreitas na direção da longitude do que na direção da latitude — porque os meridianos se aproximam conforme você se afasta do equador. Se o algoritmo de busca para de procurar assim que encontra algum candidato na primeira camada de células ao redor do ponto, ele pode errar o vizinho verdadeiro: esse vizinho pode estar duas camadas mais adiante, exatamente na direção em que as células são mais estreitas. Na verificação contra força bruta que o projeto rodou, essa parada prematura errava 224 de 300 pontos testados — quase três quartos deles. O critério correto é continuar expandindo as camadas ao redor do ponto até que a menor distância possível na próxima camada já seja maior do que a melhor distância encontrada até agora.</p>
+
+<p>Esse mesmo encaixe também serve como filtro de qualidade dos dados brutos. Vinte e três registros do CNES compartilham uma coordenada de fábrica em \((-23{,}32,\,-46{,}38)\), que fica fora do município de São Paulo; o registro "CECO Parque Ibirapuera", por exemplo, aparece a 17 km de distância da malha viária real. Nenhum filtro de bounding box (retângulo geográfico) nacional detecta esse tipo de erro, porque o ponto errado ainda cai dentro do Brasil. Mas descartar registros cuja distância até o nó mais próximo, \(\mathrm{dist}(\text{ponto},\nu(\text{ponto}))\), ultrapassa um limiar \(\epsilon\) pequeno detecta exatamente esse tipo de problema.</p>
+
+<h3 id="s1-3"><span class="num">1.3</span>Demanda, oferta e a variável de decisão</h3>
+
+<p>A demanda \(D_i\) usada hoje é a população residente do setor censitário, segundo o Censo 2022. A <a href="#s8">§8</a> discute como trocar isso por uma estimativa de incidência de chamados, que seria mais fiel ao problema real.</p>
+
+<p>A decisão que o modelo precisa tomar é representada como um vetor de alocação, com um "gene" para cada ambulância da frota:</p>
+
+<div class="eq" id="eq1-5"><span class="tag">(1.5)</span>
+\[ x \in \{1,\dots,M\}^{N}, \qquad S_j^{\mathrm{B}}(x) = \bigl|\{u \in \mathrm{B} : x_u = j\}\bigr|, \quad S_j^{\mathrm{A}}(x) = \bigl|\{u \in \mathrm{A} : x_u = j\}\bigr| \]
+</div>
+
+<p>Repetição é permitida nesse vetor — várias unidades diferentes podem apontar para o mesmo local — e é exatamente essa liberdade que dá ao otimizador a possibilidade de concentrar mais de uma ambulância numa base só, quando isso fizer sentido. A oferta total é uma constante por construção: \(\sum_j S_j(x) = N = 123\) para qualquer configuração \(x\) que se escolha. Vale guardar essa constância de cabeça, porque ela é exatamente o conteúdo da <a href="#prop1">Proposição 1</a> mais adiante.</p>
+</section>
+
+<!-- ================= 2 ================= -->
+<section id="s2">
+<h2><span class="num">Seção 2</span>As três medidas da fase 1</h2>
+
+<p>A EDA nacional não otimizou nada — ela só mediu. Mas as três medidas que ela usou continuam valendo como diagnóstico, e reaparecem em formas parecidas na fase 2, então vale revisá-las com cuidado antes de avançar.</p>
+
+<h3 id="s2-1"><span class="num">2.1</span>Cobertura em \(\tau\) minutos</h3>
+
+<p>A pergunta que essa medida responde é simples: que fração da população tem alguma unidade a \(\tau\) minutos ou menos de distância?</p>
+
+<div class="eq" id="eq2-1"><span class="tag">(2.1)</span>
+\[ C(\tau) \;=\; \frac{\sum_{m} p_m \,\mathbf{1}\!\left\{ \min_{j \in J_m} t_{mj} \le \tau \right\}}{\sum_m p_m} \]
+</div>
+
+<p>Aqui \(m\) indexa municípios e \(p_m\) é a população de cada um; \(\mathbf{1}\{\cdot\}\) é o indicador, que vale 1 quando a condição é verdadeira e 0 caso contrário. Com \(\tau=20\) minutos: \(C^{\mathrm B}=85{,}9\%\) e \(C^{\mathrm A}=66{,}4\%\). A diferença entre essas duas frações, aplicada ao tamanho da população brasileira, é o número que abre o trabalho inteiro — 40,6 milhões de pessoas que têm uma USB ao alcance e nenhuma USA.</p>
+
+<p>Vale notar o que \(C(\tau)\) deixa de fora: ela não sabe quantas pessoas disputam aquela mesma unidade. É uma medida de proximidade pura, sem nenhuma noção de capacidade — e essa é exatamente a lacuna que o 2SFCA vem preencher na §3.</p>
+
+<h3 id="s2-2"><span class="num">2.2</span>A curva de Lorenz e o índice de Gini</h3>
+
+<p>Para medir desigualdade, primeiro ordene as unidades de análise (municípios na fase 1, setores censitários na fase 2) por alguma razão \(r_k\) de menor para maior — ambulâncias por habitante na fase 1, acessibilidade \(A_i\) na fase 2. Com \(p_k\) sendo o peso populacional de cada unidade,</p>
+
+<div class="eq" id="eq2-2"><span class="tag">(2.2)</span>
+\[ X_k = \frac{\sum_{\kappa \le k} p_\kappa}{\sum_\kappa p_\kappa}, \qquad Y_k = \frac{\sum_{\kappa \le k} p_\kappa r_\kappa}{\sum_\kappa p_\kappa r_\kappa} \]
+</div>
+
+<p>\(X_k\) é a fração acumulada da população até a \(k\)-ésima unidade nessa ordenação, e \(Y_k\) é a fração acumulada daquilo que se está medindo (ambulâncias, acessibilidade). A curva de Lorenz é justamente o gráfico de \((X_k, Y_k)\): se tudo estivesse distribuído de forma perfeitamente igual, essa curva coincidiria com a diagonal (os 20% mais pobres em \(r\) teriam exatamente 20% do total). Na prática real, a curva sempre fica abaixo da diagonal. O índice de Gini é definido como duas vezes a área entre a diagonal e essa curva — quanto mais a curva afunda, maior a desigualdade, e maior o Gini. Numericamente, usando a regra do trapézio para aproximar essa área:</p>
+
+<div class="eq key" id="eq2-3"><span class="tag">(2.3)</span>
+\[ G \;=\; 1 \;-\; \sum_{k=1}^{n} (X_k - X_{k-1})\,(Y_k + Y_{k-1}) \]
+</div>
+
+<p>Existe também uma forma equivalente, baseada em diferenças absolutas entre todos os pares, que dispensa a ordenação e é mais conveniente para demonstrar propriedades:</p>
+
+<div class="eq" id="eq2-4"><span class="tag">(2.4)</span>
+\[ G \;=\; \frac{\sum_{k}\sum_{\ell} p_k p_\ell \,\bigl|r_k - r_\ell\bigr|}{2\,\bigl(\sum_k p_k\bigr)^2\,\bar r}, \qquad \bar r = \frac{\sum_k p_k r_k}{\sum_k p_k} \]
+</div>
+
+<p>Duas propriedades desta segunda forma vão ser usadas mais adiante: primeiro, \(G \in [0,1)\) sempre; segundo, \(G=0\) se e somente se \(r_k\) é o mesmo valor em todas as unidades com peso positivo — ou seja, Gini zero significa igualdade perfeita, sem exceção. Repare também que (2.4) não muda se você multiplicar todo \(r\) por uma constante positiva: \(G(cr) = G(r)\) para \(c\gt 0\). Isso quer dizer que <strong>o Gini não enxerga o nível geral da acessibilidade, só a forma de como ela está distribuída</strong>. Um sistema com pouquíssima acessibilidade para todo mundo, mas igualmente pouca para todo mundo, tem Gini zero — o que explica por que o Gini precisa sempre andar junto de outro objetivo, como o tempo esperado de resposta.</p>
+
+<h3 id="s2-3"><span class="num">2.3</span>Elasticidade entre frota e população</h3>
+
+<p>A pergunta "o tamanho do município explica quantas ambulâncias ele tem?" vira uma regressão log-log — uma regressão linear feita sobre os logaritmos das duas variáveis:</p>
+
+<div class="eq" id="eq2-5"><span class="tag">(2.5)</span>
+\[ \log S_m \;=\; a + b \log p_m + \varepsilon_m, \qquad \hat b = 0{,}42,\quad R^2 = 0{,}57 \]
+</div>
+
+<p>O coeficiente \(b\) é a elasticidade: ele diz que um município 10% maior tem, em média, 4,2% mais ambulâncias — bem menos do que os 10% que seriam esperados se a frota crescesse na mesma proporção da população. Como \(\hat b \lt 1\), a frota é <em>sublinear</em> em relação à população: municípios grandes têm, proporcionalmente, menos unidades por habitante do que municípios pequenos. E como \(R^2 = 0{,}57\), quase metade da variação entre municípios não é explicada pelo tamanho deles — outros fatores, não capturados por essa regressão, pesam tanto quanto o tamanho. As duas leituras juntas sustentam a conclusão da fase 1: o problema é de distribuição, não de volume.</p>
+
+<div class="nota">
+<span class="lab">Um cuidado com essa estimativa</span>
+<p>Regredir \(\log S_m\) descarta automaticamente os municípios com \(S_m = 0\) — porque o logaritmo de zero não existe —, e esses são justamente os municípios mais desassistidos, os que mais interessam para o diagnóstico. A amostra fica truncada exatamente no ponto mais importante. Uma regressão de Poisson com um termo de <em>offset</em> \(\log p_m\), da forma \(\mathbb{E}[S_m] = p_m e^{a + (b-1)\log p_m}\), estima essa mesma elasticidade sem precisar descartar os municípios com zero ambulâncias. Vale considerar essa troca antes de publicar o resultado.</p>
+</div>
+</section>
+
+<!-- ================= 3 ================= -->
+<section id="s3">
+<h2><span class="num">Seção 3</span>Huff + 2SFCA hierárquico — o que está implementado</h2>
+
+<p>Esta é a técnica 2 do levantamento inicial: <em>Balancing efficiency and accessibility in location-allocation</em>, publicada em Engineering Optimization, 2025. A novidade dela não está em como o problema é otimizado — está em como a demanda é modelada. O que se abandona aqui é uma suposição, não um algoritmo: a suposição de que o usuário é sempre atendido pela unidade mais próxima disponível.</p>
+
+<h3 id="s3-1"><span class="num">3.1</span>O modelo de escolha de Huff</h3>
+
+<p>Em vez de assumir \(i \mapsto \arg\min_j t_{ij}\) — "o setor \(i\) vai sempre para o candidato \(j\) mais próximo" —, a demanda do setor se <em>reparte</em> probabilisticamente entre todos os locais ao seu alcance. Cada local recebe uma fatia proporcional à sua atratividade e ao quanto ele decai com o tempo de viagem:</p>
+
+<div class="eq key" id="eq3-1"><span class="tag">(3.1)</span>
+\[ P_{ij} \;=\; \frac{S_j^{\alpha}\, f(t_{ij})}{\displaystyle\sum_{k \in J} S_k^{\alpha}\, f(t_{ik})}, \qquad \sum_{j \in J} P_{ij} = 1 \]
+</div>
+
+<p>Isso é, essencialmente, um <em>softmax</em> ponderado: cada opção \(j\) recebe uma pontuação \(S_j^\alpha f(t_{ij})\), e a probabilidade de escolha é essa pontuação dividida pela soma de todas as pontuações — de modo que as probabilidades de um mesmo setor sempre somam 1. O decaimento com a distância é gaussiano, e é truncado no raio da área de captação:</p>
+
+<div class="eq" id="eq3-2"><span class="tag">(3.2)</span>
+\[ f(t) \;=\; \exp\!\left(-\frac{t^{2}}{2\beta^{2}}\right)\cdot \mathbf{1}\{t \le d_0\} \]
+</div>
+
+<p>Duas observações sobre essa forma funcional merecem atenção. Primeiro, a truncagem abrupta em \(d_0\) cria uma descontinuidade em \(f\): um local que cruza a marca dos 30 minutos desaparece do conjunto de escolha de um salto, de uma hora para outra, em vez de ir perdendo peso aos poucos. A variante normalizada proposta por Luo e Qi remove essa descontinuidade,</p>
+
+<div class="eq" id="eq3-3"><span class="tag">(3.3)</span>
+\[ \tilde f(t) \;=\; \frac{e^{-t^2/2\beta^2} - e^{-d_0^2/2\beta^2}}{1 - e^{-d_0^2/2\beta^2}}\cdot\mathbf{1}\{t\le d_0\} \]
+</div>
+
+<p>e vale conferir diretamente em <code>huff2sfca.py</code> qual das duas versões está de fato implementada, porque a diferença entre elas aparece justamente nos setores de borda — os periféricos, que são o alvo central do achado de equidade deste trabalho. Segundo, \(\alpha\) está <strong>praticamente sem efeito neste caso específico</strong>: quase todo local hospeda uma única ambulância, então \(S_j^\alpha \approx 1\) para quase todo \(j\), e a fórmula (3.1) acaba se comportando como um modelo puramente gravitacional, sem distinção de tamanho. Trocar \(\alpha=1\) por \(\alpha=2\) move o tempo esperado de 11,78 para 11,80 minutos — uma diferença irrelevante. Esse parâmetro só voltaria a importar de verdade se surgissem bases com três ou quatro ambulâncias ao mesmo tempo.</p>
+
+<h3 id="s3-2"><span class="num">3.2</span>O parâmetro β e as "unidades efetivas"</h3>
+
+<p>Para dar um significado concreto a \(\beta\), o projeto usa o número de unidades efetivas ao alcance de um setor — quantas opções, na prática, o setor de fato tem, levando em conta que a probabilidade não está toda concentrada numa única opção. Esse número é o inverso do índice de Simpson da distribuição de escolha daquele setor:</p>
+
+<div class="eq key" id="eq3-4"><span class="tag">(3.4)</span>
+\[ N^{\mathrm{ef}}_i \;=\; \frac{\bigl(\sum_j P_{ij}\bigr)^2}{\sum_j P_{ij}^2} \;=\; \frac{1}{\sum_j P_{ij}^{2}} \]
+</div>
+
+<p>Essa quantidade tem uma leitura intuitiva: se toda a probabilidade estivesse concentrada numa única opção, \(N^{\mathrm{ef}}_i = 1\); se estivesse dividida igualmente entre \(k\) opções, \(N^{\mathrm{ef}}_i = k\). É essa leitura que serve de âncora para escolher \(\beta\). Com \(\beta = 4{,}5\) minutos, o \(N^{\mathrm{ef}}\) mediano fica em 2,2: o despacho encontra, em média, a unidade mais próxima e um pouco mais do que uma alternativa — a leitura operacional de "a mais próxima <em>disponível</em>", contando com a possibilidade de a primeira estar ocupada. Os dois casos limite são exatos e servem como teste de sanidade da implementação:</p>
+
+<div class="eq" id="eq3-5"><span class="tag">(3.5)</span>
+\[ \lim_{\beta \to 0} P_{ij} \;=\; \mathbf{1}\Bigl\{ j = \arg\min_k t_{ik} \Bigr\}, \qquad \lim_{\beta \to \infty} P_{ij} \;=\; \frac{S_j^\alpha}{\sum_{k \in J_i} S_k^\alpha} \]
+</div>
+
+<p>O primeiro limite é exatamente a regra da unidade mais próxima; em outras palavras, <strong>o p-median clássico é o caso particular \(\beta \to 0\) desta família de modelos</strong> — não é uma alternativa concorrente, é um ponto extremo do mesmo espelho. O segundo limite corresponde a uma escolha uniforme dentro de toda a área de captação, ignorando completamente a distância. A varredura de valores de \(\beta\) confirma esse comportamento na prática:</p>
+
+<table>
+<thead><tr><th class="n">β (min)</th><th class="n">\(N^{\mathrm{ef}}\)</th><th class="n">E[T] mediana</th><th class="n">\(G_{\mathrm A}\)</th></tr></thead>
+<tbody>
+<tr><td class="n">1,5</td><td class="n">1,0</td><td class="n">6,5</td><td class="n">0,276</td></tr>
+<tr><td class="n">4,5</td><td class="n">2,2</td><td class="n">7,5</td><td class="n">0,224</td></tr>
+<tr><td class="n">8,5</td><td class="n">6,7</td><td class="n">10,9</td><td class="n">0,143</td></tr>
+<tr><td class="n">12,0</td><td class="n">10,0</td><td class="n">13,6</td><td class="n">0,086</td></tr>
+</tbody>
+<caption>Em β = 1,5 o modelo de Huff já se comporta quase como a regra da unidade mais próxima. A novidade do método está inteiramente na escolha de β — e note que β empurra tempo e Gini em direções opostas: aumentar β melhora a equidade mas piora o tempo de resposta. Isso já desloca o resultado final antes mesmo de qualquer otimização começar.</caption>
+</table>
+
+<div class="exemplo">
+<span class="lab">Exemplo trabalhado · o que β decide, num único setor</span>
+
+<p>Imagine um setor censitário com 1.200 moradores que tem quatro equipamentos públicos ao seu alcance: uma UBS a 3 minutos, uma UPA a 5, uma base do SAMU a 9 e um hospital a 14. A pergunta que o decaimento responde é: de cada 100 chamados que saem desse setor, quantos vão para cada uma dessas opções?</p>
+
+<table>
+<thead><tr><th></th><th class="n">UBS<br>3 min</th><th class="n">UPA<br>5 min</th><th class="n">SAMU<br>9 min</th><th class="n">hosp.<br>14 min</th><th class="n">tempo<br>médio</th></tr></thead>
+<tbody>
+<tr><td>regra da mais próxima</td><td class="n">100</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">3,0</td></tr>
+<tr><td>β = 1,5</td><td class="n">97</td><td class="n">3</td><td class="n">0</td><td class="n">0</td><td class="n">3,1</td></tr>
+<tr class="destaque"><td>β = 4,5 &nbsp;<em>(usado no projeto)</em></td><td class="n">54</td><td class="n">36</td><td class="n">9</td><td class="n">1</td><td class="n">4,3</td></tr>
+<tr><td>β = 8,5</td><td class="n">36</td><td class="n">32</td><td class="n">22</td><td class="n">10</td><td class="n">6,0</td></tr>
+</tbody>
+<caption>Repartição em pontos percentuais, calculada por (3.1) com \(\alpha=1\) e uma unidade em cada local. Unidades efetivas por (3.4): 1,06 · 2,31 · 3,43 — os valores intermediários já contam com a redistribuição de probabilidade entre as opções.</caption>
+</table>
+
+<p>Com \(\beta = 4{,}5\), pouco mais da metade dos chamados vai para a UBS da esquina, mais de um terço vai para a UPA, e uma parcela pequena mas não desprezível chega a atravessar a cidade até a base do SAMU. É o retrato de um despacho que manda a unidade mais próxima <em>quando ela está livre</em>, e a seguinte quando não está. Vale também reparar que a primeira e a segunda linha da tabela quase coincidem: é a degenerescência de (3.5) acontecendo na prática, não só na teoria.</p>
+
+<p><strong>O que essa repartição faz no restante do modelo.</strong> A UBS a 3 minutos não "é dona" dos 1.200 moradores do setor: ela fica com 54% deles, ou seja, 648 pessoas. E ela vai acumulando pedaços assim de todos os setores que conseguem alcançá-la. Essa soma acumulada é o \(\widetilde D_j\) da etapa 1 do 2SFCA, definido logo adiante, e o denominador de \(R_j = S_j/\widetilde D_j\) é exatamente uma medida de quanta gente disputa aquela ambulância específica.</p>
+
+<p>Aqui está a ligação direta com o resultado central do trabalho. Sob a regra clássica, uma base situada no meio de uma região densa fica, oficialmente, com 100% de tudo que está mais perto dela — e o p-median considera essa configuração ótima, porque só enxerga distância, nunca sobrecarga. Sob o modelo de Huff, uma parte dessa carga é absorvida pelas bases vizinhas e, o que é mais importante, passa a ser possível <em>enxergar</em> que aquela base está sobrecarregada, porque agora existe uma conta explícita de quem a disputa. É exatamente essa visibilidade que o Gini de \(A^{\mathrm A}\) acaba medindo mais à frente.</p>
+
+<p><strong>Uma leitura inversa, mais útil na hora de defender o trabalho perante um leitor cético.</strong> Escolher um valor de \(\beta\) equivale a afirmar com que frequência o despacho real <em>não</em> usa a base mais próxima. Neste exemplo, \(\beta = 4{,}5\) está afirmando que isso acontece em 46% dos chamados desse setor. Essa é uma afirmação empírica, em princípio verificável contra registros reais de despacho — e é por isso que a <a href="#s10-3">§10.3</a> recomenda indexar a varredura de sensibilidade por unidades efetivas em vez de por minutos de β. A frase "o achado vale enquanto o despacho considerar entre 1 e 7 bases" é algo que um gestor consegue avaliar de imediato; a frase "vale para β entre 2 e 8,5 minutos" não é.</p>
+</div>
+
+<h3 id="s3-3"><span class="num">3.3</span>2SFCA em duas etapas</h3>
+
+<p>A probabilidade de Huff entra como peso nas duas etapas do método <em>Two-Step Floating Catchment Area</em> (área de captação flutuante em duas etapas). A etapa 1 calcula, em cada local, a razão entre a oferta ali disponível e a demanda que o modelo de Huff manda para lá:</p>
+
+<div class="eq key" id="eq3-6"><span class="tag">(3.6)</span>
+\[ R_j \;=\; \frac{S_j}{\widetilde D_j}, \qquad \widetilde D_j \;=\; \sum_{i \in I} D_i\, P_{ij} \]
+</div>
+
+<p>A etapa 2 soma essas razões do ponto de vista de cada setor, usando o mesmo peso de escolha da etapa anterior:</p>
+
+<div class="eq key" id="eq3-7"><span class="tag">(3.7)</span>
+\[ A_i \;=\; \sum_{j \in J} P_{ij}\, R_j \]
+</div>
+
+<p>É exatamente em <a href="#eq3-6">(3.6)</a> que a noção de capacidade entra no modelo — e é justamente o termo que o p-median clássico não possui. \(A_i\) tem unidade de "ambulâncias por habitante", com a interpretação de "fatia de unidade disponível por pessoa", ponderada pela chance de cada base específica ser de fato acionada para aquele setor.</p>
+
+<h3 id="s3-4"><span class="num">3.4</span>A hierarquia entre USB e USA</h3>
+
+<p>É aqui que o modelo se afasta do 2SFCA de livro-texto. Existem duas frotas operando sobre a mesma malha viária, com uma relação de subordinação entre elas: toda USA consegue fazer o que uma USB faz, mas o contrário não vale. Isso obriga o modelo a manter <strong>dois conjuntos de escolha distintos sobre a mesma configuração de frota</strong>.</p>
+
+<p>Para a fração \(\theta\) dos chamados que são graves, só a USA pode atender, e o conjunto de escolha se restringe a \(J_{\mathrm A}\), o subconjunto de locais que têm ao menos uma USA:</p>
+
+<div class="eq" id="eq3-8"><span class="tag">(3.8)</span>
+\[ P^{\mathrm A}_{ij} \;=\; \frac{(S^{\mathrm A}_j)^{\alpha} f(t_{ij})}{\sum_{k \in J_{\mathrm A}} (S^{\mathrm A}_k)^{\alpha} f(t_{ik})}, \qquad j \in J_{\mathrm A} \]
+</div>
+
+<p>Para a fração \(1-\theta\) restante, dos chamados básicos, o conjunto de escolha é \(J\) inteiro, sem nenhuma distinção de modalidade — uma USA ou uma USB atende igualmente bem:</p>
+
+<div class="eq" id="eq3-9"><span class="tag">(3.9)</span>
+\[ P^{\mathrm B}_{ij} \;=\; \frac{S_j^{\alpha} f(t_{ij})}{\sum_{k \in J} S_k^{\alpha} f(t_{ik})}, \qquad j \in J \]
+</div>
+
+<p>A demanda que chega a cada local por esses dois canais separados é</p>
+
+<div class="eq" id="eq3-10"><span class="tag">(3.10)</span>
+\[ \widetilde D^{\mathrm A}_j = \theta \sum_i D_i P^{\mathrm A}_{ij}, \qquad \widetilde D^{\mathrm B}_j = (1-\theta) \sum_i D_i P^{\mathrm B}_{ij} \]
+</div>
+
+<p>e a razão avançada precisa descontar a fração dos chamados básicos que acaba consumindo uma USA em vez de uma USB:</p>
+
+<div class="eq key" id="eq3-11"><span class="tag">(3.11)</span>
+\[ R^{\mathrm A}_j \;=\; \frac{S^{\mathrm A}_j}{\widetilde D^{\mathrm A}_j \;+\; \omega_j\, \widetilde D^{\mathrm B}_j}, \qquad A^{\mathrm A}_i \;=\; \sum_{j \in J_{\mathrm A}} P^{\mathrm A}_{ij}\, R^{\mathrm A}_j \]
+</div>
+
+<p>O fator \(\omega_j \in [0,1]\) representa a probabilidade de um chamado básico despachado para \(j\) acabar caindo sobre uma USA em vez de uma USB. É esse fator que dá forma matemática à frase "a USA que atende um chamado básico fica indisponível para o avançado".</p>
+
+<div class="nota">
+<span class="lab">Uma decisão de modelagem que precisa ser documentada</span>
+<p>Existe mais de uma forma defensável de definir \(\omega_j\), e o artigo final precisa declarar explicitamente qual delas o código usa. A mais simples é um sorteio proporcional, \(\omega_j = S^{\mathrm A}_j / S_j\) — nessa versão, a unidade que sai para o chamado é escolhida ao acaso entre todas as presentes naquela base, sem preferência. A mais realista operacionalmente é uma prioridade reversa: o despacho reserva a USA para chamados graves e só a aciona para um chamado básico se nenhuma USB estiver livre naquele momento. Essa segunda regra dá um \(\omega_j\) próximo de zero em bases mistas (onde quase sempre há uma USB disponível) e igual a 1 em bases que só têm USA. As duas escolhas produzem valores de \(G_{\mathrm A}\) diferentes, e a segunda é mais benigna com a configuração atual da frota. Vale conferir qual delas está de fato em <code>huff2sfca.py</code> e relatar isso explicitamente no artigo.</p>
+</div>
+
+<h3 id="s3-5"><span class="num">3.5</span>Os dois objetivos que o modelo produz</h3>
+
+<p>O tempo esperado de resposta pondera os dois canais — grave e básico — pela gravidade relativa entre eles:</p>
+
+<div class="eq key" id="eq3-12"><span class="tag">(3.12)</span>
+\[ \mathbb{E}[T](x) \;=\; \frac{1}{\sum_i D_i}\sum_{i \in I} D_i \left[ \theta \sum_{j \in J_{\mathrm A}} P^{\mathrm A}_{ij}\, t_{ij} \;+\; (1-\theta) \sum_{j \in J} P^{\mathrm B}_{ij}\, t_{ij} \right] \]
+</div>
+
+<p>Repare que essa é exatamente a esperança matemática do tempo de resposta, calculada sob a distribuição de probabilidade de Huff: para cada setor, soma-se o tempo até cada local, ponderado pela chance de esse local ser de fato o escolhido — e depois faz-se a média entre os setores, ponderada pela população de cada um.</p>
+
+<p>A desigualdade é o Gini de (2.3), agora aplicado especificamente a \(A^{\mathrm A}\), com os pesos dados pela população:</p>
+
+<div class="eq key" id="eq3-13"><span class="tag">(3.13)</span>
+\[ G_{\mathrm A}(x) \;=\; G\bigl(A^{\mathrm A}_1,\dots,A^{\mathrm A}_n;\, D_1,\dots,D_n\bigr) \]
+</div>
+
+<p>O problema de otimização consiste em minimizar os dois ao mesmo tempo:</p>
+
+<div class="eq" id="eq3-14"><span class="tag">(3.14)</span>
+\[ \min_{x \in \{1,\dots,M\}^N} \; \bigl( \mathbb{E}[T](x),\; G_{\mathrm A}(x) \bigr) \]
+</div>
+
+<h3 id="s3-6"><span class="num">3.6</span>Por que não simplesmente maximizar a acessibilidade</h3>
+
+<p>A pergunta óbvia — por que o objetivo não é "mais acesso para todo mundo", sem mais nenhuma complicação — tem uma resposta exata, e não apenas uma resposta baseada em observação empírica dos dados.</p>
+
+<div class="prop" id="prop1">
+<span class="lab">Proposição 1 · conservação do 2SFCA</span>
+<p>Se todo setor tem um conjunto de escolha não vazio e todo local com \(S_j \gt 0\) recebe demanda positiva de algum setor, então a acessibilidade agregada, ponderada por demanda, é sempre igual à oferta total, <strong>qualquer que seja a configuração \(x\)</strong> escolhida para a frota:</p>
+<div class="eq">
+\[ \sum_{i \in I} D_i A_i \;=\; \sum_{j \in J} S_j \;=\; N \]
+</div>
+<p><em>Demonstração.</em> Substituindo <a href="#eq3-7">(3.7)</a> na soma e trocando a ordem dos dois somatórios finitos — o que é sempre permitido quando ambos são finitos —,</p>
+<div class="eq">
+\[ \sum_i D_i A_i = \sum_i D_i \sum_j P_{ij} R_j = \sum_j R_j \underbrace{\sum_i D_i P_{ij}}_{=\,\widetilde D_j} = \sum_j \frac{S_j}{\widetilde D_j}\,\widetilde D_j = \sum_j S_j. \qquad \blacksquare \]
+</div>
+</div>
+
+<p>A oferta total é constante em relação a \(x\), por causa de <a href="#eq1-5">(1.5)</a>: são sempre 123 ambulâncias, em qualquer configuração que se escolha. Logo, "maximizar a acessibilidade média" é um objetivo <strong>degenerado</strong> — o valor dessa quantidade é exatamente o mesmo em todas as soluções viáveis, e o gradiente dela é nulo em toda parte do espaço de busca. Não existe direção em que mexer para melhorá-la, porque ela nunca muda. Realocar a frota não cria acesso novo — só redistribui o acesso que já existe entre os setores. Tudo que sobra como objeto de otimização de verdade é <em>a forma da distribuição de \(A_i\)</em> pela cidade, e é daí que vem a necessidade do Gini como segundo objetivo.</p>
+
+<p>Essa mesma propriedade também é o teste automatizado mais barato de todo o módulo: qualquer bug de índice em <a href="#eq3-6">(3.6)</a> ou em <a href="#eq3-7">(3.7)</a> quebra essa igualdade já na quinta casa decimal, então basta checar essa igualdade a cada execução para pegar uma classe inteira de erros de implementação.</p>
+
+<h3 id="s3-7"><span class="num">3.7</span>Por que não minimizar só o Gini</h3>
+
+<div class="prop" id="prop2">
+<span class="lab">Proposição 2 · degenerescência do Gini isolado</span>
+<p>Seja \(j_0\) um local tal que \(t_{ij_0} \le d_0\) para todo setor \(i\) — ou seja, um local dentro do alcance de todo mundo na cidade. A configuração \(x^\star\) que aloca todas as \(N\) unidades nesse único local \(j_0\) satisfaz \(G_{\mathrm A}(x^\star) = 0\).</p>
+<p><em>Demonstração.</em> Com toda a oferta concentrada num único local, \(P^{\mathrm A}_{ij_0} = 1\) para todo setor \(i\) — cada setor manda 100% da sua demanda avançada para \(j_0\), simplesmente porque não há mais nenhuma outra opção no conjunto de escolha. Logo \(A^{\mathrm A}_i = R^{\mathrm A}_{j_0}\), que é o mesmo número para todos os setores, sem exceção. Pela propriedade de <a href="#eq2-4">(2.4)</a>, um valor constante em todas as unidades implica \(G=0\). \(\blacksquare\)</p>
+</div>
+
+<p>Concentrar toda a frota num único ponto zera a desigualdade, mas arruína completamente o tempo de resposta. Os dois objetivos deste trabalho não são um capricho de deixar o problema "multiobjetivo" por elegância: cada um deles, sozinho, tem um ótimo trivial e inútil — um por ser sempre constante, o outro por ser patologicamente concentrado. É só o par dos dois, considerado ao mesmo tempo, que tem algum conteúdo real de decisão.</p>
+
+<div class="nota">
+<span class="lab">Uma ressalva importante</span>
+<p>Como \(d_0 = 30\) minutos é finito na prática, a hipótese "\(t_{ij_0}\le d_0\) para todo \(i\)" pode não valer de verdade: setores muito distantes de qualquer local central ficariam com \(A^{\mathrm A}_i = 0\), e o Gini subiria em vez de zerar. O minimizador exato deixa então de ser um único ponto, mas continua sendo uma configuração patologicamente concentrada num punhado pequeno de locais centrais. O argumento sobrevive à ressalva; só deixa de apontar para um único ponto exato.</p>
+</div>
+
+<h3 id="s3-8"><span class="num">3.8</span>Por que o modelo de Huff quase não muda a eficiência</h3>
+
+<p>O achado central deste trabalho é negativo, e ele tem uma explicação analítica, não só empírica. Escreva \(t_{i(1)} = \min_j t_{ij}\) — o tempo até a unidade mais próxima de fato — e decomponha <a href="#eq3-12">(3.12)</a> em duas partes. A identidade abaixo vale dentro de cada pool de demanda separadamente, com o mínimo tomado sobre \(J_{\mathrm A}\) no pool grave e sobre \(J\) no básico, e a soma dos dois pools preserva a mesma forma:</p>
+
+<div class="eq key" id="eq3-15"><span class="tag">(3.15)</span>
+\[ \mathbb{E}[T](x) \;=\; \underbrace{\frac{\sum_i D_i\, t_{i(1)}(x)}{\sum_i D_i}}_{T_{\mathrm{pm}}(x)} \;+\; \underbrace{\frac{\sum_i D_i \sum_j P_{ij}\bigl(t_{ij} - t_{i(1)}\bigr)}{\sum_i D_i}}_{\Phi(x)\;\ge\;0} \]
+</div>
+
+<p>O primeiro termo é <em>exatamente</em> o objetivo que o p-median clássico otimiza — o tempo médio até a unidade mais próxima, sem nenhuma noção de probabilidade. O segundo termo, \(\Phi\), é o excesso de tempo que se paga porque a demanda de fato se reparte entre várias unidades, em vez de ir inteira para a mais próxima — uma espécie de penalidade de dispersão, sempre não negativa porque \(t_{ij} \ge t_{i(1)}\) para qualquer \(j\).</p>
+
+<p>Se \(\Phi\) variasse muito de uma configuração para outra, planejar usando o p-median clássico seria um erro grosseiro — algumas configurações pagariam essa penalidade e outras não, de forma imprevisível. Mas \(\Phi\) depende principalmente da <em>geometria local das alternativas</em> de cada setor — o quanto a segunda opção mais próxima está mais longe do que a primeira. Numa cidade densa e razoavelmente uniforme como São Paulo, essa geometria acaba sendo quase a mesma independentemente de qual arranjo razoável de 123 unidades se escolha. Com \(\Phi\) aproximadamente constante entre configurações, minimizar \(\mathbb{E}[T]\) acaba dando quase no mesmo resultado que minimizar \(T_{\mathrm{pm}}\) — ou seja, \(\arg\min \mathbb{E}[T] \approx \arg\min T_{\mathrm{pm}}\).</p>
+
+<p>É exatamente isso que os números mostram na prática: a configuração encontrada pelo p-median, quando avaliada sob o modelo de Huff, custa 6,696 minutos, contra 6,669 minutos do ótimo bi-objetivo verdadeiro. Uma diferença de apenas <strong>+0,4%</strong>. O p-median se mostra robusto justamente à hipótese de alocação que a técnica 2 se propunha a derrubar.</p>
+
+<p>O que este arcabouço entrega de fato está numa dimensão diferente, e <a href="#eq3-6">(3.6)</a> mostra exatamente por quê: \(R_j\) depende de \(\widetilde D_j\), a demanda que disputa aquela base específica. O p-median clássico não tem esse objeto em lugar nenhum da sua formulação. Ele minimiza apenas \(T_{\mathrm{pm}}\), e a derivada \(\partial T_{\mathrm{pm}}/\partial \widetilde D_j\) é sempre zero — não existe nenhum termo de congestionamento para derivar, porque o modelo nem sabe que esse conceito existe. A equidade da carga é literalmente invisível para ele, não porque ele erre o cálculo, mas porque a variável nem está na sua formulação.</p>
+
+<table>
+<thead><tr><th>configuração</th><th class="n">E[T] sob Huff</th><th class="n">\(G_{\mathrm A}\)</th><th class="n">t até a mais próxima</th><th class="n">km</th></tr></thead>
+<tbody>
+<tr><td>atual</td><td class="n">7,435</td><td class="n">0,224</td><td class="n">8,84</td><td class="n">—</td></tr>
+<tr><td>p-median clássico</td><td class="n">6,696</td><td class="n">0,079</td><td class="n">6,81</td><td class="n">373</td></tr>
+<tr><td>Huff + 2SFCA, λ = 0,1</td><td class="n">6,669</td><td class="n">0,025</td><td class="n">7,17</td><td class="n">293</td></tr>
+</tbody>
+<caption>Ganho de tempo entre as duas abordagens: 0,4%. Ganho de equidade: 3,2×. A tese defensável do trabalho está na segunda coluna, não na primeira.</caption>
+</table>
+</section>
+
+<!-- ================= 4 ================= -->
+<section id="s4">
+<h2><span class="num">Seção 4</span>A otimização bi-objetivo — o que está implementado</h2>
+
+<p>A seção anterior definiu <em>como julgar</em> se uma configuração de frota é boa ou ruim. Esta seção trata de como encontrar uma configuração boa em meio a um número astronômico de possibilidades. São dois problemas separados, e vale manter essa separação bem clara na cabeça: o modelo da §3 é uma função que recebe 123 posições de ambulância e devolve dois números (tempo e Gini); o otimizador desta seção é a máquina que procura posições que deixem esses dois números pequenos. Trocar de otimizador não muda o modelo de demanda, e trocar de modelo não invalida o otimizador — é justamente por isso que as técnicas descritas nas <a href="#s5">§5</a> a <a href="#s7">§7</a> podem entrar como substitutas apenas desta seção, sem mexer na <a href="#s3">§3</a>.</p>
+
+<p>Três coisas precisam ser resolvidas aqui: o tamanho absurdo do espaço de busca, o que significa dizer que "mudar de configuração" custa caro na prática, e como comparar honestamente uma metaheurística com a heurística clássica que ela pretende superar.</p>
+
+<h3 id="s4-1"><span class="num">4.1</span>O tamanho do problema</h3>
+
+<p>Unidades da mesma modalidade são intercambiáveis entre si, então o que de fato importa é o multiconjunto de locais ocupados, e não qual gene específico do vetor \(x\) foi mandado para onde. O número de configurações distintas nesse sentido é</p>
+
+<div class="eq" id="eq4-1"><span class="tag">(4.1)</span>
+\[ \binom{M + N^{\mathrm B} - 1}{N^{\mathrm B}} \cdot \binom{M + N^{\mathrm A} - 1}{N^{\mathrm A}} \;=\; \binom{1213}{107}\binom{1122}{16} \;\approx\; 10^{191} \]
+</div>
+
+<p>Não existe enumeração possível para um número desse tamanho, e o problema já é NP-difícil na sua versão mais simples, o próprio p-median. Daí a necessidade de uma heurística — um método que busca boas soluções sem garantia de encontrar a melhor de todas. O que se pode fazer é baratear ao máximo o custo de avaliar cada configuração candidata: com o decaimento pré-calculado, a matriz em <code>float32</code> orientada por candidato (<a href="#s1-1">§1.1</a>) e os produtos matriciais delegados a uma biblioteca de álgebra linear otimizada (BLAS), avaliar uma única configuração custa 10,5 milissegundos, contra 54 milissegundos da versão mais ingênua — mais de cinco vezes mais rápido.</p>
+
+<h3 id="s4-2"><span class="num">4.2</span>O custo da mudança é um problema de emparelhamento</h3>
+
+<p>Mover a frota da configuração atual \(x^{0}\) até uma nova configuração \(x\) tem um custo em quilômetros, e esse custo depende crucialmente de <em>quem</em> vai para onde. Como as unidades de uma mesma modalidade são intercambiáveis, o custo correto de comparar duas configurações é o do melhor pareamento possível entre elas — um problema clássico de atribuição (assignment problem), resolvido separadamente para cada modalidade:</p>
+
+<div class="eq key" id="eq4-2"><span class="tag">(4.2)</span>
+\[ K(x) \;=\; \sum_{m \in \{\mathrm B, \mathrm A\}} \; \min_{\sigma \in \mathfrak{S}_{N^m}} \; \sum_{u=1}^{N^m} d\bigl(x^{0}_u,\; x_{\sigma(u)}\bigr) \]
+</div>
+
+<p>onde \(d(\cdot,\cdot)\) é a distância entre dois locais e \(\mathfrak{S}_{N^m}\) é o conjunto de todas as permutações possíveis de \(N^m\) elementos. Na forma de um programa linear, esse mesmo problema fica assim:</p>
+
+<div class="eq" id="eq4-3"><span class="tag">(4.3)</span>
+\[ \min_{z \ge 0} \sum_{u}\sum_{v} d_{uv} z_{uv} \quad \text{s.a.} \quad \sum_v z_{uv} = 1 \;\;\forall u, \qquad \sum_u z_{uv} = 1 \;\;\forall v \]
+</div>
+
+<p>A matriz de restrições desse programa linear é totalmente unimodular, então a solução ótima da relaxação contínua já sai automaticamente inteira — pelo teorema de Birkhoff–von Neumann, os vértices do politopo duplamente estocástico correspondem exatamente às matrizes de permutação. Não é preciso nenhuma técnica de branch-and-bound nem arredondamento. O algoritmo húngaro resolve esse problema em \(O(n^3)\), o que, com \(n \le 107\) neste caso, é irrelevante perto dos 10,5 milissegundos que já são gastos só para avaliar o modelo de demanda.</p>
+
+<p>A escolha de penalizar <strong>distância</strong> em vez de <strong>contagem de unidades movidas</strong> é uma decisão substantiva, não um detalhe técnico. Uma penalidade que conta só o número de unidades movidas trataria um deslocamento de 200 metros e uma travessia inteira da cidade como se fossem igualmente caros. Com uma penalidade em distância, mover uma ambulância para a base da esquina sai barato — e é exatamente esse desenho que produz o padrão observado de apenas 3,1 km por unidade movida, mesmo no cenário de redesenho totalmente livre da frota.</p>
+
+<h3 id="s4-3"><span class="num">4.3</span>Onde λ entra na conta</h3>
+
+<p>O preço da mudança entra dentro do primeiro objetivo, depois de ser convertido de quilômetros para minutos e normalizado por unidade da frota:</p>
+
+<div class="eq key" id="eq4-4"><span class="tag">(4.4)</span>
+\[ f_1^{\lambda}(x) \;=\; \mathbb{E}[T](x) \;+\; \lambda\,\frac{K(x)}{N}, \qquad f_2(x) \;=\; G_{\mathrm A}(x) \]
+</div>
+
+<p>com \([\lambda] = \text{min}/\text{km}\) — minutos de penalidade por quilômetro deslocado. A normalização por \(N\) é o que torna essa escala interpretável de forma intuitiva: com \(\lambda=1\), uma frota que percorre 39 km no total para se reconfigurar, ou seja, 0,32 km por unidade em média, paga uma penalidade de 0,32 minutos no tempo esperado de resposta.</p>
+
+<p>Vale notar que isto <strong>não</strong> é uma forma de escalarizar o problema bi-objetivo — ou seja, não é um jeito de transformar os dois objetivos originais num só. O \(\lambda\) não mistura tempo com Gini; ele mistura tempo com quilometragem, e essa mistura fica contida inteiramente dentro do primeiro objetivo. O problema continua sendo genuinamente bi-objetivo, e cada valor de \(\lambda\) escolhido gera a sua própria fronteira de Pareto completa. É por isso que o resultado final são quatro curvas inteiras, e não apenas quatro pontos isolados: \(\lambda\) funciona como um <em>orçamento de mudança</em> que se define antes de otimizar, e não como um peso relativo entre eficiência e equidade.</p>
+
+<p>Sem o termo de \(K\) na equação, toda a fronteira de soluções acabaria realocando as 123 unidades inteiras de uma vez — matematicamente ótimo, mas completamente inútil como recomendação administrativa para um gestor de verdade.</p>
+
+<table>
+<thead><tr><th class="n">λ</th><th class="n">E[T]</th><th class="n">\(G_{\mathrm A}\)</th><th class="n">movidas</th><th class="n">km</th><th class="n">km/unid.</th></tr></thead>
+<tbody>
+<tr><td class="n">atual</td><td class="n">7,435</td><td class="n">0,224</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+<tr><td class="n">0</td><td class="n">6,640</td><td class="n">0,031</td><td class="n">115</td><td class="n">385</td><td class="n">3,1</td></tr>
+<tr><td class="n">0,01</td><td class="n">6,657</td><td class="n">0,029</td><td class="n">115</td><td class="n">377</td><td class="n">3,1</td></tr>
+<tr><td class="n">0,03</td><td class="n">6,656</td><td class="n">0,027</td><td class="n">112</td><td class="n">342</td><td class="n">2,8</td></tr>
+<tr><td class="n">0,1</td><td class="n">6,669</td><td class="n">0,025</td><td class="n">110</td><td class="n">293</td><td class="n">2,4</td></tr>
+<tr><td class="n">0,3</td><td class="n">7,023</td><td class="n">0,072</td><td class="n">39</td><td class="n">103</td><td class="n">0,8</td></tr>
+<tr><td class="n">1</td><td class="n">7,297</td><td class="n">0,085</td><td class="n">12</td><td class="n">39</td><td class="n">0,3</td></tr>
+</tbody>
+<caption>Os "62%" mencionados no deck da apresentação vêm de \(\bigl(G_{\text{atual}} - G_{\lambda}\bigr)/G_{\text{atual}}\) em λ = 1 — ou seja, a queda relativa ao Gini de hoje. Medida em relação ao piso alcançável, \(\bigl(G_{\text{atual}} - G_{\lambda}\bigr)/\bigl(G_{\text{atual}} - G_{0}\bigr)\), essa mesma linha da tabela rende 72%. As duas formas de medir são defensáveis, mas dizem coisas diferentes, e o artigo precisa declarar explicitamente qual delas usa. Em qualquer uma das duas, o retorno é decrescente conforme se anda mais quilômetros, e é essa curva de retorno decrescente que sustenta a recomendação de fazer apenas as doze primeiras unidades.</caption>
+</table>
+
+<h3 id="s4-4"><span class="num">4.4</span>NSGA-II</h3>
+
+<p>A relação básica que organiza tudo neste otimizador é a dominância de Pareto: dizemos que \(a \prec b\) — "\(a\) domina \(b\)" — quando \(f_k(a) \le f_k(b)\) para todo objetivo \(k\), e a desigualdade é estrita em pelo menos um deles. Ou seja, \(a\) é pelo menos tão bom quanto \(b\) em tudo, e estritamente melhor em alguma coisa. O conjunto de soluções que ninguém consegue dominar é a fronteira de Pareto.</p>
+
+<p>O NSGA-II organiza toda a população de soluções candidatas em camadas \(\mathcal{F}_1, \mathcal{F}_2, \dots\), onde \(\mathcal{F}_1\) reúne as soluções não dominadas por nenhuma outra, \(\mathcal{F}_2\) reúne as não dominadas depois de remover \(\mathcal{F}_1\) do cálculo, e assim sucessivamente — esse processo, chamado de ordenação rápida por não-dominância, roda em \(O(K P^2)\), com \(K\) objetivos e \(P\) indivíduos na população. Dentro de cada camada, a diversidade de soluções é preservada por uma medida chamada distância de aglomeração: para cada objetivo, ordena-se a camada por esse objetivo e acumula-se</p>
+
+<div class="eq" id="eq4-5"><span class="tag">(4.5)</span>
+\[ \delta(a) \;=\; \sum_{k=1}^{K} \frac{f_k\bigl(a^{+}_k\bigr) - f_k\bigl(a^{-}_k\bigr)}{f_k^{\max} - f_k^{\min}} \]
+</div>
+
+<p>onde \(a^{\pm}_k\) são os vizinhos imediatos de \(a\) naquela ordenação específica, e as duas soluções nos extremos de cada objetivo recebem \(\delta = \infty\) — para garantir que elas nunca sejam descartadas. O operador de comparação combina os dois critérios, camada primeiro e distância depois:</p>
+
+<div class="eq" id="eq4-6"><span class="tag">(4.6)</span>
+\[ a \prec_n b \iff \bigl[\, \mathrm{rank}(a) \lt \mathrm{rank}(b) \,\bigr] \;\vee\; \bigl[\, \mathrm{rank}(a) = \mathrm{rank}(b) \;\wedge\; \delta(a) \gt \delta(b) \,\bigr] \]
+</div>
+
+<p>Em palavras: primeiro se compara a camada de dominância — quem está numa camada melhor ganha. Em caso de empate na mesma camada, ganha quem estiver numa região menos povoada do espaço de objetivos, o que ajuda a manter a fronteira final bem espalhada em vez de concentrada num pedaço só. A seleção de sobreviventes é elitista: pais e filhos competem juntos numa única disputa, e apenas os \(P\) melhores segundo \(\prec_n\) passam para a próxima geração.</p>
+
+<p>A codificação de cada solução candidata é inteira, com um gene para cada ambulância, e a mutação tem um viés geográfico deliberado: quando um gene muda, ele costuma pular para um candidato vizinho dentro de um raio, e não para um local qualquer da cidade escolhido ao acaso. É esse operador que respeita a estrutura geográfica real do problema — e é, vale notar, o mesmo movimento elementar que a técnica descrita na <a href="#s5">§5</a> aprende a escolher de forma automatizada.</p>
+
+<h3 id="s4-5"><span class="num">4.5</span>A semeadura da população inicial</h3>
+
+<p>Uma metaheurística não tem nenhuma garantia de bom desempenho num tempo finito de execução. O que ela tem, e que pesa muito no resultado final, é de onde ela começa a busca — a população inicial. Sem semear essa população com a solução do p-median, o NSGA-II na verdade <strong>perdia</strong> para a heurística clássica no eixo do tempo: 6,77 minutos contra 6,70 minutos do p-median sozinho. Com a semente incluída, o resultado melhora para 6,64 minutos — superando ambos os pontos de partida.</p>
+
+<p>A razão para isso é geométrica. A solução do p-median é um ótimo local aproximado de \(T_{\mathrm{pm}}\), que por <a href="#eq3-15">(3.15)</a> é quase igual a \(\mathbb{E}[T]\) — logo, ela já é um ponto bem próximo de um dos extremos da fronteira verdadeira. Uma amostragem aleatória em \(\{1,\dots,1107\}^{123}\), sem nenhuma informação prévia, simplesmente não consegue chegar perto desse extremo dentro de qualquer orçamento razoável de gerações do algoritmo evolutivo. A semente não melhora a capacidade de busca do algoritmo em si — ela fornece uma das duas âncoras da fronteira de antemão, e aí o algoritmo evolutivo faz o que de fato sabe fazer bem, que é preencher o meio da fronteira entre essa âncora e a outra.</p>
+
+<p>A consequência metodológica disso vale registrar explicitamente no artigo: <strong>uma comparação entre uma metaheurística e uma heurística clássica só é honesta se a metaheurística for semeada com a solução clássica</strong>. Sem essa semeadura, o que a comparação de fato mede é o orçamento computacional disponível, e não o mérito do método em si.</p>
+
+<h3 id="s4-6"><span class="num">4.6</span>O ponto de comparação: p-median</h3>
+
+<p>Na forma de um programa inteiro misto,</p>
+
+<div class="eq" id="eq4-7"><span class="tag">(4.7)</span>
+\[ \min \sum_{i}\sum_{j} D_i\, t_{ij}\, y_{ij} \quad \text{s.a.} \quad \sum_j y_{ij} = 1,\;\; y_{ij} \le x_j,\;\; \sum_j x_j = p,\;\; x_j \in \{0,1\} \]
+</div>
+
+<p>Resolvido aqui por uma construção gulosa seguida de troca de vértices (heurística de Teitz–Bart): a cada passo, testa-se substituir uma instalação já aberta por uma fechada, e aceita-se a troca que mais reduz o valor do objetivo, repetindo até não haver mais melhoria possível. Nas instâncias pequenas em que o ótimo exato pode ser computado por força bruta, essa heurística ficou apenas 1,15% acima do valor ótimo; no tamanho real do problema, não há como garantir essa mesma folga.</p>
+
+<p>O que falta em <a href="#eq4-7">(4.7)</a> para se tornar capacitado é literalmente uma linha a mais. A versão com capacidade acrescentaria a restrição</p>
+
+<div class="eq" id="eq4-8"><span class="tag">(4.8)</span>
+\[ \sum_{i} D_i\, y_{ij} \;\le\; \kappa\, S_j \qquad \forall j \]
+</div>
+
+<p>e é exatamente essa restrição ausente que o 2SFCA reintroduz por outro caminho, na forma de \(R_j = S_j/\widetilde D_j\) em <a href="#eq3-6">(3.6)</a>. A diferença entre as duas abordagens é que <a href="#eq4-8">(4.8)</a> é uma restrição rígida, com um limiar \(\kappa\) escolhido de forma um tanto arbitrária, enquanto \(R_j\) é uma medida contínua de pressão que entra diretamente no objetivo a ser otimizado. Para um serviço em que a capacidade nunca chega a se esgotar de forma absoluta, mas a pressão varia continuamente pela cidade, a segunda formulação é a mais apropriada — e é esse o argumento a apresentar caso um revisor pergunte "por que não simplesmente usar um p-median capacitado?".</p>
+
+<h3 id="s4-7"><span class="num">4.7</span>O joelho da fronteira</h3>
+
+<p>Escolher um único ponto da fronteira de Pareto para recomendar na prática exige algum critério explícito. O critério usado aqui é a menor distância até o ponto utópico — o ponto imaginário onde os dois objetivos alcançariam seu melhor valor simultaneamente —, com os objetivos normalizados dentro da própria fronteira encontrada:</p>
+
+<div class="eq key" id="eq4-9"><span class="tag">(4.9)</span>
+\[ x^{\text{joelho}} \;=\; \arg\min_{x \in \mathcal{F}} \; \sqrt{ \left( \frac{f_1(x) - f_1^{\min}}{f_1^{\max} - f_1^{\min}} \right)^{\!2} + \left( \frac{f_2(x) - f_2^{\min}}{f_2^{\max} - f_2^{\min}} \right)^{\!2} } \]
+</div>
+
+<p>A normalização aqui não é opcional: \(f_1\) está medido em minutos e \(f_2\) é adimensional, vivendo em \([0,1)\). Sem reescalar os dois para a mesma faixa antes de somar dentro da raiz quadrada, quem tiver a unidade numericamente maior acabaria dominando sozinho a escolha do ponto.</p>
+
+<p>O ponto mais delicado aqui é <em>qual</em> versão de \(f_1\) usar. O joelho precisa ser escolhido no <strong>mesmo espaço em que o otimizador de fato ordenou as soluções</strong> durante a busca — ou seja, com \(f_1 = f_1^{\lambda}\) de <a href="#eq4-4">(4.4)</a>, o tempo já penalizado pela mudança, e não o tempo puro. Ter duas definições diferentes de joelho convivendo ao mesmo tempo no projeto já produziu, na prática, um mapa com 16 setas de mudança para uma solução que a tabela de resumo dizia ter apenas 12 realocações. A correção foi centralizar tudo numa única função, <code>otimiza.joelho</code>, e gravar o valor de \(f_{\text{obj}}\) junto com cada resultado, para nunca mais haver ambiguidade sobre em qual espaço a escolha foi feita.</p>
+
+<h3 id="s4-8"><span class="num">4.8</span>Fronteira penalizada vs. fronteira pura</h3>
+
+<p>Um erro relacionado ao anterior, e mais sutil, aparece na hora de plotar os resultados num gráfico.</p>
+
+<div class="prop" id="lema1">
+<span class="lab">Lema</span>
+<p>Seja \(\mathcal{F}^\lambda\) o conjunto não dominado no espaço \((f_1^\lambda, f_2)\) — o espaço que o otimizador de fato usou durante a busca. Em geral, \(\mathcal{F}^\lambda\) <strong>não</strong> é não dominado no espaço \((\mathbb{E}[T], f_2)\) — o espaço do tempo puro, sem a penalidade de mudança.</p>
+<p><em>Demonstração.</em> Sejam \(a,b \in \mathcal{F}^\lambda\), com \(f_2(a) \lt f_2(b)\) e \(f_1^\lambda(a) \gt f_1^\lambda(b)\) — ou seja, as duas soluções são incomparáveis no espaço penalizado, cada uma ganhando em um objetivo diferente. Se \(K(a) \gg K(b)\) — se a solução \(a\) exige uma mudança muito maior em quilômetros do que \(b\) —, pode acontecer de \(\mathbb{E}[T](a) = f_1^\lambda(a) - \lambda K(a)/N \lt \mathbb{E}[T](b)\), caso em que \(a\) passa a dominar \(b\) assim que se remove a penalidade de mudança do cálculo. \(\blacksquare\)</p>
+</div>
+
+<p>Na prática, isso significa que a fronteira guardada para qualquer \(\lambda \gt 0\) foi ordenada no espaço penalizado; se ela for plotada diretamente no espaço do tempo puro, sem reprocessamento, ela deixa de ser uma fronteira de verdade e vira um zigue-zague sem sentido visual. O conserto é refiltrar as soluções não dominadas <strong>no espaço que de fato vai ser exibido no gráfico</strong>, antes de traçar qualquer linha. A subtração \(-\lambda K/N\) não é uma operação monótona entre soluções diferentes, justamente porque \(K\) varia de uma solução para outra — e é exatamente essa falta de monotonicidade que quebra a preservação da ordem de dominância.</p>
+</section>
+
+<!-- ================= 5 ================= -->
+<section id="s5" class="fut">
+<h2><span class="num">Seção 5 · na fila</span>RL/GNN por operador SWAP</h2>
+
+<p>Su, Zheng, Ding, Jin e Li, <em>Large-scale Urban Facility Location Selection with Knowledge-informed Reinforcement Learning</em>, SIGSPATIAL 2024 (arXiv:2409.01588). É a técnica 1 do levantamento inicial, e a mais próxima de se tornar acionável para este projeto — porque o movimento elementar que ela usa já é o mesmo movimento elementar deste projeto.</p>
+
+<h3 id="s5-1"><span class="num">5.1</span>O problema que o artigo original resolve</h3>
+
+<p>O objetivo ali é o custo total de acesso, somado sobre \(K\) tipos diferentes de instalação ao mesmo tempo:</p>
+
+<div class="eq" id="eq5-1"><span class="tag">(5.1)</span>
+\[ AC \;=\; \sum_{k \in \mathcal{K}} \sum_{i=1}^{n} \sum_{j=1}^{n} h^{k}_{i}\, d_{ij}\, Y^{k}_{ij} \]
+</div>
+
+<p>onde \(h^k_i\) é a demanda do tipo \(k\) na região \(i\), e \(Y^k_{ij}\) indica se essa demanda é atendida por uma instalação localizada em \(j\). É, no fundo, um p-median com múltiplos tipos de instalação simultâneos. O que distingue esse problema (MFLP) de simplesmente resolver \(K\) problemas independentes, um para cada tipo, é uma restrição de incompatibilidade: no máximo um tipo de instalação pode ocupar cada região,</p>
+
+<div class="eq" id="eq5-2"><span class="tag">(5.2)</span>
+\[ X^{p}_{i}\, X^{q}_{i} \equiv 0, \qquad \forall\, p \neq q \in \mathcal{K},\; \forall i \]
+</div>
+
+<h3 id="s5-2"><span class="num">5.2</span>O grafo de troca e o processo de decisão de Markov</h3>
+
+<p>A ideia central do artigo é destilar, a partir da busca local clássica, o operador SWAP — mover uma instalação de um local ocupado para um local vago — e tratá-lo como uma <strong>escolha de aresta dentro de um grafo</strong>, em vez de uma busca exaustiva de vizinhança. O grafo de troca no instante \(t\) liga cada nó ocupado a cada nó vago:</p>
+
+<div class="eq key" id="eq5-3"><span class="tag">(5.3)</span>
+\[ \mathcal{G}_t = \{\mathcal{N}, \mathcal{E}_t\}, \qquad e_{ij,t} = \mathbf{1}\{ X_{i,t} \lt X_{j,t} \} \]
+</div>
+
+<p>Com essa estrutura montada, resolver o problema de localização vira um processo de decisão de Markov (MDP): o <strong>estado</strong> resume a topologia do grafo e a colocação atual das instalações; a <strong>ação</strong> é escolher uma aresta e executar a troca correspondente entre os dois nós que ela liga; e a <strong>recompensa</strong> é a redução no valor de \(AC\) que essa troca específica produziu.</p>
+
+<h3 id="s5-3"><span class="num">5.3</span>Religação dinâmica: o "conhecimento" do título</h3>
+
+<p>Nem toda aresta do grafo de troca vale a pena ser considerada, e é aqui que o conhecimento de domínio entra — como uma forma de <em>podar o espaço de ações disponíveis</em>, e não como um termo extra somado à recompensa. Dois tipos de aresta são filtrados a cada passo da busca. As <strong>arestas tabu</strong> vêm de uma ideia emprestada da busca tabu clássica: locais visitados recentemente por uma troca SWAP viram temporariamente "nós tabu", e qualquer aresta que os contenha sai do conjunto de ações viáveis por um tempo. As <strong>arestas de benefício negativo</strong> usam uma decomposição proposta por Resende e Werneck, que separa o efeito de uma troca em três partes: o ganho de apenas inserir uma instalação nova, a perda de apenas remover a antiga, e um termo cruzado que captura o efeito simultâneo das duas coisas juntas. Como esse termo cruzado se anula quando os dois locais envolvidos estão suficientemente distantes um do outro, para pares de locais distantes basta comparar diretamente o ganho contra a perda: se a perda for maior que o ganho, a troca com certeza <em>aumenta</em> o custo total, e a aresta correspondente pode ser descartada sem sequer precisar ser avaliada por completo.</p>
+
+<h3 id="s5-4"><span class="num">5.4</span>O codificador em rede neural de grafos (GNN)</h3>
+
+<p>A política de decisão pontua cada aresta a partir de representações vetoriais (embeddings) de cada nó, propagadas através de camadas residuais da rede:</p>
+
+<div class="eq" id="eq5-4"><span class="tag">(5.4)</span>
+\[ \mathbf{n}^{0}_{i} = \mathbf{W}^{0}_{n} \mathbf{A}_{n_i}, \qquad \mathbf{n}^{l+1}_{i} = \mathbf{n}^{l}_{i} + \tanh\!\Bigl( \sum_{e_{ij}} \mathbf{W}^{l+1}_{n} \mathbf{n}^{l}_{j} \Bigr), \qquad \mathbf{e}_{ij} = \bigl[\mathbf{n}^{L}_{i} \,\|\, \mathbf{n}^{L}_{j}\bigr] \]
+</div>
+
+<p>com \(\mathbf{A}_{n_i}\) sendo os atributos de entrada de cada nó, \(\|\) representando a concatenação de dois vetores, e \(L\) o número total de camadas da rede. A representação final de cada aresta, \(\mathbf{e}_{ij}\), alimenta diretamente a escolha de qual ação tomar. Para lidar com múltiplos tipos de instalação ao mesmo tempo, o artigo usa uma estratégia de dividir-para-conquistar: no primeiro estágio, resolve cada tipo de instalação de forma independente, partindo de uma solução gulosa inicial; no segundo estágio, elimina os conflitos definidos por <a href="#eq5-2">(5.2)</a> — ambos os estágios usando o mesmo operador SWAP e o mesmo modelo treinado.</p>
+
+<h3 id="s5-5"><span class="num">5.5</span>Por que essa técnica resolveria o gargalo de escala</h3>
+
+<p>A economia obtida aqui é de <em>amortização</em>: o custo de treinar a rede é pago uma única vez, e depois disso a inferência é apenas uma sequência de passagens diretas pela rede neural já treinada — muito mais rápida do que refazer a varredura de vizinhança que uma busca local completa exigiria a cada passo. Os autores relatam uma perda de qualidade (medida em acessibilidade) abaixo de 5% em relação a um solucionador comercial exato, com uma aceleração de até três ordens de grandeza no tempo de execução; numa instância sintética de tamanho \((N,p)=(3000,300)\), o ganho de velocidade chega a 876 vezes, com uma folga de apenas 3,7% em relação à solução ótima.</p>
+
+<p>Trazendo isso para a escala que interessa aqui: São Paulo tem \((M,N) = (1107,123)\), e o NSGA-II deste projeto já precisa de um mecanismo de checkpoint só para caber dentro do tempo limite de cada chamada do ambiente de execução remoto. O estado inteiro de São Paulo tem uma ordem de grandeza a mais nos dois eixos, e o NSGA-II, do jeito que está hoje, simplesmente não escala para esse tamanho.</p>
+
+<h3 id="s5-6"><span class="num">5.6</span>Adaptações necessárias e o obstáculo real</h3>
+
+<p>Três ajustes seriam necessários, em ordem crescente de dificuldade.</p>
+
+<ol>
+<li><strong>A restrição <a href="#eq5-2">(5.2)</a> não se aplica aqui — e talvez precise ser invertida.</strong> No problema urbano original (MFLP), dois tipos diferentes de equipamento competem pelo mesmo terreno disponível. No SAMU, colocar USB e USA na mesma base é comum e às vezes até desejável. Em vez de proibir essa coalocação, o modelo deste projeto já trata dela explicitamente através do fator \(\omega_j\) em <a href="#eq3-11">(3.11)</a>.</li>
+<li><strong>A recompensa precisaria ser o par de objetivos, não apenas \(AC\).</strong> Uma opção viável é escalarizar por Tchebycheff, com pesos sorteados a cada episódio de treino — isso faz com que uma única política aprendida cubra a fronteira inteira, em vez de convergir para um único ponto dela. O custo da mudança \(K(x)\) entraria naturalmente como um custo de ação: cada SWAP pagaria \(\lambda\, d(\text{origem},\text{destino})/N\) diretamente, o que é mais elegante do que a penalidade global de <a href="#eq4-4">(4.4)</a>, porque o agente enxerga o preço da mudança no exato momento em que decide se vale a pena fazer.</li>
+<li><strong>O Gini não é aditivo, e esse é o verdadeiro obstáculo.</strong> A recompensa incremental de um único SWAP em <a href="#eq5-1">(5.1)</a> é barata de calcular: só os termos referentes ao índice \(i\) afetado mudam de valor, e é justamente disso que depende a decomposição de ganho e perda descrita na <a href="#s5-3">§5.3</a>. O Gini de <a href="#eq2-3">(2.3)</a>, por outro lado, é um funcional <em>global</em> de toda a distribuição — mudar uma única base altera \(\widetilde D_j\) de todos os locais que compartilham setores com ela, o que reordena a curva de Lorenz inteira. Não existe atualização local exata para o Gini.</li>
+</ol>
+
+<div class="nota">
+<span class="lab">Por que esse obstáculo é contornável na prática</span>
+<p>A avaliação completa do modelo já custa 10,5 milissegundos. Se um episódio de treino tem algumas centenas de trocas SWAP, recalcular \(G_{\mathrm A}\) do zero a cada passo custaria apenas alguns segundos por episódio inteiro — caro se multiplicado por milhares de episódios de treinamento, mas longe de proibitivo. Uma saída intermediária seria treinar com uma recompensa <em>substituta</em> que seja de fato aditiva, como a variância ponderada de \(A^{\mathrm A}\) ou o desvio absoluto médio — ambas decomponíveis por setor —, e usar o Gini verdadeiro apenas na hora de avaliar o resultado final e escolher o joelho da fronteira. Vale testar empiricamente se a ordenação de soluções induzida por essa substituta concorda com a ordenação que o Gini verdadeiro produziria; se concordar na maior parte dos casos, a poda de arestas descrita na <a href="#s5-3">§5.3</a> volta a funcionar por inteiro, sem perdas.</p>
+</div>
+</section>
+
+<!-- ================= 6 ================= -->
+<section id="s6" class="fut">
+<h2><span class="num">Seção 6 · na fila</span>ADNet e o problema multi-período</h2>
+
+<p>Miao, Zhang, Wu, Deng e Chen, <em>Deep Reinforcement Learning for Multi-Period Facility Location: \(p_k\)-median Dynamic Location Problem</em>, SIGSPATIAL 2024. Trabalho futuro; a dependência mais difícil de contornar é a falta de uma série histórica montada do CNES.</p>
+
+<h3 id="s6-1"><span class="num">6.1</span>O que muda quando se introduz o tempo</h3>
+
+<p>Tudo que este projeto fez até aqui é, essencialmente, uma fotografia única: uma demanda fixa, uma configuração de frota, uma única decisão a tomar. O problema dinâmico \(p_k\)-median admite que a demanda evolua ao longo do tempo e que o próprio número de instalações abertas possa mudar de um período para o outro:</p>
+
+<div class="eq key" id="eq6-1"><span class="tag">(6.1)</span>
+\[ \min_{x,y} \; \sum_{t=1}^{T} \left[ \sum_{i}\sum_{j} D_{it}\, t_{ij}\, y_{ijt} \;+\; \gamma \sum_{j} c_j \bigl| x_{jt} - x_{j,t-1} \bigr| \right] \quad \text{s.a.} \quad \sum_j x_{jt} = p_t \;\;\forall t \]
+</div>
+
+<p>O segundo termo dessa soma é o custo de reconfiguração entre dois períodos consecutivos — a versão ao longo do tempo daquilo que \(\lambda K(x)\) representa em <a href="#eq4-4">(4.4)</a>, mas agora repetido a cada transição de um período para o próximo. A diferença conceitual aqui é decisiva: com um horizonte de vários períodos à frente, uma realocação deixa de ser avaliada apenas pelo seu benefício imediato, e passa a ser avaliada pelo benefício <em>descontado ao longo de todo o horizonte</em>. Uma base que só começa a compensar o investimento daqui a três períodos passa a ser uma escolha racional, coisa que uma análise de período único jamais capturaria.</p>
+
+<h3 id="s6-2"><span class="num">6.2</span>A arquitetura usada no artigo</h3>
+
+<p>O ADNet — <em>Attention-Dynamic Network</em> — codifica a sequência de períodos usando unidades recorrentes com porta (do tipo GRU), e decodifica a solução usando um mecanismo de atenção, no estilo das redes ponteiro (pointer networks). O decodificador pontua cada candidato a cada passo de decisão:</p>
+
+<div class="eq" id="eq6-2"><span class="tag">(6.2)</span>
+\[ u^{t}_{j} = \mathbf{v}^{\!\top} \tanh\bigl( \mathbf{W}_1 \mathbf{h}_j + \mathbf{W}_2 \mathbf{s}_t \bigr), \qquad \pi_\vartheta(j \mid s_t) = \mathrm{softmax}_j\bigl(u^{t}_{j}\bigr) \]
+</div>
+
+<p>com \(\mathbf{h}_j\) sendo a representação vetorial (embedding) do candidato \(j\), e \(\mathbf{s}_t\) o estado recorrente acumulado até o período \(t\). O treinamento é feito por gradiente de política, com uma função de linha de base (baseline) para reduzir a variância do gradiente estimado.</p>
+
+<h3 id="s6-3"><span class="num">6.3</span>Pré-requisito de dados</h3>
+
+<p>A técnica é inútil sem os dados de \(D_{it}\) e \(p_t\) ao longo do tempo — a série histórica completa. Reconstruir essa série exige empilhar as competências mensais do CNES e rastrear a identidade de cada unidade ao longo do tempo, o que não é trivial: bases mudam de código, de tipo cadastral e até de endereço sem aviso claro no dado bruto. Antes de investir esse esforço, vale responder a uma pergunta empírica bem mais barata: <em>o quanto a configuração real da frota de São Paulo de fato mudou nos últimos anos?</em> Se a frota é praticamente estática ao longo do tempo, o ganho de modelar explicitamente a dimensão temporal é pequeno, e essa técnica pode esperar. Se ela se movimenta significativamente, então a fotografia única que este projeto usa hoje está, sem perceber, tratando como ruído algo que na verdade é sinal.</p>
+</section>
+
+<!-- ================= 7 ================= -->
+<section id="s7" class="fut">
+<h2><span class="num">Seção 7 · na fila</span>BOMCLP-C e a cobertura bi-objetivo</h2>
+
+<p><em>Feasibility-Preserving Multi-objective Evolutionary Algorithms with Local Search for the Bi-objective Maximal Covering Location Problem with Compactness</em>, EvoApplications 2026. Está listada como descartada por imaturidade da técnica, mas o argumento abaixo é mais forte do que essa justificativa original, e vale substituí-lo no texto do artigo final.</p>
+
+<h3 id="s7-1"><span class="num">7.1</span>A formulação original</h3>
+
+<p>O problema de cobertura máxima maximiza a demanda coberta dentro de um limiar de tempo \(\tau\):</p>
+
+<div class="eq" id="eq7-1"><span class="tag">(7.1)</span>
+\[ \max\; f_1 = \sum_{i} D_i\, z_i \quad \text{s.a.}\quad z_i \le \sum_{j \in \mathcal{N}_i} x_j, \quad \mathcal{N}_i = \{ j : t_{ij} \le \tau \}, \quad \sum_j x_j = p \]
+</div>
+
+<p>A variante bi-objetivo acrescenta um segundo critério: minimizar a dispersão espacial das instalações escolhidas, ou seja, maximizar a compacidade entre elas. Uma forma comum de medir isso é</p>
+
+<div class="eq" id="eq7-2"><span class="tag">(7.2)</span>
+\[ \min\; f_2 = \sum_{j}\sum_{k} d_{jk}\, x_j x_k \]
+</div>
+
+<p>O problema é NP-difícil, e o espaço de busca é fortemente multimodal — cheio de ótimos locais distintos —, porque cobertura e compacidade interagem de forma complexa dentro de uma restrição de cardinalidade fixa (o número total de instalações abertas).</p>
+
+<h3 id="s7-2"><span class="num">7.2</span>Busca por dominância contra busca por decomposição</h3>
+
+<p>O interesse metodológico real desse artigo está na comparação entre dois paradigmas diferentes de otimização multiobjetivo. O NSGA-II representa a busca por <strong>dominância</strong> — é o que já está implementado neste projeto, descrito na <a href="#s4-4">§4.4</a>. O MOEA/D representa a busca por <strong>decomposição</strong>: o problema multiobjetivo inteiro é quebrado em muitos subproblemas escalares (com um único número como objetivo), indexados por um vetor de pesos \(\mathbf{w}\) espalhado sobre o simplex, tipicamente usando a agregação de Tchebycheff,</p>
+
+<div class="eq key" id="eq7-3"><span class="tag">(7.3)</span>
+\[ g^{\mathrm{te}}\bigl(x \mid \mathbf{w}, \mathbf{z}^{\star}\bigr) \;=\; \max_{k} \; w_k \,\bigl| f_k(x) - z^{\star}_k \bigr| \]
+</div>
+
+<p>com \(\mathbf{z}^\star\) sendo o ponto de referência (idealmente, o melhor valor possível de cada objetivo). Cada subproblema mantém uma única solução candidata, e troca informação apenas com os subproblemas vizinhos no espaço de pesos. A vantagem da agregação de Tchebycheff sobre uma dominância pura é que ela consegue <strong>alcançar pontos não suportados</strong> — soluções que ficam em regiões côncavas da fronteira de Pareto, invisíveis para qualquer soma ponderada linear entre os objetivos.</p>
+
+<p>Cada um dos dois paradigmas é testado, no artigo original, em duas variantes de tratamento da restrição de cardinalidade: relaxar essa restrição por meio de uma penalidade somada ao objetivo, ou preservar a viabilidade da solução usando busca local dentro da estrutura de vizinhança do problema. A conclusão empírica dos autores é que as variantes com busca local produzem fronteiras de solução melhores, sempre com viabilidade garantida e com um indicador de hipervolume superior, e que a diferença entre NSGA-II com busca local e MOEA/D com busca local é estatisticamente significativa segundo o teste de Wilcoxon pareado.</p>
+
+<h3 id="s7-3"><span class="num">7.3</span>O que aproveitar, e o que não</h3>
+
+<p><strong>Não vale aproveitar os objetivos originais dela.</strong> A cobertura de <a href="#eq7-1">(7.1)</a> é binária em relação a \(\tau\) — está dentro do limiar ou não está — e ignora completamente capacidade. É exatamente a medida \(C(\tau)\) já usada na fase 1, o mesmo indicador que a <a href="#s3-8">§3.8</a> argumenta ser cego à carga real de cada base. Adotar essa medida como objetivo de otimização reintroduziria exatamente o ponto cego que o resultado central deste trabalho existe para denunciar. E a compacidade de <a href="#eq7-2">(7.2)</a> é apenas um <em>proxy</em> aproximado para o custo de implantação; este projeto já mede o custo real de mudança, em quilômetros reais da malha viária e usando emparelhamento ótimo, na equação <a href="#eq4-2">(4.2)</a>. Trocar uma medida direta por um substituto indireto seria um retrocesso na qualidade do modelo.</p>
+
+<p><strong>Vale aproveitar duas coisas específicas.</strong> Primeiro, a ideia de busca local que preserva viabilidade: o NSGA-II usado aqui já tem uma etapa de busca local (<a href="#s4-4">§4.4</a>, a função <code>busca_local</code>), e vale verificar se ela está sendo aplicada exatamente na vizinhança correta do problema. Segundo, e mais relevante, usar o MOEA/D com agregação de Tchebycheff como um <em>segundo otimizador</em> independente sobre os mesmos objetivos definidos em <a href="#eq3-14">(3.14)</a>. A fronteira tempo × Gini deste projeto parece visivelmente convexa nos trechos já publicados, mas essa convexidade nunca foi de fato testada — e se existir alguma região côncava escondida, o NSGA-II pode estar deixando de amostrar justamente essa parte da fronteira. Rodar o MOEA/D sobre o mesmo modelo e comparar o hipervolume resultante é um experimento relativamente barato, porque o modelo e o avaliador de 10,5 milissegundos já existem prontos; só o laço externo de otimização precisaria mudar.</p>
+
+<div class="nota">
+<span class="lab">Como medir se uma fronteira é melhor que a outra</span>
+<p>Se as duas fronteiras forem comparadas de fato, a métrica correta é o hipervolume — a medida de Lebesgue (a "área", em duas dimensões) da região dominada pela fronteira e limitada por um ponto de referência \(\mathbf{r}\) escolhido deliberadamente pior do que todos os pontos da fronteira:</p>
+<div class="eq">\[ HV(\mathcal{F}) = \mathrm{Leb}\Bigl( \textstyle\bigcup_{a \in \mathcal{F}} [f_1(a), r_1] \times [f_2(a), r_2] \Bigr) \]</div>
+<p>Esse é o único indicador unário de uso comum que é estritamente monótono em relação à dominância de Pareto — ou seja, uma fronteira que domina estritamente outra sempre tem hipervolume maior, sem exceção. O ponto de referência \(\mathbf{r}\) precisa ser fixado <em>antes</em> de rodar qualquer um dos dois algoritmos, e mantido idêntico nas duas execuções — caso contrário, a comparação de hipervolumes não significa nada.</p>
+</div>
+</section>
+
+<!-- ================= 8 ================= -->
+<section id="s8" class="fut">
+<h2><span class="num">Seção 8 · na fila</span>Demanda por incidência: o modelo CAR/ICAR</h2>
+
+<p>Prioridade 2 da lista de próximos passos. Ataca a limitação mais substantiva do modelo atual: \(D_i\) hoje é apenas população residente, sem perfil etário e sem nenhuma noção de incidência real de urgências médicas. Um setor com 3.000 idosos e um setor com 3.000 universitários entram no modelo com exatamente o mesmo peso hoje, e claramente não deveriam.</p>
+
+<h3 id="s8-1"><span class="num">8.1</span>Contagens esperadas e risco relativo</h3>
+
+<p>Seja \(y_i\) o número de ocorrências de urgência registradas no setor \(i\) durante um período de tempo. O modelo estatístico apropriado para contagens é o de Poisson, com um termo de <em>offset</em> (deslocamento) que já embute o efeito esperado da composição etária:</p>
+
+<div class="eq key" id="eq8-1"><span class="tag">(8.1)</span>
+\[ y_i \mid \eta_i \;\sim\; \mathrm{Poisson}\bigl( E_i\, e^{\eta_i} \bigr) \]
+</div>
+
+<p>onde \(E_i\) é a contagem esperada, calculada por padronização interna dentro de cada faixa etária,</p>
+
+<div class="eq" id="eq8-2"><span class="tag">(8.2)</span>
+\[ E_i \;=\; \sum_{a} p_{ia}\, \frac{\sum_{\iota} y_{\iota a}}{\sum_{\iota} p_{\iota a}} \]
+</div>
+
+<p>com \(p_{ia}\) sendo a população do setor \(i\) na faixa etária \(a\). Já nesse ponto, sem nenhuma inferência estatística mais sofisticada, \(E_i\) sozinho já resolve metade da limitação original: é a população ponderada pelo risco típico de cada faixa etária. E \(e^{\eta_i}\) representa o risco relativo: o quanto aquele setor específico se afasta do que sua composição etária, por si só, já previa.</p>
+
+<h3 id="s8-2"><span class="num">8.2</span>Por que o modelo precisa de estrutura espacial</h3>
+
+<p>Setores censitários são geograficamente pequenos, e por isso \(y_i\) costuma ser uma contagem pequena em números absolutos. A estimativa bruta \(y_i/E_i\), sem nenhum ajuste adicional, tem uma variância que explode exatamente onde \(E_i\) é pequeno — os setores mais ralos em população acabam exibindo os riscos relativos mais extremos, simplesmente por puro ruído amostral, não porque de fato tenham mais risco. Um mapa construído direto dessa razão bruta acaba pintando de vermelho justamente a periferia mais esparsa, por um artefato estatístico, não por um sinal real. Suavizar essa estimativa é obrigatório, e a suavização precisa tomar informação emprestada dos setores vizinhos.</p>
+
+<p>A decomposição proposta por Besag, York e Mollié separa o preditor em uma parte espacialmente estruturada e uma parte não estruturada:</p>
+
+<div class="eq key" id="eq8-3"><span class="tag">(8.3)</span>
+\[ \eta_i \;=\; \beta_0 + \mathbf{x}_i^{\!\top}\boldsymbol{\beta} \;+\; u_i \;+\; v_i, \qquad v_i \stackrel{\text{iid}}{\sim} \mathcal{N}(0, \sigma_v^2) \]
+</div>
+
+<p>O termo \(u\) recebe uma distribuição a priori chamada de autorregressiva condicional intrínseca (ICAR), definida pela relação de vizinhança \(i \sim j\) entre setores adjacentes na malha:</p>
+
+<div class="eq key" id="eq8-4"><span class="tag">(8.4)</span>
+\[ p\bigl(\mathbf{u} \mid \sigma_u\bigr) \;\propto\; \exp\!\left( -\frac{1}{2\sigma_u^{2}} \sum_{i \sim j} \bigl(u_i - u_j\bigr)^{2} \right) \;=\; \exp\!\left( -\frac{1}{2\sigma_u^{2}} \mathbf{u}^{\!\top}(\mathbf{D} - \mathbf{W})\,\mathbf{u} \right) \]
+</div>
+
+<p>com \(\mathbf{W}\) sendo a matriz de adjacência entre setores e \(\mathbf{D}\) a matriz diagonal com o número de vizinhos de cada um. A forma condicional dessa distribuição é a que ajuda mais na intuição: cada setor é puxado em direção à média dos seus vizinhos, com uma precisão (o inverso da variância) proporcional ao número de vizinhos que ele tem,</p>
+
+<div class="eq" id="eq8-5"><span class="tag">(8.5)</span>
+\[ u_i \mid \mathbf{u}_{-i} \;\sim\; \mathcal{N}\!\left( \frac{1}{n_i}\sum_{j \sim i} u_j,\; \frac{\sigma_u^{2}}{n_i} \right) \]
+</div>
+
+<div class="nota">
+<span class="lab">Duas armadilhas técnicas do ICAR</span>
+<p><strong>Impropriedade.</strong> A matriz \(\mathbf{D}-\mathbf{W}\) é singular por construção: seu posto é \(n - c\), onde \(c\) é o número de componentes conexas do grafo de vizinhança entre setores. A distribuição a priori só define diferenças entre setores vizinhos, nunca um nível absoluto. Isso exige impor uma restrição de soma zero <em>separadamente em cada componente conexa</em>, e São Paulo tem setores insulares e enclaves geográficos que podem quebrar a conectividade do grafo inteiro em vários pedaços — vale conferir o valor de \(c\) antes de ajustar o modelo.</p>
+<p><strong>Identificabilidade.</strong> Em <a href="#eq8-3">(8.3)</a>, os termos \(u\) e \(v\) competem pela mesma variação nos dados, e seus hiperparâmetros não são separadamente identificáveis sem alguma informação a priori adicional. A reparametrização conhecida como BYM2 resolve esse problema usando um único parâmetro de escala total e um único parâmetro de mistura entre as duas partes:</p>
+<div class="eq">\[ \eta_i = \beta_0 + \mathbf{x}_i^{\!\top}\boldsymbol{\beta} + \sigma\left( \sqrt{\phi}\;u^{*}_i + \sqrt{1-\phi}\;v^{*}_i \right), \qquad \phi \in [0,1] \]</div>
+<p>onde \(u^*\) é escalonado de forma que a variância marginal média geométrica valha exatamente 1. Com essa reparametrização, \(\sigma\) passa a ser interpretável diretamente como a magnitude total da variação, e \(\phi\) como a fração dessa variação que é de origem espacial — e os dois aceitam uma escolha de prior razoável e interpretável.</p>
+</div>
+
+<h3 id="s8-3"><span class="num">8.3</span>Como isso se encaixa no modelo já existente</h3>
+
+<p>De forma quase trivial, e esse é exatamente o ponto forte dessa proposta: nada na <a href="#s3">§3</a> precisa mudar de forma. Basta substituir</p>
+
+<div class="eq" id="eq8-6"><span class="tag">(8.6)</span>
+\[ D_i \;\longleftarrow\; \widehat{E_i\, e^{\eta_i}} \;=\; E_i\, \mathbb{E}\bigl[ e^{\eta_i} \mid \mathbf{y} \bigr] \]
+</div>
+
+<p>diretamente em <a href="#eq3-6">(3.6)</a>, <a href="#eq3-12">(3.12)</a> e <a href="#eq3-13">(3.13)</a>, no lugar da população residente pura. A matriz de tempos, o modelo de Huff, o 2SFCA, o NSGA-II e o p-median são todos completamente indiferentes à origem de \(D_i\) — para eles, é só um vetor de números não negativos, e de onde esses números vêm não importa para as contas.</p>
+
+<h3 id="s8-4"><span class="num">8.4</span>Além de trocar um número</h3>
+
+<p>Substituir \(D_i\) diretamente pela média posterior da inferência bayesiana seria desperdiçar boa parte do valor do modelo. O que a inferência bayesiana de fato entrega é a <em>distribuição inteira</em> de \(D_i\), com toda a incerteza associada — e essa distribuição pode ser propagada até o objetivo final da otimização, em vez de descartada logo depois de estimada. Com \(S\) amostras tiradas da distribuição posterior, \(\mathbf{D}^{(1)},\dots,\mathbf{D}^{(S)}\), cada configuração de frota passa a ter uma distribuição inteira de valores possíveis de Gini, em vez de um único número:</p>
+
+<div class="eq key" id="eq8-7"><span class="tag">(8.7)</span>
+\[ G_{\mathrm A}^{(s)}(x) \;=\; G_{\mathrm A}\bigl(x \mid \mathbf{D}^{(s)}\bigr), \qquad s = 1,\dots,S \]
+</div>
+
+<p>Isso traz duas consequências práticas importantes. Primeira: a fronteira de Pareto deixa de ser uma linha fina e passa a ser uma <em>banda</em> com largura, e a pergunta "o ganho de equidade observado é maior do que a incerteza da própria estimativa de demanda?" passa a ter uma resposta concreta — que é exatamente a pergunta que um revisor cético faria diante do resultado. Segunda: o próprio objetivo de otimização pode ser trocado por um funcional de risco, por exemplo o CVaR (valor em risco condicional) num nível \(\varrho\),</p>
+
+<div class="eq" id="eq8-8"><span class="tag">(8.8)</span>
+\[ \min_x \; \mathrm{CVaR}_{\varrho}\bigl[ G_{\mathrm A}(x) \bigr] \;=\; \min_x \; \mathbb{E}\Bigl[ G_{\mathrm A}(x) \;\Big|\; G_{\mathrm A}(x) \ge q_{\varrho} \Bigr] \]
+</div>
+
+<p>o que produziria uma recomendação robusta: uma configuração boa não apenas na demanda média esperada, mas também nos cenários mais desfavoráveis de demanda. O custo computacional disso é \(S\) vezes o custo de uma avaliação normal, cerca de 10,5 milissegundos cada; com \(S=100\), isso dá pouco mais de um segundo por configuração avaliada — caro demais para rodar dentro do laço completo do NSGA-II, mas perfeitamente viável para reavaliar uma fronteira que já foi obtida por outro caminho.</p>
+</section>
+
+<!-- ================= 9 ================= -->
+<section id="s9" class="fut">
+<h2><span class="num">Seção 9 · na fila</span>Disponibilidade em vez de pressão</h2>
+
+<p>A limitação 3 da lista de próximos passos: o 2SFCA mede pressão sobre a base, não a probabilidade real de a unidade estar ocupada num dado momento. Esta seção mostra que a distância entre essas duas coisas é menor do que parece à primeira vista — mas que ela não é zero, e isso importa para o resultado.</p>
+
+<h3 id="s9-1"><span class="num">9.1</span>A relação exata entre \(R_j\) e a carga real da base</h3>
+
+<p>Suponha que cada habitante gere chamados a uma taxa média \(r\), e que cada atendimento consuma um tempo médio \(\mathbb{E}[S]\). A taxa de chegada de chamados na base \(j\) é \(\Lambda_j = r\,\widetilde D_j\), e a intensidade de tráfego resultante nessa base é</p>
+
+<div class="eq" id="eq9-1"><span class="tag">(9.1)</span>
+\[ \varrho_j \;=\; \frac{\Lambda_j\, \mathbb{E}[S]}{S_j} \;=\; \frac{r\,\mathbb{E}[S]\,\widetilde D_j}{S_j} \;=\; \frac{r\,\mathbb{E}[S]}{R_j} \]
+</div>
+
+<p>Ou seja: <strong>a razão calculada pelo 2SFCA é exatamente proporcional ao inverso da carga real da base.</strong> \(R_j \propto 1/\varrho_j\). As duas medidas ordenam as bases de forma idêntica — quem tem \(R_j\) alto necessariamente tem \(\varrho_j\) baixo, sempre, sem exceção.</p>
+
+<h3 id="s9-2"><span class="num">9.2</span>Onde as duas medidas de fato divergem</h3>
+
+<p>Se a ordenação entre bases é sempre a mesma, por que se daria ao trabalho de trocar uma pela outra? Porque o índice definido em <a href="#eq3-7">(3.7)</a> não é diretamente a razão \(R_j\) — é uma <em>soma</em> de razões, ponderada pela probabilidade de escolha:</p>
+
+<div class="eq" id="eq9-2"><span class="tag">(9.2)</span>
+\[ A^{\mathrm A}_i = \sum_j P_{ij} R_j \;\propto\; \sum_j \frac{P_{ij}}{\varrho_j} \qquad \text{contra} \qquad \mathcal{A}_i = \sum_j P_{ij}\bigl(1 - \varrho_j\bigr)^{+} \]
+</div>
+
+<p>e aplicar uma transformação não linear <em>antes</em> de somar não preserva necessariamente a ordenação das somas resultantes. A diferença entre as duas fórmulas é de curvatura, e ela tem um efeito colateral bem concreto: \(1/\varrho\) é <strong>ilimitado</strong> quando \(\varrho \to 0\), enquanto uma medida de disponibilidade de verdade satura naturalmente em 1 — uma ambulância não pode estar "mais do que 100% livre". Uma base superdimensionada, com meia dúzia de unidades e pouquíssima demanda real, acaba contribuindo com um \(R_j\) enorme, sem teto nenhum, para o valor final de \(A_i\) — o 2SFCA recompensa o excesso de provisão de forma desproporcional. Um modelo de disponibilidade de verdade não recompensaria dessa forma: uma ambulância livre com certeza absoluta já é o máximo possível que qualquer base pode oferecer, não importa quantas unidades a mais ela tenha.</p>
+
+<p>Como o índice de Gini é particularmente sensível à cauda superior de uma distribuição, essa diferença de teto entre as duas medidas pode estar inflando artificialmente o ganho de equidade relatado pelo projeto. É uma crítica que o próprio grupo deveria fazer antes que algum revisor a faça primeiro.</p>
+
+<h3 id="s9-3"><span class="num">9.3</span>A troca mais barata: fórmula de Erlang para um único servidor</h3>
+
+<p>Para uma base com \(c\) unidades e uma carga oferecida \(a = \Lambda \mathbb{E}[S]\), a probabilidade de todas as unidades estarem ocupadas ao mesmo tempo — a chamada perda de Erlang — é</p>
+
+<div class="eq" id="eq9-3"><span class="tag">(9.3)</span>
+\[ B(c, a) \;=\; \frac{a^{c}/c!}{\sum_{k=0}^{c} a^{k}/k!} \]
+</div>
+
+<p>Em São Paulo, quase toda base tem \(c=1\) hoje, e nesse caso particular (9.3) se simplifica bastante, virando \(B(1,a) = a/(1+a)\). A disponibilidade é \(1-B\), e o índice substituto proposto fica</p>
+
+<div class="eq key" id="eq9-4"><span class="tag">(9.4)</span>
+\[ \mathcal{A}^{\mathrm A}_i \;=\; \sum_{j \in J_{\mathrm A}} P^{\mathrm A}_{ij}\, \Bigl[ 1 - B\bigl(S^{\mathrm A}_j,\, a_j\bigr) \Bigr], \qquad a_j = r\,\mathbb{E}[S]\,\bigl(\widetilde D^{\mathrm A}_j + \omega_j \widetilde D^{\mathrm B}_j\bigr) \]
+</div>
+
+<p>Essa é uma troca de meia hora de código sobre o módulo já existente, e ela introduz exatamente um único parâmetro novo — o produto \(r\,\mathbb{E}[S]\) —, que pode ser calibrado a partir de dados reais ou varrido em faixa da mesma forma que \(\beta\) já é varrido hoje. Vale fazer isso antes de qualquer coisa mais ambiciosa nesta seção, ainda que apenas como uma análise de sensibilidade rápida: <em>o achado de equidade sobrevive à troca desse proxy de carga por um mais realista?</em></p>
+
+<div class="nota">
+<span class="lab">O que se perde ao fazer essa troca</span>
+<p>A <a href="#prop1">Proposição 1</a> deixa de valer para <a href="#eq9-4">(9.4)</a>: \(\sum_i D_i \mathcal{A}_i \ne \text{const}\), porque a saturação em 1 quebra o cancelamento telescópico usado na demonstração original. Isso é ao mesmo tempo bom e ruim. Bom, porque o índice deixa de ser degenerado no sentido da <a href="#s3-6">§3.6</a>, e passa a ter nível informativo próprio — maximizá-lo volta a fazer sentido como objetivo, e o problema poderia até deixar de precisar de dois objetivos separados. Ruim, porque se perde justamente o teste automatizado mais barato do módulo inteiro.</p>
+</div>
+
+<h3 id="s9-4"><span class="num">9.4</span>O tratamento exato: o modelo do hipercubo</h3>
+
+<p>A formulação de <a href="#eq9-4">(9.4)</a> trata cada base como uma fila isolada das demais, o que na realidade é falso: quando a base mais próxima está ocupada, o chamado é redirecionado para a próxima, e as filas de bases vizinhas ficam <em>acopladas</em> entre si. O tratamento exato desse acoplamento é o modelo do hipercubo, proposto por Larson, que descreve o sistema inteiro como uma cadeia de Markov definida sobre</p>
+
+<div class="eq" id="eq9-5"><span class="tag">(9.5)</span>
+\[ \mathcal{S} = \{0,1\}^{N}, \qquad |\mathcal{S}| = 2^{N} \]
+</div>
+
+<p>um bit para cada unidade, indicando se ela está livre ou ocupada. Para \(N=123\), isso significa \(2^{123} \approx 10^{37}\) estados possíveis — completamente fora de questão para resolver exatamente. A saída padrão da literatura é a aproximação de Larson, que resolve por ponto fixo as probabilidades marginais de ocupação de cada unidade, usando fatores de correção \(Q(N,\varrho,k)\) que ajustam a hipótese simplificadora de independência entre servidores, que na prática não é exatamente verdadeira.</p>
+
+<p>Existe também um caminho intermediário mais simples, e provavelmente suficiente para este projeto: o modelo MEXCLP, de Daskin. Ele supõe que cada unidade fica ocupada de forma independente com probabilidade \(q\), e maximiza a demanda esperada coberta sob essa suposição,</p>
+
+<div class="eq" id="eq9-6"><span class="tag">(9.6)</span>
+\[ \max \; \sum_{i} D_i \sum_{k=1}^{p} (1-q)\, q^{\,k-1} z_{ik} \quad \text{s.a.} \quad \sum_{k} z_{ik} \le \sum_{j \in \mathcal{N}_i} x_j \]
+</div>
+
+<p>O termo \((1-q)q^{k-1}\) é o valor marginal de ter uma \(k\)-ésima unidade cobrindo o setor \(i\): a probabilidade de que as \(k-1\) primeiras unidades já estejam ocupadas, e a \(k\)-ésima ainda esteja livre para atender. É um retorno geometricamente decrescente conforme se adiciona redundância — precisamente o mesmo tipo de efeito de capacidade que \(R_j = S_j/\widetilde D_j\) tenta capturar, só que através de uma função linear em vez de uma curva geométrica de fato. Comparar essas duas curvaturas sobre a mesma configuração de frota é um experimento pequeno, barato de rodar, e bastante revelador sobre o quanto a linearização atual está distorcendo o resultado.</p>
+</section>
+
+<!-- ================= 10 ================= -->
+<section id="s10">
+<h2><span class="num">Seção 10</span>Como desenhar a sensibilidade em β</h2>
+
+<p>Este é o próximo passo já declarado, e é o flanco mais aberto de todo o trabalho até agora. O plano registrado é repetir a varredura de \(\lambda\) para cada \(\beta \in \{2,4,6,8{,}5\}\) e verificar se o achado de equidade sobrevive à mudança de parâmetro. Falta especificar <em>exatamente o que</em> comparar entre essas execuções, e a especificação certa não é tão óbvia quanto parece.</p>
+
+<h3 id="s10-1"><span class="num">10.1</span>Um erro comum</h3>
+
+<p>A tentação natural é simplesmente reportar uma tabela de \(G_{\mathrm A}(\beta, \lambda)\) e verificar se os números continuam pequenos em todos os casos. Isso não responde à pergunta de verdade, porque <strong>o Gini da configuração atual também depende de \(\beta\)</strong> — pela própria tabela da <a href="#s3-2">§3.2</a>, \(G_{\text{atual}}\) vai de 0,276 a 0,086 conforme \(\beta\) cresce de 1,5 a 12. Um \(G_{\mathrm A}\) otimizado de 0,05 é um resultado excelente quando comparado contra uma linha de base de 0,276, mas é medíocre quando comparado contra uma linha de base de 0,086.</p>
+
+<p>Qualquer comparação entre diferentes valores de \(\beta\) precisa ser feita <em>em relação à própria linha de base daquele mesmo \(\beta\)</em>, nunca contra um número fixo de outro \(\beta\).</p>
+
+<h3 id="s10-2"><span class="num">10.2</span>O que vale a pena reportar</h3>
+
+<p>Defina, para cada par \((\beta,\lambda)\), o ganho relativo de equidade e o ganho relativo de tempo, ambos normalizados dentro do próprio \(\beta\):</p>
+
+<div class="eq key" id="eq10-1"><span class="tag">(10.1)</span>
+\[ \rho_G(\beta,\lambda) \;=\; \frac{G_{\text{atual}}(\beta) - G_{\lambda}(\beta)}{G_{\text{atual}}(\beta) - G_{0}(\beta)}, \qquad \rho_T(\beta,\lambda) \;=\; \frac{\mathbb{E}[T]_{\text{atual}}(\beta) - \mathbb{E}[T]_{\lambda}(\beta)}{\mathbb{E}[T]_{\text{atual}}(\beta) - \mathbb{E}[T]_{0}(\beta)} \]
+</div>
+
+<p>Ambas as quantidades vivem no intervalo \([0,1]\) por construção, valendo 0 na configuração de hoje e 1 no redesenho totalmente livre. Elas são comparáveis entre diferentes valores de \(\beta\) justamente porque cada uma é normalizada pelos seus próprios dois extremos, e não por um valor fixo externo.</p>
+
+<p>A afirmação central deste trabalho — "12 unidades e 39 km entregam a maior parte do ganho possível" — passa então a ter uma formulação testável e, o que é importante, passível de ser refutada pelos próprios dados:</p>
+
+<div class="eq" id="eq10-2"><span class="tag">(10.2)</span>
+\[ \rho_G\bigl(\beta,\, \lambda=1\bigr) \;\ge\; 0{,}7 \qquad \text{e} \qquad \frac{K_{\lambda=1}(\beta)}{K_{\lambda=0}(\beta)} \;\le\; 0{,}15 \qquad \text{para todo } \beta \in \{2,4,6,8{,}5\} \]
+</div>
+
+<p>Em \(\beta = 4{,}5\), os valores efetivamente observados são \(\rho_G = 0{,}72\) e \(39/385 = 0{,}10\). Se essa mesma desigualdade se mantiver em toda a faixa de \(\beta\) varrida, o achado é robusto ao parâmetro que governa o modelo inteiro, e a crítica principal ao trabalho fica respondida de forma satisfatória. Se a desigualdade não se mantiver para algum valor de \(\beta\), o artigo precisa dizer explicitamente em que faixa de valores o achado vale — o que continua sendo um resultado perfeitamente publicável, apenas mais modesto em alcance do que o afirmado hoje.</p>
+
+<h3 id="s10-3"><span class="num">10.3</span>Duas medidas complementares</h3>
+
+<p>Além de <a href="#eq10-2">(10.2)</a>, duas medidas adicionais são baratas de calcular e reportar, e fortalecem bastante o argumento final.</p>
+
+<p><strong>Estabilidade do conjunto de unidades movidas.</strong> Seja \(\mathcal{M}(\beta)\) o conjunto de unidades que a solução ótima em \(\lambda=1\) realoca, para um dado valor de \(\beta\). A recomendação administrativa é robusta se esses conjuntos coincidem em boa parte entre diferentes valores de \(\beta\), o que pode ser medido pelo índice de Jaccard:</p>
+
+<div class="eq" id="eq10-3"><span class="tag">(10.3)</span>
+\[ J(\beta, \beta') \;=\; \frac{\bigl|\mathcal{M}(\beta) \cap \mathcal{M}(\beta')\bigr|}{\bigl|\mathcal{M}(\beta) \cup \mathcal{M}(\beta')\bigr|} \]
+</div>
+
+<p>Se as mesmas doze unidades continuam aparecendo na recomendação sob qualquer valor de \(\beta\) testado, então a recomendação em si não depende do parâmetro escolhido por julgamento — e esse é um argumento bem mais forte do que qualquer estabilidade numérica dos objetivos, porque é a recomendação concreta, e não um número abstrato, que chega até a mesa de quem vai de fato decidir.</p>
+
+<p><strong>Sensibilidade em relação à âncora escolhida.</strong> A escolha de \(\beta = 4{,}5\) está ancorada em \(N^{\mathrm{ef}} = 2{,}2\), pela relação <a href="#eq3-4">(3.4)</a>. Como \(N^{\mathrm{ef}}\) é, em princípio, uma quantidade observável na realidade — bastaria saber com que frequência o despacho real de fato não usa a base mais próxima disponível —, vale reportar a varredura de sensibilidade indexada por \(N^{\mathrm{ef}}\) em vez de diretamente por \(\beta\). Assim, o leitor passa a ler "o achado vale enquanto o despacho considerar entre 1 e 7 bases efetivas na prática", que é uma afirmação totalmente operacional e verificável, em vez de "vale para β entre 2 e 8,5 minutos", que é uma afirmação sobre um parâmetro sem nenhum referente empírico direto para quem não conhece o modelo por dentro.</p>
+</section>
+
+<!-- ================= 11 ================= -->
+<section id="s11">
+<h2><span class="num">Seção 11</span>Invariantes que servem de teste automatizado</h2>
+
+<p>Cada módulo deste projeto roda o próprio teste automatizado. Estas são as identidades matemáticas que qualquer implementação correta de tudo o que foi descrito acima precisa satisfazer, sem exceção — e cada uma delas foi escolhida por pegar uma classe distinta de erro de implementação.</p>
+
+<table>
+<thead><tr><th style="width:44%">Invariante</th><th>O erro que ela detecta</th></tr></thead>
+<tbody>
+<tr><td>\(\sum_j P_{ij} = 1\) para todo \(i\)</td><td>Setor sem nenhum candidato dentro do raio de captação; normalização feita sobre o conjunto errado de candidatos</td></tr>
+<tr><td>\(\sum_i D_i A_i = \sum_j S_j = N\)</td><td>Qualquer erro de índice nas duas etapas do 2SFCA; a igualdade vale exatamente até a precisão numérica da máquina (<a href="#prop1">Proposição 1</a>)</td></tr>
+<tr><td>\(G = 0 \iff A_i\) constante</td><td>Ordenação invertida na curva de Lorenz; peso trocado por engano na fórmula</td></tr>
+<tr><td>\(\beta \to 0 \Rightarrow\) regra da unidade mais próxima</td><td>Sinal errado no expoente do decaimento; truncagem em \(d_0\) mal aplicada</td></tr>
+<tr><td>\(K(x^{0}) = 0\), e \(K\) simétrico ao trocar origem por destino</td><td>Emparelhamento incorreto; algoritmo húngaro alimentado com a matriz transposta por engano</td></tr>
+<tr><td>\(K(x) \le\) custo do pareamento identidade (sem nenhuma mudança)</td><td>Algoritmo húngaro não convergiu — o resultado ótimo nunca pode ser pior do que qualquer permutação específica escolhida à mão</td></tr>
+<tr><td>A fronteira de \(\lambda = 0\) domina fracamente as fronteiras de \(\lambda \gt 0\) no espaço \((\mathbb{E}[T], G_{\mathrm A})\)</td><td>Fronteira ordenada no espaço penalizado e plotada por engano no espaço puro (<a href="#s4-8">§4.8</a>)</td></tr>
+<tr><td>\(\mathbb{E}[T] \ge T_{\mathrm{pm}}\), com igualdade só no limite \(\beta \to 0\)</td><td>Sinal errado de \(\Phi\) em <a href="#eq3-15">(3.15)</a>; mistura indevida de \(P^{\mathrm A}\) com \(P^{\mathrm B}\)</td></tr>
+<tr><td>O joelho reportado corresponde ao mesmo número de realocações mostrado na tabela</td><td>Duas definições diferentes de joelho convivendo em espaços distintos ao mesmo tempo (<a href="#s4-7">§4.7</a>)</td></tr>
+<tr><td>O NSGA-II semeado nunca fica pior do que o p-median sozinho em \(f_1\)</td><td>Elitismo quebrado na implementação; a semente sendo descartada logo na primeira geração</td></tr>
+</tbody>
+<caption>O segundo invariante e o último da lista são os mais valiosos na prática: o segundo é exato e detecta quase qualquer erro aritmético cometido no modelo; o último detecta o tipo de regressão silenciosa que já custou uma rodada inteira de depuração neste projeto.</caption>
+</table>
+
+<h3 id="s11-1"><span class="num">11.1</span>Onde a matemática encontra a engenharia de código</h3>
+
+<p>Três das armadilhas já registradas na história deste projeto são, na verdade, afirmações matemáticas que foram implementadas de forma incorreta — vale nomeá-las explicitamente como tal, em vez de tratá-las como simples "bugs" genéricos: a equação <a href="#eq1-2">(1.2)</a>, sobre fundir arestas paralelas pelo mínimo e não pela soma; a equação <a href="#eq1-4">(1.4)</a>, a métrica anisotrópica que invalida qualquer busca que pare na primeira camada de vizinhança; e o <a href="#lema1">Lema</a> da <a href="#s4-8">§4.8</a>, sobre a não-monotonicidade da penalização de mudança. Nenhuma das três é um erro de código no sentido usual do termo — todas as três são consequências diretas de uma propriedade matemática do objeto que o código, sem perceber, tinha presumido que não existia.</p>
+</section>
+
+<!-- ================= 12 ================= -->
+<section id="s12">
+<h2><span class="num">Seção 12</span>Referências</h2>
+
+<h3 id="s12-1"><span class="num">12.1</span>As quatro técnicas do levantamento inicial</h3>
+<ol class="refs">
+<li>Técnica 2, <strong>implementada</strong> — <em>Balancing efficiency and accessibility in location-allocation</em>. Engineering Optimization, 2025. Origem do arcabouço Huff + 2SFCA com metaheurística bi-objetivo descrito nas <a href="#s3">§3</a> e <a href="#s4">§4</a>.</li>
+<li>Técnica 1, <strong>na fila</strong> — Su, H.; Zheng, Y.; Ding, J.; Jin, D.; Li, Y. <em>Large-scale Urban Facility Location Selection with Knowledge-informed Reinforcement Learning</em>. SIGSPATIAL '24. arXiv:2409.01588. Demonstração online em <span class="mono">huggingface.co/spaces/randommmm/MFLP</span>. <a href="#s5">Seção 5</a>.</li>
+<li>Técnica 3, <strong>na fila</strong> — Miao, C.; Zhang, Y.; Wu, T.; Deng, F.; Chen, C. <em>Deep Reinforcement Learning for Multi-Period Facility Location: \(p_k\)-median Dynamic Location Problem</em>. SIGSPATIAL '24. Código em <span class="mono">github.com/JackeyMiao/ADNet</span>. <a href="#s6">Seção 6</a>.</li>
+<li>Técnica 4, <strong>descartada</strong> — <em>Feasibility-Preserving Multi-objective Evolutionary Algorithms with Local Search for the Bi-objective Maximal Covering Location Problem with Compactness</em>. EvoApplications 2026. <a href="#s7">Seção 7</a>.</li>
+</ol>
+
+<h3 id="s12-2"><span class="num">12.2</span>Fundamentos</h3>
+<ol class="refs">
+<li>Huff, D. L. <em>Defining and estimating a trading area</em>. Journal of Marketing, 1964. O modelo de escolha de <a href="#eq3-1">(3.1)</a>.</li>
+<li>Luo, W.; Wang, F. <em>Measures of spatial accessibility to health care in a GIS environment</em>. Environment and Planning B, 2003. O 2SFCA de <a href="#eq3-6">(3.6)</a>–<a href="#eq3-7">(3.7)</a>.</li>
+<li>Luo, W.; Qi, Y. <em>An enhanced two-step floating catchment area (E2SFCA) method</em>. Health &amp; Place, 2009. O decaimento normalizado de <a href="#eq3-3">(3.3)</a>.</li>
+<li>Hakimi, S. L. <em>Optimum locations of switching centers</em>. Operations Research, 1964. A formulação original do p-median.</li>
+<li>Teitz, M. B.; Bart, P. <em>Heuristic methods for estimating the generalized vertex median of a weighted graph</em>. Operations Research, 1968. A troca de vértices usada na <a href="#s4-6">§4.6</a>.</li>
+<li>Resende, M. G. C.; Werneck, R. F. <em>A fast swap-based local search procedure for location problems</em>. Annals of Operations Research, 2007. A decomposição em ganho e perda que sustenta a poda de arestas na <a href="#s5-3">§5.3</a>.</li>
+<li>Kuhn, H. W. <em>The Hungarian method for the assignment problem</em>. Naval Research Logistics Quarterly, 1955. O emparelhamento ótimo de <a href="#eq4-2">(4.2)</a>.</li>
+<li>Deb, K.; Pratap, A.; Agarwal, S.; Meyarivan, T. <em>A fast and elitist multiobjective genetic algorithm: NSGA-II</em>. IEEE Transactions on Evolutionary Computation, 2002. Base da <a href="#s4-4">§4.4</a>.</li>
+<li>Zhang, Q.; Li, H. <em>MOEA/D: a multiobjective evolutionary algorithm based on decomposition</em>. IEEE TEC, 2007. A agregação de Tchebycheff de <a href="#eq7-3">(7.3)</a>.</li>
+<li>Larson, R. C. <em>A hypercube queuing model for facility location and redistricting in urban emergency services</em>. Computers &amp; Operations Research, 1974; e a aproximação publicada em 1975. Base da <a href="#s9-4">§9.4</a>.</li>
+<li>Daskin, M. S. <em>A maximum expected covering location model</em>. Transportation Science, 1983. O MEXCLP de <a href="#eq9-6">(9.6)</a>.</li>
+<li>Besag, J.; York, J.; Mollié, A. <em>Bayesian image restoration, with two applications in spatial statistics</em>. Annals of the Institute of Statistical Mathematics, 1991. A decomposição de <a href="#eq8-3">(8.3)</a>.</li>
+<li>Riebler, A.; Sørbye, S. H.; Simpson, D.; Rue, H. <em>An intuitive Bayesian spatial model for disease mapping that accounts for scaling</em>. Statistical Methods in Medical Research, 2016. A reparametrização BYM2 da <a href="#s8-2">§8.2</a>.</li>
+</ol>
+</section>
+
+<hr class="end">
+
+</main>
+</div>
+</div>
+</body>
+</html>
