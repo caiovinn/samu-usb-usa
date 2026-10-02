@@ -501,5 +501,29 @@ def main():
         f"{np.median(T.min(axis=1)):.1f} min, p90 {np.percentile(T.min(axis=1),90):.1f} min")
 
 
+def so_tempos():
+    """Refaz SO dados/fase2/sp_tempos.npy, sobre os setores e candidatos ja
+    gravados, na mesma ordem de linhas.
+
+    Para um clone novo: `main()` reconstruiria os candidatos a partir do CNES
+    de hoje, mudando os indices de que dependem as solucoes ja gravadas
+    (sp_pareto_x_*.npy, sp_pmedian_x.npy). Aqui so o grafo do OSM e novo, e os
+    pontos sao reencaixados nele. Exige _raw/osm_*.parquet (pull_dados osm).
+    """
+    st = pd.read_parquet(DADOS / "sp_setores.parquet")
+    cd = pd.read_parquet(DADOS / "sp_candidatos.parquet")
+    nx_, ny_, u, v, w, n_nos = carrega_grafo()
+    no_st = no_mais_proximo(st.lon.values, st.lat.values, nx_, ny_)
+    no_cd = no_mais_proximo(cd.lon.values, cd.lat.values, nx_, ny_)
+    if (no_st < 0).any() or (no_cd < 0).any():
+        raise SystemExit("!! ponto sem no do OSM proximo: grafo diferente demais")
+    d = dist_ao_no(cd.lon.values, cd.lat.values, nx_, ny_, no_cd)
+    log(f"  encaixe dos candidatos: mediana {np.median(d):.0f} m, max {d.max():.0f} m")
+    T = matriz_tempos(no_cd, no_st, u, v, w, n_nos)
+    np.save(DADOS / "sp_tempos.npy", T)
+    log(f"tempos {T.shape} | mediana {np.median(T[T < INF_MIN]):.1f} min | "
+        f"inalcancaveis {100*(T>=INF_MIN).mean():.2f}%")
+
+
 if __name__ == "__main__":
-    main()
+    so_tempos() if "--so-tempos" in sys.argv else main()

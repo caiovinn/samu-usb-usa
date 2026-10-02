@@ -517,10 +517,15 @@ hr.end{border:0;border-top:1.5px solid var(--tinta);margin:60px 0 0}
 
 <h3 id="s3-2"><span class="num">3.2</span>O parâmetro β e as "unidades efetivas"</h3>
 
-<p>Para dar um significado concreto a \(\beta\), o projeto usa o número de unidades efetivas ao alcance de um setor — quantas opções, na prática, o setor de fato tem, levando em conta que a probabilidade não está toda concentrada numa única opção. Esse número é o inverso do índice de Simpson da distribuição de escolha daquele setor:</p>
+<p>Para dar um significado concreto a \(\beta\), o projeto usa o número de unidades efetivas ao alcance de um setor — quantas opções, na prática, o setor de fato tem, levando em conta que a probabilidade não está toda concentrada numa única opção. Esse número é a exponencial da entropia de Shannon da distribuição de escolha daquele setor — exatamente o que <code>huff2sfca.n_efetivo</code> calcula:</p>
 
 <div class="eq key" id="eq3-4"><span class="tag">(3.4)</span>
-\[ N^{\mathrm{ef}}_i \;=\; \frac{\bigl(\sum_j P_{ij}\bigr)^2}{\sum_j P_{ij}^2} \;=\; \frac{1}{\sum_j P_{ij}^{2}} \]
+\[ N^{\mathrm{ef}}_i \;=\; e^{H_i}, \qquad H_i \;=\; -\sum_j P_{ij}\,\ln P_{ij} \]
+</div>
+
+<div class="nota">
+<span class="lab">Nota · definição corrigida</span>
+<p>Uma versão anterior deste documento definia \(N^{\mathrm{ef}}\) como o inverso do índice de Simpson, \(1/\sum_j P_{ij}^2\). As duas são "números efetivos" legítimos (números de Hill de ordem 1 e 2) e têm a mesma leitura nos extremos, mas dão valores diferentes no meio: no dado real com \(\beta = 4{,}5\), a mediana é 2,2 pela entropia e 1,87 por Simpson. Todos os valores de \(N^{\mathrm{ef}}\) do projeto — inclusive o 2,2 que ancora \(\beta\) e a ponte com o modelo de despacho — vêm de (3.4) na forma acima.</p>
 </div>
 
 <p>Essa quantidade tem uma leitura intuitiva: se toda a probabilidade estivesse concentrada numa única opção, \(N^{\mathrm{ef}}_i = 1\); se estivesse dividida igualmente entre \(k\) opções, \(N^{\mathrm{ef}}_i = k\). É essa leitura que serve de âncora para escolher \(\beta\). Com \(\beta = 4{,}5\) minutos, o \(N^{\mathrm{ef}}\) mediano fica em 2,2: o despacho encontra, em média, a unidade mais próxima e um pouco mais do que uma alternativa — a leitura operacional de "a mais próxima <em>disponível</em>", contando com a possibilidade de a primeira estar ocupada. Os dois casos limite são exatos e servem como teste de sanidade da implementação:</p>
@@ -555,7 +560,7 @@ hr.end{border:0;border-top:1.5px solid var(--tinta);margin:60px 0 0}
 <tr class="destaque"><td>β = 4,5 &nbsp;<em>(usado no projeto)</em></td><td class="n">54</td><td class="n">36</td><td class="n">9</td><td class="n">1</td><td class="n">4,3</td></tr>
 <tr><td>β = 8,5</td><td class="n">36</td><td class="n">32</td><td class="n">22</td><td class="n">10</td><td class="n">6,0</td></tr>
 </tbody>
-<caption>Repartição em pontos percentuais, calculada por (3.1) com \(\alpha=1\) e uma unidade em cada local. Unidades efetivas por (3.4): 1,06 · 2,31 · 3,43 — os valores intermediários já contam com a redistribuição de probabilidade entre as opções.</caption>
+<caption>Repartição em pontos percentuais, calculada por (3.1) com \(\alpha=1\) e uma unidade em cada local. Unidades efetivas por (3.4): 1,14 · 2,58 · 3,65 — os valores intermediários já contam com a redistribuição de probabilidade entre as opções.</caption>
 </table>
 
 <p>Com \(\beta = 4{,}5\), pouco mais da metade dos chamados vai para a UBS da esquina, mais de um terço vai para a UPA, e uma parcela pequena mas não desprezível chega a atravessar a cidade até a base do SAMU. É o retrato de um despacho que manda a unidade mais próxima <em>quando ela está livre</em>, e a seguinte quando não está. Vale também reparar que a primeira e a segunda linha da tabela quase coincidem: é a degenerescência de (3.5) acontecendo na prática, não só na teoria.</p>

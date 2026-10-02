@@ -41,7 +41,12 @@ FORMULAS = {
                       r"{\sum_k S_k^{\alpha}\, f(t_{ik})}$",
     "huff_decaimento": r"$f(t) \;=\; e^{-t^2/2\beta^2}$",
     "beta_subst": r"$2\beta^2 \;=\; 2 \times 4{,}5^2 \;=\; 40{,}5$",
-    "n_ef": r"$N^{\mathrm{ef}}_i \;=\; \dfrac{1}{\sum_j P(j \mid i)^2}$",
+    # exponencial da entropia, como huff2sfca.n_efetivo calcula. A versao
+    # anterior (1/soma P^2, inverso de Simpson) dava outro numero: 1,87 e nao
+    # 2,2 unidades no dado real com beta=4,5 — o slide mostrava uma formula e
+    # imprimia o resultado da outra
+    "n_ef": r"$N^{\mathrm{ef}}_i \;=\; e^{H_i}, \qquad "
+            r"H_i \;=\; -\sum_j P(j \mid i)\,\ln P(j \mid i)$",
     "sfca_pressao": r"$\mathrm{press\~{a}o}_j \;=\; \sum_i D_i \, P(j \mid i)$",
     "sfca_razao": r"$R_j \;=\; \dfrac{S_j}{\mathrm{press\~{a}o}_j}$",
     "sfca_acessibilidade": r"$A_i \;=\; \sum_j P(j \mid i)\, R_j$",
@@ -52,6 +57,14 @@ FORMULAS = {
     "lorenz_gini": r"$\mathrm{Gini} \;=\; 1 - \sum_k (X_k - X_{k-1})(Y_k + Y_{k-1})$",
     "pmedian_obj": r"$\min \;\; \dfrac{1}{N}\sum_i D_i \min_j t_{ij}$",
     "lambda_obj": r"$f_1^{\lambda}(x) \;=\; \mathbb{E}[T](x) \;+\; \lambda\,\dfrac{K(x)}{N}$",
+    # --- fase 2b (deck_despacho.js): modelo despacho, ocupacao, cobertura
+    # mathtext nao tem \underbrace nem \Big: os termos sao explicados no slide
+    "desp_geom": r"$P(k) \;=\; q^{\,k-1} \cdot (1-q)$",
+    "desp_local": r"$P(j \mid i) \;=\; \left(\prod_{l\,:\;t_{il} < t_{ij}} q^{S_l}\right)"
+                  r"\left(1 - q^{S_j}\right)$",
+    "q_def": r"$q \;=\; \dfrac{r \,\cdot\, \bar{s}}{N}$",
+    "et_def": r"$\mathbb{E}[T_i] \;=\; \sum_j P(j \mid i)\; t_{ij}$",
+    "cob_def": r"$C_i(\tau) \;=\; \sum_j P(j \mid i)\; \mathbf{1}[\,t_{ij} \leq \tau\,]$",
     "rho_g": r"$\rho_G(\beta,\lambda) \;=\; \dfrac{G_{\mathrm{atual}}(\beta) - G_{\lambda}(\beta)}"
              r"{G_{\mathrm{atual}}(\beta) - G_{0}(\beta)}$",
 }

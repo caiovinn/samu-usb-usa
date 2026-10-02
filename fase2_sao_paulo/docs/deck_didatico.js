@@ -125,7 +125,7 @@ function item(s, texto, x, y, w, titulo, corpo, cor) {
 // distorcer -- w e calculado a partir da altura pedida e dessa proporcao.
 const FORMULA_DIM = {
   huff_principal: [723, 286], huff_decaimento: [499, 110], beta_subst: [759, 97],
-  n_ef: [597, 270], sfca_pressao: [794, 166], sfca_razao: [488, 199],
+  n_ef: [1419, 175], sfca_pressao: [794, 166], sfca_razao: [488, 199],
   sfca_acessibilidade: [611, 175], lorenz_xy: [1214, 306], lorenz_gini: [1272, 167],
   pmedian_obj: [634, 188], lambda_obj: [892, 173], rho_g: [948, 193],
 };
@@ -373,9 +373,13 @@ function tabela(s, x, y, w, colW, cabecalho, linhas, opts = {}) {
 { // 10 — por que beta=4,5 e por que 2,2 unidades efetivas (era metade do 7 antigo)
   const s = slideClaro("Por que β = 4,5 min, e por que 2,2 unidades efetivas", "modelo de escolha");
   cartao(s, { x: M, y: 1.62, w: 12.1, h: 0.85, fill: CARD });
-  formula(s, "n_ef", M + 0.4, 1.7, 0.68);
-  s.addText("quantas opções o setor i tem \"na prática\": 1 se toda probabilidade está numa base só; k se está dividida igualmente entre k bases.",
-    { x: M + 5.9, y: 1.75, w: 6.0, h: 0.75, isTextBox: true, margin: 0, valign: "top",
+  // mesma definicao de huff2sfca.n_efetivo (exponencial da entropia). O
+  // N_ef do exemplo de duas bases e calculado aqui, nao digitado: 1,49
+  formula(s, "n_ef", M + 0.3, 1.82, 0.46);
+  const pA = Math.exp(-25 / 40.5) / (Math.exp(-25 / 40.5) + Math.exp(-100 / 40.5));
+  const nefToy = Math.exp(-(pA * Math.log(pA) + (1 - pA) * Math.log(1 - pA)));
+  s.addText(`quantas opções o setor i tem "na prática": 1 se toda probabilidade está numa base só; k se está dividida igualmente entre k bases. H é a entropia — a incerteza da escolha. No exemplo do slide ${SL.HUFF_CALC} (86% / 14%): N_ef = ${n(nefToy)}.`,
+    { x: M + 4.45, y: 1.70, w: 7.45, h: 0.72, isTextBox: true, margin: 0, valign: "top",
       fontFace: SANS, fontSize: 11.5, color: INK2, lineSpacing: 15 });
   s.addText("Por que ~2, e não 1 ou 7", { x: M, y: 2.65, w: 12, h: 0.3, isTextBox: true,
     margin: 0, fontFace: SANS, fontSize: 13.5, bold: true, color: ORANGE });

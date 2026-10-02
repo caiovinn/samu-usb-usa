@@ -35,3 +35,13 @@ dados/fase2/sp_tempos.npy
 # lixo acidental que ja apareceu neste repo (nao gerado por nenhum script)
 cache/
 Claude outputs/
+
+# saidas locais da varredura do modelo despacho (grandes e reconstruiveis por
+# experimentos/roda_tudo.py) e logs das execucoes em segundo plano
+logs/
+dados/fase2/varredura_q/
+dados/fase2/sp_samu_producao.parquet
+
+# arquivos de trava do LibreOffice/Office abertos (decks e planilhas)
+.~lock.*#
+~$*

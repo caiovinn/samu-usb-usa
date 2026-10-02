@@ -10,6 +10,7 @@ code in `fase2_sao_paulo/`, or a fresh toy example built to match the real formu
 2. [The execution pipeline](#2-the-execution-pipeline)
 3. [The data](#3-the-data)
 4. [Model 1 — Huff: how demand actually splits between stations](#4-model-1--huff-how-demand-actually-splits-between-stations)
+4b. [Model 1b — dispatch: the nearest *available* unit (phase 2b)](#4b-model-1b--dispatch-the-nearest-available-unit-phase-2b)
 5. [Model 2 — 2SFCA: turning choice probabilities into an accessibility score](#5-model-2--2sfca-turning-choice-probabilities-into-an-accessibility-score)
 6. [The hierarchy: two ambulance types, two demand pools](#6-the-hierarchy-two-ambulance-types-two-demand-pools)
 7. [The two objectives: expected time and Gini](#7-the-two-objectives-expected-time-and-gini)
@@ -165,6 +166,67 @@ down. The code catches this and force-assigns that tract to its single
 nearest site with probability 1
 ([`modelo/huff2sfca.py:61-67`](../modelo/huff2sfca.py#L61-L67)) — the Huff model quietly
 falls back to the classic rule exactly where it has to.
+
+---
+
+## 4b. Model 1b — dispatch: the nearest *available* unit (phase 2b)
+
+### Why Huff is the wrong story for an ambulance
+
+Huff describes a *consumer choosing* between stores. Nobody chooses in SAMU:
+the medical regulator sends **the nearest unit that is free**. The only
+randomness is *which units are busy* when the call arrives. Huff's Gaussian
+kernel uses distance to set each site's *weight*, which produces a backwards
+pattern: with $\beta = 4.5$, a tract 1 min from a base sends 45% of its calls
+to a base 3 min away, while a tract 10 min away sends only 25% to a base at
+12 min. In reality, the chance that the nearest unit is busy depends on its
+workload, not on how close you are to it.
+
+### The formula
+
+Each unit is busy with probability $q$, independently of the others (Daskin
+1983; ReVelle & Hogan 1989). Sort the sites by travel time from tract $i$.
+Site $j$ answers if every unit at every closer site is busy and at least one
+of its own $S_j$ units is free:
+
+$$
+P(j \mid i) = \Bigl(\prod_{l \text{ closer than } j} q^{S_l}\Bigr)\,\bigl(1 - q^{S_j}\bigr)
+$$
+
+With one unit per site this is the geometric distribution: the $k$-th nearest
+unit answers with probability $(1-q)\,q^{k-1}$. If *everyone* is busy, the call
+waits for the nearest unit. Distance decides the **order**, not the weight.
+Code: [`modelo/huff2sfca.py`](../modelo/huff2sfca.py), `despacho()`; switched
+on with `avalia(..., modelo="despacho", q_usb=..., q_usa=...)`. Everything
+downstream (2SFCA, Gini, NSGA-II, relocation cost) is unchanged, because it
+only needs a matrix $P$ whose columns sum to 1.
+
+### Worked example (same two sites as §4)
+
+$t_{iA} = 5$ min, $t_{iB} = 10$ min, one unit each, $q = 0.27$:
+
+$$P(A) = (1-q) + q^2 = 0.73 + 0.073 = 0.803 \qquad P(B) = q\,(1-q) = 0.197$$
+
+(the $q^2$ term is "both busy, wait for A"). Expected time
+$0.803 \times 5 + 0.197 \times 10 = 5.99$ min, against 5.68 under Huff.
+
+### Where $q$ comes from
+
+From data, not from argument: SAMU-SP's billed production in DATASUS SIA/SUS
+(SIGTAP subgroup 03.01.03, May 2025 – Apr 2026: 25,217 USA and 280,822 USB
+dispatches), divided by the number of units and multiplied by the service
+time per call. Service time is not in the SIA and stays an assumption (45 /
+70 / 100 min). Central estimate: $q_{USB} = 0.35$, $q_{USA} = 0.21$.
+
+### The bridge to β
+
+Both models produce an "effective number of units" per tract,
+$N_{ef} = e^{H}$ ($H$ = entropy of $P$). For the dispatch model it has a
+closed form, $N_{ef}(q) = \exp\!\bigl([-(1-q)\ln(1-q) - q\ln q]/(1-q)\bigr)$.
+For Huff it doesn't (it depends on every tract's geometry) and is inverted
+numerically. Matching the two: **$\beta = 4.5 \Leftrightarrow q = 0.27$**,
+and the $q_{USA}$ estimated from the SIA corresponds to $\beta = 3.5$–$4.7$.
+The phase-2 choice of $\beta = 4.5$ sits inside the range the data supports.
 
 ---
 
@@ -588,7 +650,11 @@ what makes that claim defensible rather than asserted.
 | generations | 150 | NSGA-II iterations | `roda.N_GER` |
 | max per site | 10 | capacity constraint during search | `roda.CAP_MAX` |
 | neighbor count | 12 | candidates considered "local" for mutation | `roda.K_VIZ` |
-| time budget | 420 s | per-$\lambda$ wall-clock budget before checkpoint | `roda.ORCAMENTO` |
+| time budget | 420 s | per-$\lambda$ wall-clock budget before checkpoint | `roda.ORCAMENTO` (phase 2b runs without it) |
+| demand model | "huff" (default) / "despacho" | which $P(j \mid i)$ feeds 2SFCA | `huff2sfca.MODELO` |
+| $q$ | 0.27 default; SIA: USB 0.35, USA 0.21 | busy fraction of each unit (dispatch model) | `huff2sfca.Q`, `dados/fase2/sp_utilizacao.json` |
+| $k$ | 12 | nearest sites considered by dispatch; the rest weighs ~$q^{12}$ | `huff2sfca.K_DESP` |
+| coverage thresholds | 8, 10, 15, 20 min | probabilistic USA coverage $P(T_i \le \tau)$, mean and worst decile | `huff2sfca.TAUS` |
 
 ---
 
@@ -598,6 +664,14 @@ Two parameters are the honest weak points, both already logged in
 `CONTEXTO_PROJETO.md` §6, worth understanding *why* they're weak rather than
 just that they are:
 
+- **Phase-2b update:** the dispatch model (§4b) replaces $\beta$ with a busy
+  fraction $q$ estimated from SIA production data, and a discrete-event
+  simulation (`experimentos/simula.py`) confirms its predictions: worst-decile
+  10-min coverage agrees within ~1 point, and expected time for severe calls
+  is 0.2–0.9 min optimistic (busy periods of neighbouring units are
+  correlated, which the independence assumption ignores). What remains
+  arbitrated is the **service time per call**. The paragraph below describes
+  the phase-2 situation.
 - **$\beta$ is chosen, not fit to data.** There's no dataset of "which
   ambulance actually responded to which call" to estimate a real distance-decay
   curve from — so 4.5 min was picked by *reasoning* about dispatch behavior
@@ -616,7 +690,8 @@ just that they are:
   exponent has almost nothing to act on. It would start to matter if the
   optimizer ever concentrated many units at one site.
 - **$\theta = 0.10$** (the severity mix) is also asserted rather than
-  measured from São Paulo's actual call log.
+  measured from São Paulo's actual call log. Phase 2b: the SIA gives
+  **0.082** (USA share of dispatches), close to the assumption.
 - **Demand = resident population**, not call volume — no age profile, no
   time-of-day variation, no incidence data. A stated next step is replacing
   this with a Bayesian incidence model (`CONTEXTO_PROJETO.md` §7.2).

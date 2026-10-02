@@ -12,7 +12,8 @@ from pathlib import Path
 import numpy as np
 
 from fase2_sao_paulo.modelo import mudanca
-from fase2_sao_paulo.modelo.huff2sfca import ALFA, BETA, D0, THETA, avalia, prepara
+from fase2_sao_paulo.modelo.huff2sfca import (ALFA, BETA, D0, K_DESP, MODELO, Q,
+                                             THETA, avalia, prepara)
 
 
 # ------------------------------------------------------------------ dominancia
@@ -80,9 +81,19 @@ class Problema:
         self.viz = viz              # (m, k) candidatos vizinhos, para mutacao local
         self.cap_max = cap_max
         self.kw = dict(alfa=kw.get("alfa", ALFA), beta=kw.get("beta", BETA),
-                       d0=kw.get("d0", D0), theta=kw.get("theta", THETA))
-        # decaimento calculado uma vez so; e o que torna o laco viavel
-        self.f = prepara(t, self.kw["beta"], self.kw["d0"])
+                       d0=kw.get("d0", D0), theta=kw.get("theta", THETA),
+                       modelo=kw.get("modelo", MODELO),
+                       q_usb=kw.get("q_usb", Q), q_usa=kw.get("q_usa", Q),
+                       k_desp=kw.get("k_desp", K_DESP), detalhe=False,
+                       tau_restr=kw.get("tau_restr"))
+        # restricao opcional: cobertura da USA em ate tau_restr min no pior
+        # decil >= cob_min (%). Penalidade grande nos dois objetivos: solucao
+        # inviavel e dominada por qualquer viavel (a semente p-median e viavel)
+        self.cob_min = kw.get("cob_min")
+        # decaimento calculado uma vez so; e o que torna o laco viavel. O
+        # modelo despacho nao usa decaimento: so a ordem dos tempos
+        self.f = (prepara(t, self.kw["beta"], self.kw["d0"])
+                  if self.kw["modelo"] == "huff" else None)
         # custo de mudanca: lam minutos por km medio deslocado por unidade
         self.x0 = None if x0 is None else np.asarray(x0)
         self.d_km, self.lam = d_km, float(lam)
@@ -105,6 +116,9 @@ class Problema:
         pen = (self.lam * self.custo_km(x) / (self.n_usb + self.n_usa)
                if self.lam else 0.0)
         v = np.array([r["f_tempo"] + pen, r["f_gini"]])
+        if self.cob_min is not None:
+            falta = max(0.0, self.cob_min - r["cob_restr_p10"])
+            v = v + (100.0 + falta) * (falta > 0)
         self._cache[ch] = v
         return v
 

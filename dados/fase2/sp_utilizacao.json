@@ -1,0 +1,491 @@
+{
+  "janela": [
+    "2025-05",
+    "2026-04"
+  ],
+  "provisorios": [
+    "2026-05",
+    "2026-06",
+    "2026-07"
+  ],
+  "fonte_carga": "envio",
+  "frota": {
+    "usb": 107,
+    "usa": 16
+  },
+  "por_ano_12m": {
+    "usa": 25217,
+    "usb": 280822
+  },
+  "theta_dados": 0.08239799502677764,
+  "q": {
+    "baixo": {
+      "q_usb": 0.22470074254256817,
+      "q_usa": 0.13493685787671234
+    },
+    "central": {
+      "q_usb": 0.3495344883995504,
+      "q_usa": 0.2099017789193303
+    },
+    "alto": {
+      "q_usb": 0.49933498342792926,
+      "q_usa": 0.2998596841704719
+    }
+  },
+  "validacao_anual": {
+    "2024": {
+      "sia_atend_usb_usa": 292007,
+      "sia_envios": 273551,
+      "prefeitura": 314089
+    },
+    "2025": {
+      "sia_atend_usb_usa": 329101,
+      "sia_envios": 303782,
+      "prefeitura": 355806
+    }
+  },
+  "anomalias_corrigidas": [
+    {
+      "mes": "2024-02",
+      "codigo": "envio_usb",
+      "valor": 216626,
+      "trocado_por": 19356
+    }
+  ],
+  "obs": [
+    "motolancia (0301030197) cresce de ~1 mil para ~7 mil/mes; nao entra na carga das ambulancias",
+    "faturamento SIA ~92-93% dos atendimentos divulgados pela Prefeitura"
+  ],
+  "cnes_faturantes": 227,
+  "frac_volume_em_bases_atuais": 0.34237754358578126,
+  "q_por_base_disponivel": false,
+  "maiores_faturantes": [
+    {
+      "PA_CODUNI": "6196330",
+      "nome": "",
+      "tipo": "",
+      "total": 305258
+    },
+    {
+      "PA_CODUNI": "7024304",
+      "nome": "BASE SAMU CENTRO CAPS AMA SE AM1209",
+      "tipo": 42.0,
+      "total": 3684
+    },
+    {
+      "PA_CODUNI": "7018533",
+      "nome": "",
+      "tipo": "",
+      "total": 3622
+    },
+    {
+      "PA_CODUNI": "7018290",
+      "nome": "",
+      "tipo": "",
+      "total": 3609
+    },
+    {
+      "PA_CODUNI": "7272111",
+      "nome": "BASE SAMU SUDESTE PB MOOCA AM 1166",
+      "tipo": 42.0,
+      "total": 3599
+    },
+    {
+      "PA_CODUNI": "7272219",
+      "nome": "",
+      "tipo": "",
+      "total": 3563
+    },
+    {
+      "PA_CODUNI": "7024320",
+      "nome": "",
+      "tipo": "",
+      "total": 3544
+    },
+    {
+      "PA_CODUNI": "6982603",
+      "nome": "BASE SAMU CENTRO NOVE DE JULHO AM1207",
+      "tipo": 42.0,
+      "total": 3520
+    }
+  ],
+  "mensal": {
+    "2024-01": {
+      "envio_usa": 1284,
+      "envio_usb": 19328,
+      "atend_usa": 1279,
+      "atend_usb": 19048,
+      "transf_usa": 5,
+      "transf_usb": 18,
+      "moto": 1022,
+      "chamadas": 110303,
+      "chamadas_orient": 34397,
+      "regul_multi": 3729
+    },
+    "2024-02": {
+      "envio_usa": 1455,
+      "envio_usb": 19356,
+      "atend_usa": 1294,
+      "atend_usb": 19356,
+      "transf_usa": 5,
+      "transf_usb": 50,
+      "moto": 1140,
+      "chamadas": 114740,
+      "chamadas_orient": 36177,
+      "regul_multi": 3510
+    },
+    "2024-03": {
+      "envio_usa": 1589,
+      "envio_usb": 23263,
+      "atend_usa": 1589,
+      "atend_usb": 22806,
+      "transf_usa": 33,
+      "transf_usb": 38,
+      "moto": 1550,
+      "chamadas": 128929,
+      "chamadas_orient": 41494,
+      "regul_multi": 2414
+    },
+    "2024-04": {
+      "envio_usa": 1695,
+      "envio_usb": 19805,
+      "atend_usa": 1675,
+      "atend_usb": 19879,
+      "transf_usa": 17,
+      "transf_usb": 20,
+      "moto": 2118,
+      "chamadas": 120641,
+      "chamadas_orient": 41182,
+      "regul_multi": 1793
+    },
+    "2024-05": {
+      "envio_usa": 1927,
+      "envio_usb": 18746,
+      "atend_usa": 1957,
+      "atend_usb": 21905,
+      "transf_usa": 16,
+      "transf_usb": 47,
+      "moto": 2415,
+      "chamadas": 115755,
+      "chamadas_orient": 41200,
+      "regul_multi": 2548
+    },
+    "2024-06": {
+      "envio_usa": 1637,
+      "envio_usb": 20797,
+      "atend_usa": 1566,
+      "atend_usb": 21965,
+      "transf_usa": 19,
+      "transf_usb": 47,
+      "moto": 2324,
+      "chamadas": 103027,
+      "chamadas_orient": 37296,
+      "regul_multi": 2682
+    },
+    "2024-07": {
+      "envio_usa": 1895,
+      "envio_usb": 21229,
+      "atend_usa": 2019,
+      "atend_usb": 22162,
+      "transf_usa": 33,
+      "transf_usb": 75,
+      "moto": 2212,
+      "chamadas": 96662,
+      "chamadas_orient": 35705,
+      "regul_multi": 2910
+    },
+    "2024-08": {
+      "envio_usa": 1880,
+      "envio_usb": 22425,
+      "atend_usa": 2006,
+      "atend_usb": 23776,
+      "transf_usa": 22,
+      "transf_usb": 94,
+      "moto": 2980,
+      "chamadas": 105255,
+      "chamadas_orient": 37838,
+      "regul_multi": 3467
+    },
+    "2024-09": {
+      "envio_usa": 1955,
+      "envio_usb": 21963,
+      "atend_usa": 2044,
+      "atend_usb": 23545,
+      "transf_usa": 30,
+      "transf_usb": 87,
+      "moto": 2890,
+      "chamadas": 103757,
+      "chamadas_orient": 38007,
+      "regul_multi": 3148
+    },
+    "2024-10": {
+      "envio_usa": 2085,
+      "envio_usb": 22352,
+      "atend_usa": 2227,
+      "atend_usb": 24286,
+      "transf_usa": 27,
+      "transf_usb": 63,
+      "moto": 3683,
+      "chamadas": 114940,
+      "chamadas_orient": 37852,
+      "regul_multi": 3689
+    },
+    "2024-11": {
+      "envio_usa": 2551,
+      "envio_usb": 22667,
+      "atend_usa": 2690,
+      "atend_usb": 24637,
+      "transf_usa": 20,
+      "transf_usb": 75,
+      "moto": 3028,
+      "chamadas": 114931,
+      "chamadas_orient": 38041,
+      "regul_multi": 3692
+    },
+    "2024-12": {
+      "envio_usa": 2590,
+      "envio_usb": 19077,
+      "atend_usa": 2711,
+      "atend_usb": 25585,
+      "transf_usa": 101,
+      "transf_usb": 261,
+      "moto": 3034,
+      "chamadas": 108843,
+      "chamadas_orient": 39958,
+      "regul_multi": 3615
+    },
+    "2025-01": {
+      "envio_usa": 2375,
+      "envio_usb": 22912,
+      "atend_usa": 2481,
+      "atend_usb": 24725,
+      "transf_usa": 23,
+      "transf_usb": 47,
+      "moto": 3124,
+      "chamadas": 99238,
+      "chamadas_orient": 37446,
+      "regul_multi": 3503
+    },
+    "2025-02": {
+      "envio_usa": 2219,
+      "envio_usb": 21148,
+      "atend_usa": 2239,
+      "atend_usb": 23086,
+      "transf_usa": 38,
+      "transf_usb": 75,
+      "moto": 3184,
+      "chamadas": 94656,
+      "chamadas_orient": 36845,
+      "regul_multi": 3411
+    },
+    "2025-03": {
+      "envio_usa": 2414,
+      "envio_usb": 22989,
+      "atend_usa": 2488,
+      "atend_usb": 24856,
+      "transf_usa": 23,
+      "transf_usb": 70,
+      "moto": 3463,
+      "chamadas": 102806,
+      "chamadas_orient": 39710,
+      "regul_multi": 3866
+    },
+    "2025-04": {
+      "envio_usa": 2308,
+      "envio_usb": 22604,
+      "atend_usa": 2431,
+      "atend_usb": 24413,
+      "transf_usa": 19,
+      "transf_usb": 46,
+      "moto": 3950,
+      "chamadas": 98072,
+      "chamadas_orient": 39359,
+      "regul_multi": 3861
+    },
+    "2025-05": {
+      "envio_usa": 2399,
+      "envio_usb": 24125,
+      "atend_usa": 2542,
+      "atend_usb": 26144,
+      "transf_usa": 18,
+      "transf_usb": 53,
+      "moto": 4464,
+      "chamadas": 106720,
+      "chamadas_orient": 41917,
+      "regul_multi": 4158
+    },
+    "2025-06": {
+      "envio_usa": 2172,
+      "envio_usb": 23202,
+      "atend_usa": 2293,
+      "atend_usb": 24761,
+      "transf_usa": 16,
+      "transf_usb": 61,
+      "moto": 4179,
+      "chamadas": 99291,
+      "chamadas_orient": 39656,
+      "regul_multi": 3971
+    },
+    "2025-07": {
+      "envio_usa": 2262,
+      "envio_usb": 23072,
+      "atend_usa": 2270,
+      "atend_usb": 24634,
+      "transf_usa": 14,
+      "transf_usb": 71,
+      "moto": 3817,
+      "chamadas": 99224,
+      "chamadas_orient": 38953,
+      "regul_multi": 4689
+    },
+    "2025-08": {
+      "envio_usa": 2267,
+      "envio_usb": 23088,
+      "atend_usa": 2100,
+      "atend_usb": 24741,
+      "transf_usa": 21,
+      "transf_usb": 38,
+      "moto": 5690,
+      "chamadas": 99638,
+      "chamadas_orient": 39879,
+      "regul_multi": 5202
+    },
+    "2025-09": {
+      "envio_usa": 1982,
+      "envio_usb": 22982,
+      "atend_usa": 1933,
+      "atend_usb": 24470,
+      "transf_usa": 15,
+      "transf_usb": 54,
+      "moto": 6572,
+      "chamadas": 103133,
+      "chamadas_orient": 39987,
+      "regul_multi": 4491
+    },
+    "2025-10": {
+      "envio_usa": 2060,
+      "envio_usb": 23838,
+      "atend_usa": 2020,
+      "atend_usb": 25659,
+      "transf_usa": 14,
+      "transf_usb": 48,
+      "moto": 6731,
+      "chamadas": 106845,
+      "chamadas_orient": 41917,
+      "regul_multi": 4847
+    },
+    "2025-11": {
+      "envio_usa": 1922,
+      "envio_usb": 23058,
+      "atend_usa": 1892,
+      "atend_usb": 24665,
+      "transf_usa": 15,
+      "transf_usb": 46,
+      "moto": 8202,
+      "chamadas": 107610,
+      "chamadas_orient": 41018,
+      "regul_multi": 4751
+    },
+    "2025-12": {
+      "envio_usa": 2246,
+      "envio_usb": 24138,
+      "atend_usa": 2451,
+      "atend_usb": 29807,
+      "transf_usa": 10,
+      "transf_usb": 54,
+      "moto": 13404,
+      "chamadas": 116614,
+      "chamadas_orient": 43710,
+      "regul_multi": 4899
+    },
+    "2026-01": {
+      "envio_usa": 1897,
+      "envio_usb": 22912,
+      "atend_usa": 1864,
+      "atend_usb": 24432,
+      "transf_usa": 20,
+      "transf_usb": 57,
+      "moto": 6383,
+      "chamadas": 98352,
+      "chamadas_orient": 38971,
+      "regul_multi": 4408
+    },
+    "2026-02": {
+      "envio_usa": 1844,
+      "envio_usb": 21913,
+      "atend_usa": 1835,
+      "atend_usb": 23338,
+      "transf_usa": 11,
+      "transf_usb": 42,
+      "moto": 5981,
+      "chamadas": 98764,
+      "chamadas_orient": 38511,
+      "regul_multi": 4344
+    },
+    "2026-03": {
+      "envio_usa": 1980,
+      "envio_usb": 24421,
+      "atend_usa": 1797,
+      "atend_usb": 23820,
+      "transf_usa": 10,
+      "transf_usb": 47,
+      "moto": 5726,
+      "chamadas": 110496,
+      "chamadas_orient": 44426,
+      "regul_multi": 4655
+    },
+    "2026-04": {
+      "envio_usa": 2012,
+      "envio_usb": 23466,
+      "atend_usa": 1966,
+      "atend_usb": 25096,
+      "transf_usa": 10,
+      "transf_usb": 36,
+      "moto": 7319,
+      "chamadas": 104253,
+      "chamadas_orient": 41916,
+      "regul_multi": 5144
+    },
+    "2026-05": {
+      "envio_usa": 2051,
+      "envio_usb": 24194,
+      "atend_usa": 2015,
+      "atend_usb": 25499,
+      "transf_usa": 13,
+      "transf_usb": 42,
+      "moto": 6920,
+      "chamadas": 102473,
+      "chamadas_orient": 42866,
+      "regul_multi": 5013
+    },
+    "2026-06": {
+      "envio_usa": 2212,
+      "envio_usb": 23920,
+      "atend_usa": 2202,
+      "atend_usb": 25354,
+      "transf_usa": 11,
+      "transf_usb": 37,
+      "moto": 6075,
+      "chamadas": 103380,
+      "chamadas_orient": 43516,
+      "regul_multi": 4612
+    },
+    "2026-07": {
+      "envio_usa": 2065,
+      "envio_usb": 23405,
+      "atend_usa": 2150,
+      "atend_usb": 25237,
+      "transf_usa": 12,
+      "transf_usb": 46,
+      "moto": 7313,
+      "chamadas": 102048,
+      "chamadas_orient": 40101,
+      "regul_multi": 4057
+    }
+  },
+  "fontes": [
+    "DATASUS SIA/SUS PASP*.dbc (FTP), filtro PA_UFMUN=355030",
+    "SIGTAP Tabela Unificada 2026-07, subgrupo 03.01.03",
+    "Prefeitura de SP: 314.089 (2024) e 355.806 (2025) atendimentos presenciais"
+  ]
+}

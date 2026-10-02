@@ -29,5 +29,4 @@ finais a partir desses resultados.
 ## Ambiente
 
 **Ver [SETUP.md](SETUP.md)** — é a única lista de dependências do projeto.
-Resumo: `uv sync` na raiz instala tudo (Python 3.12 incluso); Node.js só é
-necessário para gerar os decks `.pptx`.
+Resumo: `uv sync` na raiz instala tudo (Python 3.12 incluso); Node.js só é necessário para gerar os decks `.pptx`.
