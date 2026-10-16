@@ -49,3 +49,6 @@ dados/fase2/sp_samu_producao.parquet
 # fase 3: saidas intermediarias reconstruiveis por fase3_vidas/experimentos/vidas.py
 dados/fase3/v3_busca/
 dados/fase3/_teste/
+
+# artigo com direitos autorais (INFORMS), uso pessoal: nao versionar
+ApproximationHypercube.pdf
