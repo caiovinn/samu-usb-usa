@@ -54,7 +54,28 @@ def fig_busca():
     fig.savefig(FIG / "h02_busca.png", dpi=150)
 
 
+def fig_comparacao():
+    """Vidas por 1.000 PCR de cada mapa, medidas pelas duas reguas e pela simulacao."""
+    d = json.load(open(DADOS / "h_comparacao.json", encoding="utf-8"))["configs"]
+    nomes = list(d)[::-1]
+    y = np.arange(len(nomes))
+    fig, a = plt.subplots(figsize=(9, 7), constrained_layout=True)
+    a.scatter([d[n]["anterior"]["vidas"] for n in nomes], y, s=46, color=C_F3, label="modelo anterior (ocupação igual)", zorder=3)
+    a.scatter([d[n]["hipercubo"]["vidas"] for n in nomes], y, s=46, color=C_HC, label="hipercubo (ocupação por unidade)", zorder=3)
+    sx = [(d[n]["simulacao"]["vidas"], i) for i, n in enumerate(nomes) if d[n]["simulacao"]]
+    a.scatter([s[0] for s in sx], [s[1] for s in sx], s=70, facecolors="none", edgecolors="k", linewidths=1.5,
+              label="simulação (referência)", zorder=4)
+    for i in y:
+        a.axhline(i, color="#dddddd", lw=0.8, zorder=0)
+    a.set_yticks(y, nomes)
+    a.set_xlabel("vidas por 1.000 PCR (maior é melhor)")
+    a.set_title("Cada mapa medido por duas réguas e pela simulação")
+    fig.legend(*a.get_legend_handles_labels(), loc="outside lower center", ncol=3, frameon=False)
+    fig.savefig(FIG / "h03_comparacao.png", dpi=150)
+
+
 if __name__ == "__main__":
     fig_validacao()
     fig_busca()
+    fig_comparacao()
     print("figuras em", FIG)

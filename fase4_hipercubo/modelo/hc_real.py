@@ -205,7 +205,7 @@ def _p_lista(rho, Ls, valido, Qrow):
 
 
 def avalia(yB, yA, fator, atraso, s_min, taxas, variante="larson75", detalhe=False,
-           tau=SV.TAU_GUARDA, servico_ida=False):
+           tau=SV.TAU_GUARDA, servico_ida=False, fase2=False):
     """Medidas por setor com a ocupacao do hipercubo.
 
     yB, yA: unidades por local. taxas = (taxa_usa, taxa_usb) em chamados/hora.
@@ -262,12 +262,53 @@ def avalia(yB, yA, fator, atraso, s_min, taxas, variante="larson75", detalhe=Fal
         out[f"cob_{nome}"] = float(100 * np.sum(w * cob))
         if not nome.endswith("usb"):
             out[f"et_{nome}"] = float(np.sum(w * et))
+    if fase2:
+        out.update(metricas_fase2(L, Q, rho, loc, nB, iA, tu_b))
     out["q_usb"] = float(rho[:nB].mean())
     out["q_usa"] = float(rho[nB:].mean())
     out["iter"] = it
     if detalhe:
         out["S"], out["rho"] = S, rho
     return out
+
+
+def metricas_fase2(L, Q, rho, loc, nB, iA, tu_b):
+    """Tempo medio, Gini e pior decil no formato EXATO da fase 2b (huff2sfca.avalia, despacho).
+
+    Mesmas definicoes: tempos BRUTOS do OSM, theta = fracao de graves dos dados; pool
+    avancado = so USA; pool basico = livre mais proxima de QUALQUER tipo (a regra do pool
+    basico da fase 2; a simulacao usa USB primeiro, e por isso cob_basico acima difere).
+    Unica mudanca: as probabilidades de despacho vem do hipercubo, nao da ocupacao
+    independente e igual. A massa 'todos ocupados' vai para o primeiro da lista, como
+    huff2sfca.despacho.
+    """
+    D = dados()
+    th = D["U"]["theta_dados"]
+    pop = D["pop"]
+    w = pop / pop.sum()
+    m = len(D["cd"])
+
+    def lista(Lm, Qv):
+        valido = Lm >= 0
+        Ls = np.where(valido, Lm, 0)
+        Pk = _p_lista(rho, Ls, valido, Qv[None, :Lm.shape[1]])
+        Pk[:, 0] += 1.0 - Pk.sum(1)
+        return Pk, Ls, np.take_along_axis(tu_b.T, Ls, axis=1)
+
+    Pg, Lg, tg = lista(L["grave"], Q["grave"])
+    Pp, Lp, tp = lista(L["pool"], Q["pool"])
+    # H2SFCA do pool avancado: A_i = sum_j R_j P_ji, R_j = unidades_j / demanda esperada em j
+    cap = np.bincount(np.asarray(iA), minlength=m).astype(float)
+    pressao = np.bincount(loc[Lg].ravel(), weights=(Pg * (th * pop)[:, None]).ravel(), minlength=m)
+    R = np.divide(cap, pressao, out=np.zeros(m), where=pressao > 0)
+    A_av = (Pg * R[loc[Lg]]).sum(1)
+    T_av, T_ba = (Pg * tg).sum(1), (Pp * tp).sum(1)
+    c10 = (Pg * (tg <= 10.0)).sum(1)
+    return {"f_tempo": float(th * np.sum(w * T_av) + (1 - th) * np.sum(w * T_ba)),
+            "f_gini": H.gini(A_av, pop),
+            "cob_usa_10": float(100 * np.sum(w * c10)),
+            "cob_usa_10_p10": float(100 * H.media_pior_decil(c10, pop)),
+            "T_av": float(np.sum(w * T_av)), "T_ba": float(np.sum(w * T_ba))}
 
 
 def taxas_sia():
