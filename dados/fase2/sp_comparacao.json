@@ -1,0 +1,41 @@
+[
+  {
+    "config": "atual",
+    "huff_tempo": 7.4353080768353434,
+    "huff_gini": 0.224287286540776,
+    "huff_usa20": 98.24225447452449,
+    "classico_t_usa": 8.837594558838777,
+    "classico_t_qualquer": 4.680243331192353,
+    "classico_usa20": 98.31234704089653,
+    "km_mudanca": 0.0,
+    "movidas": 0,
+    "locais": 92,
+    "pop_total": 11451999.0
+  },
+  {
+    "config": "p-median (classico)",
+    "huff_tempo": 6.691356681238699,
+    "huff_gini": 0.07883168531457874,
+    "huff_usa20": 99.3695860434497,
+    "classico_t_usa": 6.80846620425713,
+    "classico_t_qualquer": 3.3548544297464815,
+    "classico_usa20": 99.3695860434497,
+    "km_mudanca": 385.5251426771283,
+    "movidas": 120,
+    "locais": 123,
+    "pop_total": 11451999.0
+  },
+  {
+    "config": "Huff+2SFCA",
+    "huff_tempo": 6.702562054937148,
+    "huff_gini": 0.027877906210768355,
+    "huff_usa20": 99.3695860434497,
+    "classico_t_usa": 7.209952295181639,
+    "classico_t_qualquer": 3.6792327308630273,
+    "classico_usa20": 99.3695860434497,
+    "km_mudanca": 289.25420604646206,
+    "movidas": 109,
+    "locais": 113,
+    "pop_total": 11451999.0
+  }
+]

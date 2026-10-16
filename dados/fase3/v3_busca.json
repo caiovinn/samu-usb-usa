@@ -1,0 +1,1123 @@
+{
+  "fator": 1.8174624428333257,
+  "atraso": 3.0,
+  "lams": [
+    0.0,
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "lams_pm": [
+    0.0,
+    1.0
+  ],
+  "Ks": [
+    10,
+    20,
+    40,
+    80,
+    null
+  ],
+  "sementes": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "chutes": 10,
+  "tam_chute": 3,
+  "guardas": {
+    "hoje": {
+      "cob_basico": 84.87153894995465,
+      "cob_grave": 39.553556905344365
+    },
+    "pm": {
+      "cob_basico": 84.87153894995465,
+      "cob_grave": 53.60781339464622
+    }
+  },
+  "solucoes": {
+    "lam=0 K=10": {
+      "lam": 0.0,
+      "K": 10,
+      "guarda": "hoje",
+      "melhor_partida": 3,
+      "exato": {
+        "vidas": 48.108288724411615,
+        "cvar10": 9.573331732808091,
+        "cob_grave": 39.774082820622226,
+        "et_grave": 19.907376377216018,
+        "cob_basico": 87.47893025073515,
+        "et_basico": 11.681820666528255
+      },
+      "movidas": 10,
+      "km": 93.642422914505,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.048124406926966276,
+        "cvar10": 0.00950291064029103,
+        "cob_basico": 0.874788880152359,
+        "cob_grave": 0.39774081617384716
+      },
+      "degraus_refinado": {
+        "vidas": 0.048124406926966276,
+        "cvar10": 0.00950291064029103,
+        "cob_basico": 0.874788880152359,
+        "cob_grave": 0.39774081617384716
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        47.41397460335721,
+        48.12440692696627
+      ],
+      "faixa_cvar10_partidas": [
+        8.515817102876545,
+        9.681928292997654
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 175.2
+    },
+    "lam=0 K=20": {
+      "lam": 0.0,
+      "K": 20,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 51.31977290889424,
+        "cvar10": 10.650866743228988,
+        "cob_grave": 41.63331072920924,
+        "et_grave": 19.776719775344603,
+        "cob_basico": 89.03216653796304,
+        "et_basico": 11.280114356530882
+      },
+      "movidas": 20,
+      "km": 93.24743700027466,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.051345437453191776,
+        "cvar10": 0.010590544534838422,
+        "cob_basico": 0.8903211324934461,
+        "cob_grave": 0.41633309438840627
+      },
+      "degraus_refinado": {
+        "vidas": 0.051345437453191776,
+        "cvar10": 0.010590544534838422,
+        "cob_basico": 0.8903211324934461,
+        "cob_grave": 0.41633309438840627
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        49.98885762965195,
+        51.34543745319178
+      ],
+      "faixa_cvar10_partidas": [
+        8.96178379558443,
+        10.590544534838422
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 225.2
+    },
+    "lam=0 K=40": {
+      "lam": 0.0,
+      "K": 40,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 56.145266300238,
+        "cvar10": 14.851203574143762,
+        "cob_grave": 44.32037833550605,
+        "et_grave": 18.929942882575006,
+        "cob_basico": 91.1694990125316,
+        "et_basico": 10.862559926959268
+      },
+      "movidas": 40,
+      "km": 201.70849556475878,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.056170033709499065,
+        "cvar10": 0.014791866643877105,
+        "cob_basico": 0.911693933054363,
+        "cob_grave": 0.44320376948880635
+      },
+      "degraus_refinado": {
+        "vidas": 0.056170033709499065,
+        "cvar10": 0.014791866643877105,
+        "cob_basico": 0.911693933054363,
+        "cob_grave": 0.44320376948880635
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        54.6844318001934,
+        56.170033709499066
+      ],
+      "faixa_cvar10_partidas": [
+        13.4123630238455,
+        14.791866643877105
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 288.0
+    },
+    "lam=0 K=80": {
+      "lam": 0.0,
+      "K": 80,
+      "guarda": "hoje",
+      "melhor_partida": 2,
+      "exato": {
+        "vidas": 61.406489454114755,
+        "cvar10": 17.284017266148503,
+        "cob_grave": 41.251415651460555,
+        "et_grave": 21.199282228617793,
+        "cob_basico": 92.64980836843735,
+        "et_basico": 10.587830611969437
+      },
+      "movidas": 80,
+      "km": 292.5888580977917,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.061438773235604614,
+        "cvar10": 0.017247265753380113,
+        "cob_basico": 0.9264957539369875,
+        "cob_grave": 0.41251414460937275
+      },
+      "degraus_refinado": {
+        "vidas": 0.061438773235604614,
+        "cvar10": 0.017247265753380113,
+        "cob_basico": 0.9264957539369875,
+        "cob_grave": 0.41251414460937275
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        60.389691224334825,
+        61.438773235604614
+      ],
+      "faixa_cvar10_partidas": [
+        15.082460942324488,
+        17.27857694170996
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 474.8
+    },
+    "lam=0 K=livre": {
+      "lam": 0.0,
+      "K": null,
+      "guarda": "hoje",
+      "melhor_partida": 2,
+      "exato": {
+        "vidas": 63.893277239085364,
+        "cvar10": 17.300324107063105,
+        "cob_grave": 41.436557165523006,
+        "et_grave": 21.652105034884165,
+        "cob_basico": 91.85358510597848,
+        "et_basico": 10.57935262472874
+      },
+      "movidas": 113,
+      "km": 371.420306161046,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.0638531029701117,
+        "cvar10": 0.017401743206286773,
+        "cob_basico": 0.9229265400189017,
+        "cob_grave": 0.39646162899598636
+      },
+      "degraus_refinado": {
+        "vidas": 0.06392992905437284,
+        "cvar10": 0.01724576696247243,
+        "cob_basico": 0.9185326324383142,
+        "cob_grave": 0.4143655589615864
+      },
+      "ganho_refino_vidas": 0.07682608426114179,
+      "faixa_vidas_partidas": [
+        63.802042856798245,
+        63.85310297011169
+      ],
+      "faixa_cvar10_partidas": [
+        17.401743206286774,
+        17.877794578737394
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 937.8
+    },
+    "lam=0.5 K=10": {
+      "lam": 0.5,
+      "K": 10,
+      "guarda": "hoje",
+      "melhor_partida": 3,
+      "exato": {
+        "vidas": 47.52372134140749,
+        "cvar10": 11.44526314665975,
+        "cob_grave": 39.93877781636226,
+        "et_grave": 19.627132706364158,
+        "cob_basico": 88.55642066246565,
+        "et_basico": 11.554874645427603
+      },
+      "movidas": 10,
+      "km": 127.19317066669464,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.0475389247955507,
+        "cvar10": 0.011368865327658016,
+        "cob_basico": 0.8855637717080836,
+        "cob_grave": 0.39938776563396106
+      },
+      "degraus_refinado": {
+        "vidas": 0.0475389247955507,
+        "cvar10": 0.011368865327658016,
+        "cob_basico": 0.8855637717080836,
+        "cob_grave": 0.39938776563396106
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        46.65222043687101,
+        47.5389247955507
+      ],
+      "faixa_cvar10_partidas": [
+        10.91583036725719,
+        11.368865327658016
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 258.0
+    },
+    "lam=0.5 K=20": {
+      "lam": 0.5,
+      "K": 20,
+      "guarda": "hoje",
+      "melhor_partida": 2,
+      "exato": {
+        "vidas": 50.461990323278734,
+        "cvar10": 14.866636760674938,
+        "cob_grave": 41.31874124387338,
+        "et_grave": 20.07810309441982,
+        "cob_basico": 89.67675059344178,
+        "et_basico": 11.321212249746154
+      },
+      "movidas": 20,
+      "km": 231.7690955400467,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.050490790589147974,
+        "cvar10": 0.014812258499483262,
+        "cob_basico": 0.8967671825411503,
+        "cob_grave": 0.41318739956516315
+      },
+      "degraus_refinado": {
+        "vidas": 0.050490790589147974,
+        "cvar10": 0.014812258499483262,
+        "cob_basico": 0.8967671825411503,
+        "cob_grave": 0.41318739956516315
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        49.107383959825974,
+        50.4994090177703
+      ],
+      "faixa_cvar10_partidas": [
+        13.641104847888936,
+        14.812258499483262
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 271.8
+    },
+    "lam=0.5 K=40": {
+      "lam": 0.5,
+      "K": 40,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 54.44123935467054,
+        "cvar10": 19.881011270511255,
+        "cob_grave": 41.1637758886051,
+        "et_grave": 19.96244177751243,
+        "cob_basico": 91.73085035737513,
+        "et_basico": 10.942483511909678
+      },
+      "movidas": 40,
+      "km": 334.3497915416956,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.0544807570486756,
+        "cvar10": 0.019861637894211394,
+        "cob_basico": 0.9173074536674206,
+        "cob_grave": 0.4116377467071939
+      },
+      "degraus_refinado": {
+        "vidas": 0.0544807570486756,
+        "cvar10": 0.019861637894211394,
+        "cob_basico": 0.9173074536674206,
+        "cob_grave": 0.4116377467071939
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        53.46646672749589,
+        54.54338642279457
+      ],
+      "faixa_cvar10_partidas": [
+        18.77882610463769,
+        19.861637894211395
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 280.8
+    },
+    "lam=0.5 K=80": {
+      "lam": 0.5,
+      "K": 80,
+      "guarda": "hoje",
+      "melhor_partida": 1,
+      "exato": {
+        "vidas": 59.725295291066004,
+        "cvar10": 25.220401535306316,
+        "cob_grave": 43.21383731321163,
+        "et_grave": 19.334682845923552,
+        "cob_basico": 92.99468684891434,
+        "et_basico": 10.546822054677769
+      },
+      "movidas": 80,
+      "km": 300.00810416042805,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.059544061676928425,
+        "cvar10": 0.025142705026446773,
+        "cob_basico": 0.9248238954089069,
+        "cob_grave": 0.422047986882427
+      },
+      "degraus_refinado": {
+        "vidas": 0.05975748697754153,
+        "cvar10": 0.025160271349966828,
+        "cob_basico": 0.9299438230550818,
+        "cob_grave": 0.4321383590355501
+      },
+      "ganho_refino_vidas": 0.21342530061310705,
+      "faixa_vidas_partidas": [
+        58.86517259439315,
+        59.74359810863576
+      ],
+      "faixa_cvar10_partidas": [
+        24.647578229842395,
+        25.142705026446773
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 641.7
+    },
+    "lam=0.5 K=livre": {
+      "lam": 0.5,
+      "K": null,
+      "guarda": "hoje",
+      "melhor_partida": "pm",
+      "exato": {
+        "vidas": 62.383710647971796,
+        "cvar10": 26.073385535348002,
+        "cob_grave": 53.60781528643801,
+        "et_grave": 16.98976700849346,
+        "cob_basico": 93.21457454499497,
+        "et_basico": 10.414344303684638
+      },
+      "movidas": 120,
+      "km": 375.5216344445944,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.06241429817901857,
+        "cvar10": 0.02601113040720841,
+        "cob_basico": 0.9321424578565627,
+        "cob_grave": 0.5360781339464622
+      },
+      "degraus_refinado": {
+        "vidas": 0.06241429817901857,
+        "cvar10": 0.02601113040720841,
+        "cob_basico": 0.9321424578565627,
+        "cob_grave": 0.5360781339464622
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        59.40295436036201,
+        62.41429817901857
+      ],
+      "faixa_cvar10_partidas": [
+        25.56545867351776,
+        26.358592197896115
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 903.7
+    },
+    "lam=1 K=10": {
+      "lam": 1.0,
+      "K": 10,
+      "guarda": "hoje",
+      "melhor_partida": 3,
+      "exato": {
+        "vidas": 47.21880559395943,
+        "cvar10": 11.902004384851022,
+        "cob_grave": 40.34018445753552,
+        "et_grave": 19.734013701432126,
+        "cob_basico": 87.94009748037482,
+        "et_basico": 11.655553447938187
+      },
+      "movidas": 10,
+      "km": 118.02128231525421,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.04723778821662308,
+        "cvar10": 0.011835320022373719,
+        "cob_basico": 0.879400534526013,
+        "cob_grave": 0.40340183230929794
+      },
+      "degraus_refinado": {
+        "vidas": 0.04723778821662308,
+        "cvar10": 0.011835320022373719,
+        "cob_basico": 0.879400534526013,
+        "cob_grave": 0.40340183230929794
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        46.669378938842335,
+        47.23778821662308
+      ],
+      "faixa_cvar10_partidas": [
+        11.13731812001779,
+        11.835320022373718
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 191.0
+    },
+    "lam=1 K=20": {
+      "lam": 1.0,
+      "K": 20,
+      "guarda": "hoje",
+      "melhor_partida": 3,
+      "exato": {
+        "vidas": 50.36888446149377,
+        "cvar10": 14.863667735857412,
+        "cob_grave": 41.74692947654288,
+        "et_grave": 19.20669156622681,
+        "cob_basico": 89.98789832452007,
+        "et_basico": 11.274839408334303
+      },
+      "movidas": 20,
+      "km": 174.6365545988083,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.05039799818742356,
+        "cvar10": 0.014806448492027731,
+        "cob_basico": 0.8998782537834444,
+        "cob_grave": 0.4174692817358988
+      },
+      "degraus_refinado": {
+        "vidas": 0.05039799818742356,
+        "cvar10": 0.014806448492027731,
+        "cob_basico": 0.8998782537834444,
+        "cob_grave": 0.4174692817358988
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        49.211923314936385,
+        50.39799818742356
+      ],
+      "faixa_cvar10_partidas": [
+        14.431808157526438,
+        14.82855953557055
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 208.2
+    },
+    "lam=1 K=40": {
+      "lam": 1.0,
+      "K": 40,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 54.16977731085922,
+        "cvar10": 20.189521572138286,
+        "cob_grave": 40.723506617698405,
+        "et_grave": 19.87597234033265,
+        "cob_basico": 91.25032320824779,
+        "et_basico": 11.043415508247652
+      },
+      "movidas": 40,
+      "km": 293.4166845679283,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.05420902088519358,
+        "cvar10": 0.02014820318844146,
+        "cob_basico": 0.9125021951111691,
+        "cob_grave": 0.40723505460293197
+      },
+      "degraus_refinado": {
+        "vidas": 0.05420902088519358,
+        "cvar10": 0.02014820318844146,
+        "cob_basico": 0.9125021951111691,
+        "cob_grave": 0.40723505460293197
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        52.67105427046412,
+        54.20902088519358
+      ],
+      "faixa_cvar10_partidas": [
+        19.01448196345164,
+        20.14820318844146
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 215.4
+    },
+    "lam=1 K=80": {
+      "lam": 1.0,
+      "K": 80,
+      "guarda": "hoje",
+      "melhor_partida": 1,
+      "exato": {
+        "vidas": 59.18708185772689,
+        "cvar10": 25.480424174517132,
+        "cob_grave": 39.96746815591242,
+        "et_grave": 19.549727689838083,
+        "cob_basico": 93.00686233991723,
+        "et_basico": 10.632001346740859
+      },
+      "movidas": 80,
+      "km": 348.14109608531,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.058915312769406966,
+        "cvar10": 0.02528487197265246,
+        "cob_basico": 0.9287855838492145,
+        "cob_grave": 0.40963128367565127
+      },
+      "degraus_refinado": {
+        "vidas": 0.05920616748993674,
+        "cvar10": 0.025434317409089476,
+        "cob_basico": 0.9300655383515288,
+        "cob_grave": 0.39967466964381815
+      },
+      "ganho_refino_vidas": 0.29085472052977485,
+      "faixa_vidas_partidas": [
+        57.54781810165775,
+        58.91531276940697
+      ],
+      "faixa_cvar10_partidas": [
+        24.781136525738717,
+        25.474603367942215
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 564.0999999999999
+    },
+    "lam=1 K=livre": {
+      "lam": 1.0,
+      "K": null,
+      "guarda": "hoje",
+      "melhor_partida": "pm",
+      "exato": {
+        "vidas": 62.111780335352314,
+        "cvar10": 26.682476357550883,
+        "cob_grave": 49.078736525305914,
+        "et_grave": 17.665942814340895,
+        "cob_basico": 93.19473194334182,
+        "et_basico": 10.437600173507548
+      },
+      "movidas": 119,
+      "km": 368.5486994981766,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.061869123588023864,
+        "cvar10": 0.02663576458141842,
+        "cob_basico": 0.9308779063129832,
+        "cob_grave": 0.5093446066326386
+      },
+      "degraus_refinado": {
+        "vidas": 0.06215283189546314,
+        "cvar10": 0.02664228570042133,
+        "cob_basico": 0.9319440342031591,
+        "cob_grave": 0.4907873479019893
+      },
+      "ganho_refino_vidas": 0.283708307439276,
+      "faixa_vidas_partidas": [
+        57.9809768827683,
+        61.86912358802386
+      ],
+      "faixa_cvar10_partidas": [
+        25.399713607887932,
+        26.63576458141842
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 814.7
+    },
+    "lam=2 K=10": {
+      "lam": 2.0,
+      "K": 10,
+      "guarda": "hoje",
+      "melhor_partida": 3,
+      "exato": {
+        "vidas": 47.0526040887131,
+        "cvar10": 11.999998830752263,
+        "cob_grave": 39.947756106054,
+        "et_grave": 19.799518596903496,
+        "cob_basico": 87.94605152240084,
+        "et_basico": 11.644445701161843
+      },
+      "movidas": 10,
+      "km": 125.9506905078888,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.04707112951834111,
+        "cvar10": 0.01193409433332408,
+        "cob_basico": 0.8794601122143746,
+        "cob_grave": 0.3994775485247004
+      },
+      "degraus_refinado": {
+        "vidas": 0.04707112951834111,
+        "cvar10": 0.01193409433332408,
+        "cob_basico": 0.8794601122143746,
+        "cob_grave": 0.3994775485247004
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        46.46337720577839,
+        47.13911266270164
+      ],
+      "faixa_cvar10_partidas": [
+        11.510973460315375,
+        11.93409433332408
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 208.2
+    },
+    "lam=2 K=20": {
+      "lam": 2.0,
+      "K": 20,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 49.857662818209135,
+        "cvar10": 15.019589961699475,
+        "cob_grave": 41.79189789709753,
+        "et_grave": 19.153853271410995,
+        "cob_basico": 89.16081826348503,
+        "et_basico": 11.391400467329007
+      },
+      "movidas": 20,
+      "km": 179.56455290317535,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.049874743652537246,
+        "cvar10": 0.014955642721519892,
+        "cob_basico": 0.8916077674710763,
+        "cob_grave": 0.4179189656935181
+      },
+      "degraus_refinado": {
+        "vidas": 0.049874743652537246,
+        "cvar10": 0.014955642721519892,
+        "cob_basico": 0.8916077674710763,
+        "cob_grave": 0.4179189656935181
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        48.94329095223131,
+        50.09691730391719
+      ],
+      "faixa_cvar10_partidas": [
+        14.670332014035377,
+        14.955642721519892
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 171.0
+    },
+    "lam=2 K=40": {
+      "lam": 2.0,
+      "K": 40,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 53.763381622454126,
+        "cvar10": 20.363285113017394,
+        "cob_grave": 40.87644629819505,
+        "et_grave": 19.098643662321276,
+        "cob_basico": 90.76114542157343,
+        "et_basico": 11.090221708772095
+      },
+      "movidas": 40,
+      "km": 294.3435175418854,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.05379240475969843,
+        "cvar10": 0.02031885948753591,
+        "cob_basico": 0.9076106007340399,
+        "cob_grave": 0.40876445094872876
+      },
+      "degraus_refinado": {
+        "vidas": 0.05379240475969843,
+        "cvar10": 0.02031885948753591,
+        "cob_basico": 0.9076106007340399,
+        "cob_grave": 0.40876445094872876
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        52.66575660744879,
+        53.91899887038366
+      ],
+      "faixa_cvar10_partidas": [
+        19.138359676570325,
+        20.31885948753591
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 211.0
+    },
+    "lam=2 K=80": {
+      "lam": 2.0,
+      "K": 80,
+      "guarda": "hoje",
+      "melhor_partida": 1,
+      "exato": {
+        "vidas": 58.32546764944104,
+        "cvar10": 25.50973362867052,
+        "cob_grave": 41.5510681215365,
+        "et_grave": 19.390155419782424,
+        "cob_basico": 92.36418102296702,
+        "et_basico": 10.675888904510273
+      },
+      "movidas": 80,
+      "km": 338.0602277517319,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.058206941671600315,
+        "cvar10": 0.02541398551264788,
+        "cob_basico": 0.9232887391407922,
+        "cob_grave": 0.3974932028014527
+      },
+      "degraus_refinado": {
+        "vidas": 0.05834548562319335,
+        "cvar10": 0.025450267231369526,
+        "cob_basico": 0.9236385365032498,
+        "cob_grave": 0.4155106684572373
+      },
+      "ganho_refino_vidas": 0.13854395159303146,
+      "faixa_vidas_partidas": [
+        57.31283414687517,
+        58.20694167160031
+      ],
+      "faixa_cvar10_partidas": [
+        24.819110681740113,
+        25.41398551264788
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 612.1
+    },
+    "lam=2 K=livre": {
+      "lam": 2.0,
+      "K": null,
+      "guarda": "hoje",
+      "melhor_partida": "pm",
+      "exato": {
+        "vidas": 61.4007215504397,
+        "cvar10": 26.90417749520304,
+        "cob_grave": 50.93446245755686,
+        "et_grave": 17.470257532321718,
+        "cob_basico": 93.07378903472795,
+        "et_basico": 10.515188094296729
+      },
+      "movidas": 120,
+      "km": 377.75736336410046,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.06154039704423753,
+        "cvar10": 0.026786524807076183,
+        "cob_basico": 0.9309956651542401,
+        "cob_grave": 0.5093446066326386
+      },
+      "degraus_refinado": {
+        "vidas": 0.06143468649358149,
+        "cvar10": 0.02685527795650961,
+        "cob_basico": 0.9307346047761648,
+        "cob_grave": 0.5093446066326386
+      },
+      "ganho_refino_vidas": -0.10571055065603657,
+      "faixa_vidas_partidas": [
+        57.31283414687517,
+        61.54039704423753
+      ],
+      "faixa_cvar10_partidas": [
+        24.819110681740113,
+        26.786524807076184
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 887.7
+    },
+    "lam=4 K=10": {
+      "lam": 4.0,
+      "K": 10,
+      "guarda": "hoje",
+      "melhor_partida": 3,
+      "exato": {
+        "vidas": 46.97635650436108,
+        "cvar10": 12.109557249990875,
+        "cob_grave": 39.947756106054,
+        "et_grave": 19.799518596903496,
+        "cob_basico": 88.09763987753331,
+        "et_basico": 11.63946385444199
+      },
+      "movidas": 10,
+      "km": 124.84091687202454,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.04699038014644006,
+        "cvar10": 0.012045235658734972,
+        "cob_basico": 0.880975995516855,
+        "cob_grave": 0.3994775485247004
+      },
+      "degraus_refinado": {
+        "vidas": 0.04699038014644006,
+        "cvar10": 0.012045235658734972,
+        "cob_basico": 0.880975995516855,
+        "cob_grave": 0.3994775485247004
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        46.291642040014914,
+        46.99038014644006
+      ],
+      "faixa_cvar10_partidas": [
+        11.586175067260342,
+        12.045235658734972
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 223.1
+    },
+    "lam=4 K=20": {
+      "lam": 4.0,
+      "K": 20,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 49.857662818209135,
+        "cvar10": 15.019589961699475,
+        "cob_grave": 41.79189789709753,
+        "et_grave": 19.153853271410995,
+        "cob_basico": 89.16081826348503,
+        "et_basico": 11.391400467329007
+      },
+      "movidas": 20,
+      "km": 179.56455290317535,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.049874743652537246,
+        "cvar10": 0.014955642721519892,
+        "cob_basico": 0.8916077674710763,
+        "cob_grave": 0.4179189656935181
+      },
+      "degraus_refinado": {
+        "vidas": 0.049874743652537246,
+        "cvar10": 0.014955642721519892,
+        "cob_basico": 0.8916077674710763,
+        "cob_grave": 0.4179189656935181
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        48.86865436255584,
+        49.89942180750585
+      ],
+      "faixa_cvar10_partidas": [
+        14.734911315459954,
+        14.955642721519892
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 194.9
+    },
+    "lam=4 K=40": {
+      "lam": 4.0,
+      "K": 40,
+      "guarda": "hoje",
+      "melhor_partida": 0,
+      "exato": {
+        "vidas": 53.503429219660184,
+        "cvar10": 20.48948743074186,
+        "cob_grave": 42.23604480193739,
+        "et_grave": 19.706692716038148,
+        "cob_basico": 90.63478300737489,
+        "et_basico": 11.140132655092543
+      },
+      "movidas": 40,
+      "km": 321.5089921951294,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.05352846790903196,
+        "cvar10": 0.020441387011416883,
+        "cob_basico": 0.9063468581407705,
+        "cob_grave": 0.4223604357557002
+      },
+      "degraus_refinado": {
+        "vidas": 0.05352846790903196,
+        "cvar10": 0.020441387011416883,
+        "cob_basico": 0.9063468581407705,
+        "cob_grave": 0.4223604357557002
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        52.60163457608093,
+        53.52846790903196
+      ],
+      "faixa_cvar10_partidas": [
+        19.157170941364313,
+        20.441387011416882
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 221.0
+    },
+    "lam=4 K=80": {
+      "lam": 4.0,
+      "K": 80,
+      "guarda": "hoje",
+      "melhor_partida": 2,
+      "exato": {
+        "vidas": 57.176556227472986,
+        "cvar10": 25.85037881405984,
+        "cob_grave": 39.691425517054746,
+        "et_grave": 20.115891887858325,
+        "cob_basico": 92.36267023631675,
+        "et_basico": 10.728840237924103
+      },
+      "movidas": 80,
+      "km": 317.7099976539612,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.05756955172619901,
+        "cvar10": 0.025334074013604335,
+        "cob_basico": 0.9230768881879626,
+        "cob_grave": 0.3973815375833055
+      },
+      "degraus_refinado": {
+        "vidas": 0.057218479598888636,
+        "cvar10": 0.02580381556577234,
+        "cob_basico": 0.9236234229464679,
+        "cob_grave": 0.396914242269622
+      },
+      "ganho_refino_vidas": -0.35107212731037146,
+      "faixa_vidas_partidas": [
+        57.202598691742516,
+        57.945800947144065
+      ],
+      "faixa_cvar10_partidas": [
+        24.762329431544618,
+        25.334074013604333
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 591.3
+    },
+    "lam=4 K=livre": {
+      "lam": 4.0,
+      "K": null,
+      "guarda": "hoje",
+      "melhor_partida": "pm",
+      "exato": {
+        "vidas": 61.22583951542002,
+        "cvar10": 27.06522026528395,
+        "cob_grave": 45.44039515513175,
+        "et_grave": 18.721907889744124,
+        "cob_basico": 92.8936004769342,
+        "et_basico": 10.547899346803405
+      },
+      "movidas": 120,
+      "km": 410.65446405112743,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.06137859409380858,
+        "cvar10": 0.02685154841016719,
+        "cob_basico": 0.9314786489351524,
+        "cob_grave": 0.5093446066326386
+      },
+      "degraus_refinado": {
+        "vidas": 0.0612636744866928,
+        "cvar10": 0.027018977151423276,
+        "cob_basico": 0.9289327352940884,
+        "cob_grave": 0.45440393671924184
+      },
+      "ganho_refino_vidas": -0.11491960711577931,
+      "faixa_vidas_partidas": [
+        57.269193334678654,
+        61.37859409380858
+      ],
+      "faixa_cvar10_partidas": [
+        25.1798114458611,
+        26.85154841016719
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 916.5
+    },
+    "lam=0 K=livre G=pm": {
+      "lam": 0.0,
+      "K": null,
+      "guarda": "pm",
+      "melhor_partida": "pm",
+      "exato": {
+        "vidas": 63.7994755185078,
+        "cvar10": 17.654313985569058,
+        "cob_grave": 53.60781528643801,
+        "et_grave": 16.98976700849346,
+        "cob_basico": 92.744109235508,
+        "et_basico": 10.494252088409546
+      },
+      "movidas": 116,
+      "km": 380.1366684511304,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.06384301896761957,
+        "cvar10": 0.017589063863598525,
+        "cob_basico": 0.927437839750481,
+        "cob_grave": 0.5360781339464622
+      },
+      "degraus_refinado": {
+        "vidas": 0.06384301896761957,
+        "cvar10": 0.017589063863598525,
+        "cob_basico": 0.927437839750481,
+        "cob_grave": 0.5360781339464622
+      },
+      "ganho_refino_vidas": 0.0,
+      "faixa_vidas_partidas": [
+        63.84301896761957,
+        63.84301896761957
+      ],
+      "faixa_cvar10_partidas": [
+        17.589063863598525,
+        17.589063863598525
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 486.40000000000003
+    },
+    "lam=1 K=livre G=pm": {
+      "lam": 1.0,
+      "K": null,
+      "guarda": "pm",
+      "melhor_partida": "pm",
+      "exato": {
+        "vidas": 61.827302646126384,
+        "cvar10": 26.855335544088774,
+        "cob_grave": 53.60781528643801,
+        "et_grave": 16.98976700849346,
+        "cob_basico": 93.29867859936714,
+        "et_basico": 10.469958237870017
+      },
+      "movidas": 118,
+      "km": 381.9620861262083,
+      "viavel": true,
+      "degraus_local": {
+        "vidas": 0.061903101573502956,
+        "cvar10": 0.02663350404583105,
+        "cob_basico": 0.9308982279710246,
+        "cob_grave": 0.5360781339464622
+      },
+      "degraus_refinado": {
+        "vidas": 0.06185744905285956,
+        "cvar10": 0.02681616406562653,
+        "cob_basico": 0.9329834981586416,
+        "cob_grave": 0.5360781339464622
+      },
+      "ganho_refino_vidas": -0.045652520643396644,
+      "faixa_vidas_partidas": [
+        61.90310157350296,
+        61.90310157350296
+      ],
+      "faixa_cvar10_partidas": [
+        26.63350404583105,
+        26.63350404583105
+      ],
+      "partidas_inviaveis": [],
+      "segundos": 439.9
+    }
+  }
+}

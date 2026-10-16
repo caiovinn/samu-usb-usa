@@ -1,7 +1,14 @@
 # ambientes virtuais
+# (.venv*/ ja cobre o .venv/ que o uv cria)
 .venv*/
 venv*/
 env/
+
+# node — so os decks (fase2_sao_paulo/docs/deck_*.js) usam
+node_modules/
+
+# ATENCAO: uv.lock e package-lock.json NAO entram aqui. Sao eles que fazem
+# as cinco maquinas do grupo terem exatamente as mesmas versoes. Ver SETUP.md.
 
 # python
 __pycache__/
@@ -13,9 +20,6 @@ __pycache__/
 
 # cache das coletas — reconstruído pelos pull_*.py
 cache_samu/
-cnes42/
-cnes_sr/
-cnes_st/
 *.log
 
 # windows / onedrive
@@ -23,6 +27,25 @@ desktop.ini
 Thumbs.db
 *:Zone.Identifier
 
-# fase 2 — brutos e matriz de tempo (reconstruíveis)
-sp/_raw/
-dados/sp_tempos.npy
+# brutos e matriz de tempo (reconstruíveis) — um _raw/ por fase
+fase1_nacional/_raw/
+fase2_sao_paulo/_raw/
+dados/fase2/sp_tempos.npy
+
+# lixo acidental que ja apareceu neste repo (nao gerado por nenhum script)
+cache/
+Claude outputs/
+
+# saidas locais da varredura do modelo despacho (grandes e reconstruiveis por
+# experimentos/roda_tudo.py) e logs das execucoes em segundo plano
+logs/
+dados/fase2/varredura_q/
+dados/fase2/sp_samu_producao.parquet
+
+# arquivos de trava do LibreOffice/Office abertos (decks e planilhas)
+.~lock.*#
+~$*
+
+# fase 3: saidas intermediarias reconstruiveis por fase3_vidas/experimentos/vidas.py
+dados/fase3/v3_busca/
+dados/fase3/_teste/

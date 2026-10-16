@@ -1,0 +1,30 @@
+{
+ "hoje": {
+  "rotulo": "Rede de hoje",
+  "vidas": 44.074659909265414,
+  "cvar10": 7.397750245307579,
+  "locais": 92,
+  "locais_usa": 16
+ },
+ "fase2 lam=0.1": {
+  "rotulo": "Huff + 2SFCA (Gini)",
+  "vidas": 58.48447993944046,
+  "cvar10": 17.47779309450272,
+  "locais": 113,
+  "locais_usa": 16
+ },
+ "vidas lam=0 K=livre G=pm": {
+  "rotulo": "despacho + vidas, λ = 0",
+  "vidas": 63.7994755185078,
+  "cvar10": 17.654313985569058,
+  "locais": 123,
+  "locais_usa": 16
+ },
+ "vidas lam=1 K=livre G=pm": {
+  "rotulo": "despacho + vidas, λ = 1",
+  "vidas": 61.827302646126384,
+  "cvar10": 26.855335544088774,
+  "locais": 123,
+  "locais_usa": 16
+ }
+}

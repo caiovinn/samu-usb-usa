@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultados — realocação de USB e USA em São Paulo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#F2F5F4; --plate:#FBFCFB; --tinta:#16201E; --tinta-fraca:#5B6864;
+  --regua:#C9D3D0; --regua-fina:#DFE6E4; --feito:#0F5148; --futuro:#39357E;
+  --serif:'Spectral', Georgia, 'Times New Roman', serif;
+  --mono:'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--papel); color:var(--tinta); font-family:var(--serif);
+  font-weight:400; font-size:17px; line-height:1.66; font-variant-numeric:oldstyle-nums proportional-nums}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px 120px}
+.plate-title{padding:64px 0 30px;border-bottom:1.5px solid var(--tinta)}
+h1{font-size:clamp(30px,4.6vw,52px);line-height:1.1;font-weight:600;letter-spacing:-.012em;margin:0 0 14px;max-width:22ch}
+.deck{font-size:18px;color:var(--tinta-fraca);max-width:60ch;margin:0}
+.meta{font-family:var(--mono);font-size:12px;color:var(--tinta-fraca);margin-top:26px;line-height:1.9;font-variant-numeric:lining-nums}
+.hero{margin:0 0 10px;padding:44px 0 40px;border-bottom:1px solid var(--regua)}
+.hero p{max-width:70ch;margin:0 0 16px;font-size:17.5px}
+.grid{display:grid;grid-template-columns:210px minmax(0,1fr);gap:0 56px;margin-top:40px}
+nav{position:sticky;top:26px;align-self:start;font-size:13.5px;line-height:1.5;padding-top:6px}
+nav a{display:block;color:var(--tinta-fraca);text-decoration:none;padding:3.5px 0 3.5px 11px;border-left:2px solid transparent}
+nav a:hover,nav a:focus{color:var(--tinta);border-left-color:var(--feito)}
+main{min-width:0;max-width:78ch}
+section{padding-top:52px;scroll-margin-top:20px}
+h2{font-size:27px;font-weight:600;line-height:1.24;letter-spacing:-.01em;margin:0 0 22px;padding-bottom:12px;border-bottom:1.5px solid var(--tinta)}
+h2 .num{font-family:var(--mono);font-size:14px;font-weight:400;color:var(--feito);display:block;margin-bottom:7px}
+h3{font-size:19px;font-weight:600;margin:34px 0 12px;line-height:1.3}
+p{margin:0 0 16px;max-width:72ch}
+strong{font-weight:600}
+em{font-style:italic}
+code,.mono{font-family:var(--mono);font-size:.86em}
+code{background:rgba(15,81,72,.07);padding:1px 4px;border-radius:2px}
+table{border-collapse:collapse;width:100%;margin:24px 0;font-size:15px;font-variant-numeric:lining-nums tabular-nums}
+th{text-align:left;font-weight:600;font-size:13px;border-bottom:1.5px solid var(--tinta);padding:7px 12px 7px 0;vertical-align:bottom}
+td{padding:7px 12px 7px 0;border-bottom:1px solid var(--regua-fina);vertical-align:top}
+td.n,th.n{text-align:right;padding-right:20px;font-family:var(--mono);font-size:13.5px}
+caption{caption-side:bottom;text-align:left;font-size:14px;color:var(--tinta-fraca);padding-top:10px}
+ul,ol{margin:0 0 16px;padding-left:22px;max-width:70ch}
+li{margin-bottom:7px}
+.nota{border-left:2.5px dotted var(--tinta-fraca);padding:2px 0 2px 20px;margin:26px 0;color:var(--tinta-fraca);font-size:16px}
+.nota .lab{font-family:var(--mono);font-size:11.5px;display:block;margin-bottom:6px}
+.destaque{border-left:2.5px solid var(--feito);padding:2px 0 2px 20px;margin:26px 0}
+.destaque .lab{font-family:var(--mono);font-size:11.5px;color:var(--feito);display:block;margin-bottom:6px}
+.fig{margin:28px 0;text-align:center}
+.fig img{max-width:100%;border:1px solid var(--regua-fina);border-radius:4px}
+.fig figcaption{font-size:14px;color:var(--tinta-fraca);margin-top:10px;text-align:left}
+pre{background:var(--plate);border:1px solid var(--regua);border-radius:4px;padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:13.5px;line-height:1.55}
+.st{font-family:var(--mono);font-size:11px;white-space:nowrap}
+.st::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:.08em}
+.st-ok{color:var(--feito)} .st-ok::before{background:var(--feito)}
+hr.end{border:0;border-top:1.5px solid var(--tinta);margin:60px 0 0}
+@media (max-width:900px){.grid{grid-template-columns:1fr;gap:0}
+  nav{position:static;margin:34px 0 8px;padding:20px 0 4px;border-top:1px solid var(--regua);columns:2;column-gap:26px}
+  main{max-width:none} body{font-size:16.5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="plate-title">
+  <h1>Resultados da realocação de USB e USA em São Paulo</h1>
+  <p class="deck">Execução completa da fase 2 sobre o código corrigido nesta sessão, com sensibilidade em β estendida. Cada número abaixo aponta para o arquivo que o produziu.</p>
+  <p class="meta">
+    MAI5003 · Probabilidade e Estatística<br>
+    Gerado a partir de <span class="mono">dados/*.json</span> e <span class="mono">figs/sp_*.png</span> — ver §1<br>
+    __DATA_GERACAO__
+  </p>
+</header>
+
+<div class="hero">
+  <p><strong>O que mudou desde a última execução registrada.</strong> Esta versão corrige um bug no cálculo do Gini (âncora da curva de Lorenz na origem — ver <code>fase2_sao_paulo/modelo/huff2sfca.py</code>), corrige três bugs que impediriam uma varredura de β de rodar corretamente sem corromper resultados, e estende o experimento com sensibilidade em β (β = 2 e β = 8,5, além do β = 4,5 padrão). Os números abaixo são desta execução, não de nenhuma anterior.</p>
+</div>
+
+<div class="grid">
+<nav>
+  <a href="#s1">1 · O que foi rodado</a>
+  <a href="#s2">2 · Proveniência</a>
+  <a href="#s3">3 · Resultados</a>
+  <a href="#s4">4 · Sensibilidade em β</a>
+  <a href="#s5">5 · Como reproduzir</a>
+  <a href="#s6">6 · Limitações</a>
+</nav>
+
+<main>
+
+<section id="s1">
+<h2><span class="num">Seção 1</span>O que foi rodado</h2>
+<p>Comandos executados nesta ordem, sobre os dados já coletados em <code>fase2_sao_paulo/_raw/</code> (nenhuma coleta de rede nesta execução):</p>
+<pre>uv run python -m fase2_sao_paulo.experimentos.monta
+uv run python -m fase2_sao_paulo.testes.teste_monta
+uv run python -m fase2_sao_paulo.experimentos.roda
+uv run python -m fase2_sao_paulo.experimentos.compara
+uv run python -m fase2_sao_paulo.experimentos.figuras
+uv run python -m fase2_sao_paulo.experimentos.sensib_beta</pre>
+<table>
+<thead><tr><th>item</th><th>valor</th></tr></thead>
+<tbody>
+<tr><td>Python</td><td class="mono">3.12.14 (via uv, ver <code>uv.lock</code>)</td></tr>
+<tr><td>numpy / pandas / scipy</td><td class="mono">2.5.3 / 2.3.3 / 1.18.1</td></tr>
+<tr><td>início</td><td class="mono">__HORA_INICIO__</td></tr>
+<tr><td>fim</td><td class="mono">__HORA_FIM__</td></tr>
+<tr><td>duração total</td><td class="mono">__DURACAO__</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="s2">
+<h2><span class="num">Seção 2</span>Proveniência — de onde vem cada número</h2>
+<p>Cada arquivo abaixo é produzido por exatamente um script, e cada número nas seções seguintes referencia a linha desta tabela de onde veio.</p>
+<table>
+<thead><tr><th>arquivo</th><th>gerado por</th><th>contém</th></tr></thead>
+<tbody>
+<tr><td class="mono">sp_setores.parquet<br>sp_candidatos.parquet<br>sp_tempos.npy</td><td class="mono">monta.py</td><td>demanda (26.889 setores), candidatos (1.107), matriz de tempos</td></tr>
+<tr><td class="mono">sp_pareto_lam*.parquet<br>sp_pareto_x_lam*.npy</td><td class="mono">roda.py</td><td>fronteira de Pareto e vetores de configuração, por λ</td></tr>
+<tr><td class="mono">sp_resultado.json</td><td class="mono">roda.py</td><td>resumo por λ + configuração atual (β=4,5)</td></tr>
+<tr><td class="mono">sp_pmedian_x.npy</td><td class="mono">roda.py → pmedian.py</td><td>solução do baseline clássico (cache, independente de β)</td></tr>
+<tr><td class="mono">sp_comparacao.{json,parquet}</td><td class="mono">compara.py</td><td>atual × p-median × Huff+2SFCA, nas duas métricas</td></tr>
+<tr><td class="mono">sp_beta_sens.json</td><td class="mono">sensib_beta.py</td><td>sensibilidade em β: tabela barata + varredura completa</td></tr>
+<tr><td class="mono">figs/fase2/sp_01..05_*.png</td><td class="mono">figuras.py</td><td>as cinco figuras da seção 3</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="s3">
+<h2><span class="num">Seção 3</span>Resultados</h2>
+
+<h3>3.1 A varredura de λ</h3>
+<table id="TABELA_LAMBDA">
+<!-- __TABELA_LAMBDA__ -->
+</table>
+
+<div class="fig">
+<!-- __FIG_PARETO__ -->
+<figcaption>Fig. 1 — fronteiras de Pareto por λ. Gerada por <code>figuras.py:fig_pareto</code>.</figcaption>
+</div>
+
+<div class="fig">
+<!-- __FIG_GANHO__ -->
+<figcaption>Fig. 2 — ganho de equidade e de tempo contra quilômetros de mudança. Gerada por <code>figuras.py:fig_ganho</code>.</figcaption>
+</div>
+
+<h3>3.2 Contra o baseline clássico</h3>
+<table id="TABELA_COMPARACAO">
+<!-- __TABELA_COMPARACAO__ -->
+</table>
+
+<div class="fig">
+<!-- __FIG_COMPARACAO__ -->
+<figcaption>Fig. 3 — atual × p-median × Huff+2SFCA nas quatro métricas. Gerada por <code>figuras.py:fig_comparacao</code>.</figcaption>
+</div>
+
+<div class="fig">
+<!-- __FIG_MAPA__ -->
+<figcaption>Fig. 4 — mapa das realocações em λ=1. Gerada por <code>figuras.py:fig_mapa</code>.</figcaption>
+</div>
+
+<div class="fig">
+<!-- __FIG_LORENZ__ -->
+<figcaption>Fig. 5 — curva de Lorenz da acessibilidade avançada. Gerada por <code>figuras.py:fig_lorenz</code>.</figcaption>
+</div>
+
+<div class="destaque">
+<span class="lab">Achado central</span>
+<p id="TXT_ACHADO"><!-- __TXT_ACHADO__ --></p>
+</div>
+</section>
+
+<section id="s4">
+<h2><span class="num">Seção 4</span>Sensibilidade em β</h2>
+<p>O achado de equidade foi testado fora de β = 4,5 (o valor padrão, arbitrado — ver <code>matematica_usb_usa.html</code> §3.2 e §14). Duas medidas, de custo bem diferente:</p>
+
+<h3>4.1 Config. atual sob cada β (sem reotimizar)</h3>
+<table id="TABELA_BETA_BARATA">
+<!-- __TABELA_BETA_BARATA__ -->
+</table>
+
+<h3>4.2 Varredura completa (reotimizando λ ∈ {0, 0,1, 1})</h3>
+<table id="TABELA_BETA_SWEEP">
+<!-- __TABELA_BETA_SWEEP__ -->
+</table>
+
+<div class="destaque">
+<span class="lab">O achado sobrevive?</span>
+<p id="TXT_BETA"><!-- __TXT_BETA__ --></p>
+</div>
+</section>
+
+<section id="s5">
+<h2><span class="num">Seção 5</span>Como reproduzir</h2>
+<p>Ambiente: ver <a href="../../SETUP.md">SETUP.md</a> (<code>uv sync</code>, mais <code>npm install</code> se for regenerar os decks). Com <code>fase2_sao_paulo/_raw/</code> já presente (não incluso no repositório — ver <code>fase2_sao_paulo/coleta/pull_dados.py</code>):</p>
+<pre>uv run python -m fase2_sao_paulo.experimentos.monta
+uv run python -m fase2_sao_paulo.testes.teste_monta
+uv run python -m fase2_sao_paulo.experimentos.roda
+uv run python -m fase2_sao_paulo.experimentos.compara
+uv run python -m fase2_sao_paulo.experimentos.figuras
+uv run python -m fase2_sao_paulo.experimentos.sensib_beta</pre>
+<p>Para regenerar só a sensibilidade em β com outra lista de valores: <code>uv run python -m fase2_sao_paulo.experimentos.sensib_beta 2 6 8.5</code>.</p>
+</section>
+
+<section id="s6">
+<h2><span class="num">Seção 6</span>Limitações e próximos passos</h2>
+<p>Tratadas em detalhe em <a href="CONTEXTO_PROJETO.md">CONTEXTO_PROJETO.md</a> §6-7 e em <a href="matematica_usb_usa.html">matematica_usb_usa.html</a> §3.6-3.8 e §8-9. Resumo do que esta execução muda nessa lista:</p>
+<ul>
+<li><strong>β arbitrado, não estimado</strong> — agora testado em faixa (§4 acima), não apenas assumido. A calibração contra dado real de despacho continua em aberto.</li>
+<li><strong>Demanda = população residente</strong> — inalterado; ponte prevista para um modelo bayesiano CAR/ICAR (<code>matematica_usb_usa.html</code> §8).</li>
+<li><strong>Sem fila nem ocupação real</strong> — inalterado (<code>matematica_usb_usa.html</code> §9).</li>
+<li><strong>Um município, não a rede estadual</strong> — inalterado.</li>
+</ul>
+</section>
+
+<hr class="end">
+</main>
+</div>
+</div>
+</body>
+</html>
