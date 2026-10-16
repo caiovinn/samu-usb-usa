@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fase 3 — Vidas salvas</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']], tags: 'none' },
+  chtml: { scale: 1.0 },
+  options: { renderActions: { addMenu: [] } }
+};
+</script>
+<script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
+<style>
+:root{
+  --fundo:#FBFAF7; --papel:#FFFFFF; --tinta:#1B2430; --tinta2:#4A5462; --tinta3:#7A8391;
+  --linha:#E3E0D8; --realce:#0F5E73; --realce-fundo:#E6F1F3; --tag:#F1EEE6; --marca:#FFF3C9;
+  --alerta:#A04A1A; --alerta-fundo:#FBEDE4; --ok:#2E7D4F;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono","Consolas","SFMono-Regular",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --fundo:#14181D; --papel:#1B2027; --tinta:#E7E9EC; --tinta2:#B8BEC7; --tinta3:#8A929D;
+    --linha:#2E3640; --realce:#6CC3D6; --realce-fundo:#1C3138; --tag:#252C35; --marca:#3A3420;
+    --alerta:#E79A6E; --alerta-fundo:#3A2A20; --ok:#6BC28E;
+  }
+}
+:root[data-theme="dark"]{
+  --fundo:#14181D; --papel:#1B2027; --tinta:#E7E9EC; --tinta2:#B8BEC7; --tinta3:#8A929D;
+  --linha:#2E3640; --realce:#6CC3D6; --realce-fundo:#1C3138; --tag:#252C35; --marca:#3A3420;
+  --alerta:#E79A6E; --alerta-fundo:#3A2A20; --ok:#6BC28E;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fundo);color:var(--tinta);font-family:var(--serif);font-size:18px;line-height:1.6;-webkit-text-size-adjust:100%}
+a{color:var(--realce)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 96px}
+header.capa{padding:56px 0 28px;border-bottom:2px solid var(--tinta)}
+.sobre{font-family:var(--sans);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--realce);font-weight:600;margin:0 0 10px}
+h1{font-size:clamp(30px,4.4vw,44px);line-height:1.12;margin:0 0 14px;font-weight:600}
+.lead{font-size:20px;color:var(--tinta2);margin:0}
+.meta{font-family:var(--sans);font-size:13px;color:var(--tinta3);margin-top:18px}
+nav.sumario{font-family:var(--sans);font-size:14px;margin:22px 0 4px;display:flex;flex-wrap:wrap;gap:6px 18px}
+nav.sumario a{text-decoration:none}
+h2{font-size:28px;line-height:1.2;margin:60px 0 8px;font-weight:600}
+h2 .n{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta3);display:block;margin-bottom:6px;font-weight:600}
+h3{font-size:21px;margin:36px 0 6px;font-weight:600}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:24px}
+li{margin-bottom:6px}
+.destaques{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:24px 0 8px}
+.cartao{background:var(--papel);border:1px solid var(--linha);border-radius:10px;padding:14px 16px}
+.cartao .num{font-family:var(--serif);font-size:30px;font-weight:600;line-height:1.1}
+.cartao .rot{font-family:var(--sans);font-size:13px;color:var(--tinta2);margin-top:4px}
+.nota{border-left:3px solid var(--linha);padding:4px 0 4px 16px;color:var(--tinta2);font-size:16px;margin:18px 0}
+.alerta{background:var(--alerta-fundo);border-radius:8px;padding:12px 16px;font-size:16.5px;margin:18px 0}
+.alerta strong{color:var(--alerta)}
+.formula{font-family:var(--mono);font-size:15px;background:var(--papel);border:1px solid var(--linha);border-radius:8px;padding:12px 16px;margin:12px 0 16px;overflow-x:auto;white-space:pre;line-height:1.55}
+.rolagem{overflow-x:auto;border:1px solid var(--linha);border-radius:8px;background:var(--papel);margin:12px 0 6px}
+table{border-collapse:collapse;font-family:var(--sans);font-size:14px;line-height:1.4;width:100%}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--linha)}
+th{font-weight:600;color:var(--tinta2);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.realce td{background:var(--realce-fundo);font-weight:600}
+.legenda{font-family:var(--sans);font-size:13px;color:var(--tinta3);margin:6px 2px 0}
+figure{margin:18px 0}
+figure img{max-width:100%;height:auto;border:1px solid var(--linha);border-radius:8px;background:#fcfcfb}
+figcaption{font-family:var(--sans);font-size:13.5px;color:var(--tinta2);margin-top:6px}
+.fluxo{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:16px 0;font-family:var(--sans);font-size:14px}
+.fluxo div{background:var(--papel);border:1px solid var(--linha);border-radius:8px;padding:10px 12px}
+.fluxo b{display:block;color:var(--realce);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+code{font-family:var(--mono);font-size:.88em;background:var(--tag);padding:1px 5px;border-radius:4px}
+.modelo{background:var(--papel);border:1px solid var(--linha);border-radius:8px;padding:6px 16px;margin:12px 0 16px}
+.modelo .lin{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:2px 14px;padding:9px 0;border-bottom:1px dashed var(--linha)}
+.modelo .lin:last-child{border-bottom:0}
+.modelo .rot{font-family:var(--sans);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--realce);font-weight:600;padding-top:3px}
+.modelo .mat{display:block;overflow-x:auto;overflow-y:hidden;padding:2px 0}
+.modelo .ex{display:block;font-size:15.5px;color:var(--tinta2);margin-top:2px}
+.eq{background:var(--papel);border:1px solid var(--linha);border-radius:8px;padding:4px 16px;margin:12px 0 16px;overflow-x:auto;overflow-y:hidden}
+td.simb{white-space:nowrap}
+mjx-container{color:var(--tinta)}
+ol.refs{font-size:16px;overflow-wrap:anywhere}
+.tema{position:fixed;right:14px;bottom:14px;font-family:var(--sans);font-size:13px;background:var(--papel);color:var(--tinta);border:1px solid var(--linha);border-radius:999px;padding:6px 12px;cursor:pointer}
+@media (max-width:720px){body{font-size:17px} h2{font-size:24px} .formula{font-size:13px}
+  .modelo .lin{grid-template-columns:minmax(0,1fr)} .eq{padding:4px 10px}
+  .eq mjx-container[display="true"],.modelo .mat mjx-container{font-size:88% !important}}
+@media print{.tema,nav.sumario{display:none} .rolagem{overflow:visible}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="capa">
+  <p class="sobre">MAI5003 · Realocação de USB e USA · Fase 3</p>
+  <h1>Onde colocar as ambulâncias para salvar mais vidas</h1>
+  <p class="lead">Do Gini da acessibilidade à sobrevida a parada cardiorrespiratória: objetivo, dados, pipeline, fórmulas, resultados, conclusões, armadilhas e fontes.</p>
+  <p class="meta">Gerado em {{DATA}} a partir de <code>dados/fase3/*.json</code> por <code>fase3_vidas/docs/relatorio_gera.py</code>. Nenhum número deste documento foi digitado à mão.</p>
+  <nav class="sumario" aria-label="Sumário">
+    <a href="#resumo">Resumo</a><a href="#siglas">Siglas e notação</a><a href="#porque">1 · Por que mudar</a><a href="#dados">2 · Dados</a>
+    <a href="#pipeline">3 · Pipeline</a><a href="#formulas">4 · Fórmulas</a><a href="#resultados">5 · Resultados</a>
+    <a href="#conclusoes">6 · Conclusões</a><a href="#armadilhas">7 · Armadilhas</a><a href="#reproduzir">8 · Reproduzir</a><a href="#fontes">9 · Fontes</a>
+  </nav>
+</header>
+
+<section id="resumo">
+<h2><span class="n">Resumo</span>O que esta fase mostra</h2>
+<div class="destaques">
+  <div class="cartao"><div class="num">{{hoje_vidas}}</div><div class="rot">sobreviventes por 1.000 paradas cardíacas com a rede de hoje</div></div>
+  <div class="cartao"><div class="num">{{pm_vidas}}</div><div class="rot">com o p-median clássico (mínimo tempo até a unidade mais próxima)</div></div>
+  <div class="cartao"><div class="num">{{rec_vidas}}</div><div class="rot">com o mapa recomendado ({{rec_nome}})</div></div>
+  <div class="cartao"><div class="num">{{vidas_ano_central}}</div><div class="rot">vidas a mais por ano na capital (faixa {{vidas_ano_faixa}}; ver §5.9)</div></div>
+</div>
+{{RESUMO}}
+</section>
+
+<section id="siglas">
+<h2><span class="n">Antes de começar</span>Siglas e notação</h2>
+<p>O estudo trabalha com <strong>dois conjuntos diferentes</strong>, e vale separá-los desde já. Os <strong>{{n_setores}} setores censitários</strong> (índice (i)) são onde está a demanda: onde as pessoas moram e onde as paradas cardíacas acontecem. Os <strong>{{n_cand}} locais candidatos</strong> (índice (j), estabelecimentos públicos do CNES) são os únicos lugares onde uma ambulância pode ficar. A decisão é quantas USB e USA ficam em cada local (j); a avaliação é a sobrevida em cada setor (i).</p>
+<div class="rolagem"><table>
+<thead><tr><th>sigla</th><th>significado</th></tr></thead>
+<tbody>
+<tr><td>USB</td><td>Unidade de Suporte Básico: ambulância com condutor e técnico de enfermagem, equipada com DEA.</td></tr>
+<tr><td>USA</td><td>Unidade de Suporte Avançado: ambulância com médico, enfermeiro e condutor.</td></tr>
+<tr><td>PCR</td><td>Parada cardiorrespiratória fora do hospital.</td></tr>
+<tr><td>DEA</td><td>Desfibrilador externo automático.</td></tr>
+<tr><td>SAMU 192</td><td>Serviço de Atendimento Móvel de Urgência.</td></tr>
+<tr><td>SIA/SUS</td><td>Sistema de Informações Ambulatoriais do SUS: a produção registrada pelo SAMU (chamadas, envios de USB e USA).</td></tr>
+<tr><td>CNES</td><td>Cadastro Nacional de Estabelecimentos de Saúde: fonte dos locais candidatos e da frota de hoje.</td></tr>
+<tr><td>OSM</td><td>OpenStreetMap: a malha de ruas usada para os tempos de viagem.</td></tr>
+<tr><td>2SFCA</td><td><em>Two-step floating catchment area</em>: índice de acessibilidade das fases 2 e 2b (oferta de unidades por habitante ao alcance de cada setor).</td></tr>
+<tr><td>Gini</td><td>Índice de desigualdade (0 = todos iguais; 1 = desigualdade máxima), usado nas fases anteriores sobre a acessibilidade 2SFCA.</td></tr>
+<tr><td>p-median</td><td>Mapa clássico que minimiza o tempo médio, ponderado pela população, até a unidade mais próxima. É a referência a ser batida.</td></tr>
+<tr><td>MILP</td><td><em>Mixed-integer linear program</em>: programa linear inteiro misto, resolvido com o solver HiGHS (§4.7–4.8).</td></tr>
+<tr><td>MEXCLP</td><td><em>Maximum expected covering location problem</em> (Daskin, 1983): modelo de localização que conta a chance de as unidades estarem ocupadas.</td></tr>
+<tr><td>CVaR₁₀</td><td><em>Conditional value at risk</em> a 10%: aqui, a sobrevida média dos 10% da população mais mal servidos (§4.4).</td></tr>
+</tbody></table></div>
+<div class="rolagem"><table>
+<thead><tr><th>símbolo</th><th>significado</th><th>onde</th></tr></thead>
+<tbody>
+<tr><td class="simb">\(i\)</td><td>setor censitário (demanda); {{n_setores}} setores</td><td>—</td></tr>
+<tr><td class="simb">\(j\)</td><td>local candidato a base (CNES); {{n_cand}} locais</td><td>—</td></tr>
+<tr><td class="simb">\(y^B_j,\ y^A_j\)</td><td>USB e USA no local \(j\): as <strong>variáveis de decisão</strong></td><td>§4.6</td></tr>
+<tr><td class="simb">\(x^B_j,\ x^A_j\)</td><td>USB e USA no local \(j\) na rede de hoje</td><td>§4.6</td></tr>
+<tr><td class="simb">\(w_i\)</td><td>fração da população da cidade que mora no setor \(i\)</td><td>§4.3</td></tr>
+<tr><td class=\"simb\">\(t_{ij},\ t'_{ij}\)</td><td>tempo do local \(j\) ao setor \(i\): em trânsito livre e calibrado</td><td>§4.1</td></tr>
+<tr><td class="simb">\(f\), atraso</td><td>fator de trânsito e tempo até a saída da ambulância</td><td>§4.1</td></tr>
+<tr><td class="simb">\(q_B,\ q_A\)</td><td>fração do tempo em que cada USB (cada USA) está ocupada</td><td>§4.2</td></tr>
+<tr><td class="simb">\(s(t)\)</td><td>chance de sobreviver a uma PCR com o desfibrilador chegando em \(t\) minutos</td><td>§4.3</td></tr>
+<tr><td class="simb">\(S_i\)</td><td>sobrevida esperada a uma PCR no setor \(i\)</td><td>§4.3</td></tr>
+<tr><td class="simb">vidas</td><td>sobreviventes esperados por 1.000 PCR na cidade</td><td>§4.3</td></tr>
+<tr><td class="simb">\(\text{CVaR}_{10}\)</td><td>sobreviventes por 1.000 PCR entre os 10% da população com menor \(S_i\)</td><td>§4.4</td></tr>
+<tr><td class="simb">\(\text{cob}_{\text{básico}},\ \text{cob}_{\text{grave}}\)</td><td>chance de uma USB (USA) livre chegar ao chamado básico (grave) em até {{tau_guarda}} min</td><td>§4.5</td></tr>
+<tr><td class="simb">\(\lambda\)</td><td>peso da equidade (CVaR₁₀) no objetivo</td><td>§4.6</td></tr>
+<tr><td class="simb">\(K\)</td><td>número máximo de unidades que mudam de base</td><td>§4.6</td></tr>
+<tr><td class="simb">\(\tau,\ \tau_b\)</td><td>limite de tempo de resposta; \(\tau_b\) é o limite da faixa \(b\)</td><td>§4.7</td></tr>
+<tr><td class="simb">\(n^B_i(\tau),\ n^A_i(\tau)\)</td><td>USB (USA) a até \(\tau\) minutos do setor \(i\)</td><td>§4.7</td></tr>
+<tr><td class="simb">\(d_b\)</td><td>altura do degrau \(b\) na curva de sobrevida em degraus</td><td>§4.7</td></tr>
+<tr><td class="simb">\(\theta\)</td><td>peso do chamado grave no teste sem PCR</td><td>§5.10</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="porque">
+<h2><span class="n">Seção 1</span>Por que o objetivo mudou</h2>
+<p>As fases 2 e 2b buscaram mapas de bases que equilibrassem dois objetivos: o tempo de resposta esperado e o <strong>Gini da acessibilidade</strong> calculada pelo 2SFCA. Três resultados das próprias fases anteriores mostraram que esse arranjo não responde à pergunta que importa — <em>quantas vidas o mapa salva</em>:</p>
+<ol>
+<li><strong>O Gini mede carga, não chegada.</strong> Ele iguala "unidades por habitante" entre setores. As soluções de menor Gini deixavam os 10% da população com pior cobertura com quase nenhuma chance de uma USA chegar em 10 minutos.</li>
+<li><strong>Os tempos eram de trânsito livre.</strong> A matriz do OpenStreetMap dava {{et_bruto}} min para a USA chegar ao chamado grave na rede de hoje; a Prefeitura informa cerca de {{alvo}} min nos casos mais graves.</li>
+<li><strong>Os resultados eram frágeis.</strong> Uma semente do algoritmo genético por cenário, um "joelho" da fronteira escolhido por uma regra geométrica e um preço da mudança λ em minutos por km, sem significado operacional.</li>
+</ol>
+<p>A fase 3 troca o objetivo por <strong>sobreviventes esperados a uma parada cardiorrespiratória (PCR)</strong>, mede a equidade pela <strong>sobrevida dos 10% mais mal servidos</strong>, calibra os tempos com o dado público disponível, limita explicitamente <strong>quantas unidades mudam de base</strong> e testa tudo numa simulação e em 18 cenários.</p>
+</section>
+
+<section id="dados">
+<h2><span class="n">Seção 2</span>Dados: o que existe e o que falta</h2>
+<h3>2.1 O que o SIA/SUS diz sobre os chamados</h3>
+<p>Produção do SAMU 192 da capital no SIA/SUS, nos 12 meses de {{janela}}:</p>
+<div class="rolagem"><table>{{T_SIA}}</table></div>
+<p class="legenda">Códigos SIGTAP do subgrupo 03.01.03, conferidos na Tabela Unificada 2026-07. Fonte: arquivos PASP do DATASUS; processamento em <code>fase2_sao_paulo/experimentos/demanda_samu.py</code>.</p>
+<p>Duas leituras sustentam o modelo de despacho desta fase: <strong>{{pct_usb}}</strong> dos envios são de USB — a USA fica para os casos que só ela resolve —, e <strong>{{pct_multi}}</strong> dos envios usam múltiplos meios (por exemplo, USB e USA para o mesmo chamado).</p>
+<div class="alerta"><strong>O SIA não tem gravidade.</strong> O SAMU-SP registra a produção no boletim consolidado (BPA-C): {{pct_sem_cid}} do volume não tem diagnóstico, idade nem caráter de atendimento. Não é possível saber, pelo dado público, quantos chamados são PCR. Por isso a PCR entra como condição <em>traçadora</em> (§4.3), e não como uma classe de chamado com participação inventada.</div>
+<h3>2.2 As outras fontes</h3>
+<ul>
+<li><strong>População por setor censitário</strong> — IBGE, Censo 2022 ({{n_setores}} setores; {{pop_total}} habitantes).</li>
+<li><strong>Locais candidatos e frota de hoje</strong> — CNES: {{n_cand}} estabelecimentos públicos; {{frota}} ambulâncias ({{n_usb}} USB e {{n_usa}} USA) em {{n_locais_hoje}} locais.</li>
+<li><strong>Tempos de viagem</strong> — malha de ruas do OpenStreetMap, menor caminho (Dijkstra) de cada local a cada setor, em trânsito livre.</li>
+<li><strong>Âncoras da Prefeitura de São Paulo</strong> (notícia de 21/12/2023): saída da ambulância em ~{{atraso}} min nos casos prioritários e chegada em ~{{alvo}} min nos casos mais graves. Totais anuais de atendimentos presenciais: {{pref_2024}} (2024) e {{pref_2025}} (2025).</li>
+<li><strong>Curva de sobrevida</strong> — De Maio et al. (2003), 9.273 PCR do estudo OPALS (Ontário).</li>
+<li><strong>Incidência de PCR</strong> — EuReCa TWO (Gräsner et al., 2020): ressuscitação iniciada em 25.171 casos em 3 meses numa população de 178,9 milhões, ou ~{{inc_central}} por 100 mil habitantes por ano.</li>
+</ul>
+</section>
+
+<section id="pipeline">
+<h2><span class="n">Seção 3</span>Pipeline completo</h2>
+<div class="fluxo">
+<div><b>1 · Dados</b>Censo 2022, CNES, OpenStreetMap, SIA/SUS</div>
+<div><b>2 · Tempos</b>matriz local × setor (Dijkstra) e calibração: atraso + fator × tempo</div>
+<div><b>3 · Ocupação</b>q de USB e USA pela lei de Little com as saídas do SIA</div>
+<div><b>4 · Quem chega</b>despacho à unidade livre mais próxima; PCR: primeira de qualquer tipo</div>
+<div><b>5 · Vidas</b>sobrevida s(t) por setor; média da cidade e dos 10% piores</div>
+<div><b>6 · Otimização</b>busca local: move unidades entre os {{n_cand}} locais, sobrevida exata nos {{n_setores}} setores; iterada; limite K de unidades movidas</div>
+<div><b>7 · Conferência</b>MILP (exatidão e teto), simulação de eventos discretos, 18 cenários</div>
+</div>
+<p>Arquivos: <code>fase3_vidas/modelo/sobrevida.py</code> (passos 2, 4, 5), <code>busca.py</code> e <code>mip_vidas.py</code> (6, 7), <code>experimentos/simula_vidas.py</code> (7) e o orquestrador <code>experimentos/vidas.py</code>. A fase 2 é só lida: a matriz de tempos, os setores, os candidatos, a ocupação estimada e as soluções antigas vêm de <code>dados/fase2/</code>, sem nenhuma alteração.</p>
+</section>
+
+<section id="formulas">
+<h2><span class="n">Seção 4</span>Modelo e fórmulas</h2>
+<p>Lembrete da notação (ver <a href="#siglas">Siglas e notação</a>): \(i\) indexa os {{n_setores}} setores censitários, onde a demanda é medida; \(j\) indexa os {{n_cand}} locais candidatos, onde as unidades podem ficar.</p>
+
+<h3>4.1 Tempo de resposta calibrado</h3>
+<div class="eq">\[ t'_{ij} = \text{atraso} + f \, t_{ij} \]</div>
+<p>\(t_{ij}\) é o tempo de carro do local \(j\) ao setor \(i\) em trânsito livre, e atraso = {{atraso}} min é o tempo até a saída da ambulância. O fator \(f\) é o único número que faz a rede de hoje reproduzir os {{alvo}} min da Prefeitura no chamado grave. Como o fator não muda a ordem das unidades, ele também não muda quem atende. Por isso o tempo médio de chegada da USA ao chamado grave, \(\mathbb{E}[t'](f)\), é linear em \(f\), e basta resolver uma equação:</p>
+<div class="eq">\[ \mathbb{E}[t'](f) = \mathbb{E}[t'](0) + f\,\big(\mathbb{E}[t'](1) - \mathbb{E}[t'](0)\big) \]
+\[ \Longrightarrow\quad f =\frac{\text{alvo} - \mathbb{E}[t'](0)}{\mathbb{E}[t'](1) - \mathbb{E}[t'](0)} \]</div>
+<p>Com os dados, <strong>\(f\) = {{fator}}</strong>.</p>
+<p class="nota">Os setores sem nenhuma unidade alcançável ficam com tempo "infinito" nos dois termos e saem da conta. Dividir alvo − atraso pelo tempo médio bruto, como na primeira versão, dava 1,729 e errava por isso.</p>
+
+<h3>4.2 Despacho e ocupação</h3>
+<p>Cada unidade está ocupada uma fração \(q\) do tempo, independentemente das outras (Daskin, 1983). Pela lei de Little,</p>
+<div class="eq">\[ q = \frac{\text{saídas por hora} \times \text{horas por saída}}{\text{número de unidades}} \]</div>
+<p>No cenário central (70 min por saída), \(q_B\) = {{q_usb}} para as USB e \(q_A\) = {{q_usa}} para as USA. O regulador manda a unidade <em>livre</em> mais próxima. Se \(q_{(r)}\) é a ocupação da \(r\)-ésima unidade mais próxima, a \(k\)-ésima atende com probabilidade</p>
+<div class="eq">\[ P(k) = q_{(1)}\, q_{(2)} \cdots q_{(k-1)}\,\big(1 - q_{(k)}\big) \]</div>
+<p>Chamado grave → USA livre mais próxima; chamado básico → USB livre mais próxima e, se nenhuma estiver livre, USA. Só essas duas classes, que são as observadas no SIA, definem a ocupação.</p>
+
+<h3>4.3 PCR como condição traçadora</h3>
+<p>A PCR é a urgência em que a relação entre minutos e mortes está bem medida, e as duas modalidades desfibrilam (a USB tem DEA; a USA tem médico). Ela não vira uma terceira classe de chamado: não sabemos quantas são, e elas já estão dentro dos volumes observados. Em vez disso, ela é avaliada por cima do mapa. Numa PCR vão a USB livre mais próxima <em>e</em> a USA livre mais próxima, e quem chegar primeiro desfibrila. O primeiro a chegar é a unidade livre mais próxima de <em>qualquer</em> tipo. A chance de sobreviver quando o desfibrilador chega em \(t\) minutos é (De Maio et al., 2003)</p>
+<div class="eq">\[ s(t) = \frac{1}{1 + \exp\big(0{,}679 + 0{,}262\,t\big)} \]</div>
+<p>o que dá \(s(5)\) = {{s5}}, \(s(9)\) = {{s9}} e \(s(15)\) = {{s15}}. A sobrevida esperada de uma PCR no setor \(i\) e a medida da cidade são</p>
+<div class="eq">\[ S_i = \sum_j p_{ij}\; s(t'_{ij}) \]
+\[ \text{vidas} = 1.000 \sum_i w_i\, S_i \]</div>
+<p>em que \(p_{ij}\) é a probabilidade de uma unidade em \(j\) ser a primeira unidade livre a chegar em \(i\) (§4.2) e \(w_i\) é a fração da população no setor \(i\). <strong>vidas</strong> é o número esperado de sobreviventes por 1.000 PCR, supondo que a PCR acontece onde as pessoas moram.</p>
+
+<h3>4.4 Equidade: CVaR₁₀, a sobrevida dos 10% piores</h3>
+<p>CVaR é a sigla de <em>conditional value at risk</em> (valor em risco condicional), uma medida de risco que vem das finanças: a média da <strong>cauda ruim</strong> de uma distribuição, em vez da média de toda ela. Aqui a distribuição é a da sobrevida \(S_i\) entre os moradores da cidade, e a cauda ruim são os 10% da população com a menor sobrevida:</p>
+<div class="eq">\[ \text{CVaR}_{10} = 1.000 \cdot \frac{1}{0{,}10} \sum_i \omega_i\, S_i \]
+\[ 0 \le \omega_i \le w_i , \quad \sum_i \omega_i = 0{,}10 \]</div>
+<p>Os pesos \(\omega_i\) saem de ordenar os setores do pior para o melhor \(S_i\) e acumular população até completar 10%. Cada setor entra com toda a sua população (\(\omega_i = w_i\)) até o limite, o setor que cruza o limite entra só com a parte que cabe, e os demais ficam com \(\omega_i = 0\). A unidade é a mesma de vidas: sobreviventes por 1.000 PCR, mas só entre quem mora nesses setores. É a sobrevida de quem está mais longe de tudo. Diferente do Gini, ela só melhora se a situação dos piores melhorar; não melhora tirando de quem tem mais.</p>
+
+<h3>4.5 Pisos de cobertura: o resto dos chamados</h3>
+<p>Otimizar só a PCR poderia desmontar o atendimento dos outros chamados. Por isso o problema tem dois <strong>pisos de cobertura</strong>, restrições que a nova distribuição não pode violar. As coberturas são a chance de uma USB livre chegar a um chamado básico, e a de uma USA livre chegar a um chamado grave, em até {{tau_guarda}} min:</p>
+<div class="eq">\[ \text{cob}_{\text{básico}} = \sum_i w_i \Big(1 - q_B^{\;n^B_i}\Big) \]
+\[ \text{cob}_{\text{grave}} = \sum_i w_i \Big(1 - q_A^{\;n^A_i}\Big) \]</div>
+<p>em que \(n^B_i\) e \(n^A_i\) são as USB e as USA a até {{tau_guarda}} min do setor \(i\). Na rede de hoje elas valem {{hoje_basico}} e {{hoje_grave}}.</p>
+<ul>
+<li><strong>Piso de hoje</strong> (padrão): nenhuma das duas pode ficar abaixo do valor de hoje.</li>
+<li><strong>Piso do p-median</strong> (nas tabelas, "piso p-median"): o chamado básico continua com o piso de hoje, e o grave passa a exigir pelo menos a cobertura do p-median ({{pm_grave}}). A §5.4 mostra por que essa versão existe.</li>
+</ul>
+
+<h3>4.6 O problema de otimização</h3>
+<div class="modelo">
+<div class="lin"><span class="rot">Decidir</span><span><span class="mat">\( y^B_j,\; y^A_j \in \{0, 1, 2, \dots\} \)</span><span class="ex">quantas USB e quantas USA ficam em cada um dos {{n_cand}} locais candidatos \(j\). Os {{n_setores}} setores não são variáveis: são onde a sobrevida é medida.</span></span></div>
+<div class="lin"><span class="rot">Maximizar</span><span><span class="mat">\( \displaystyle J(y) = \text{vidas}(y) + \lambda \cdot \text{CVaR}_{10}(y) \)</span><span class="ex">as duas parcelas em sobreviventes por 1.000 PCR (§4.3 e §4.4); ambas dependem de \(y\) através dos tempos até cada setor.</span></span></div>
+<div class="lin"><span class="rot">(R1) Frota</span><span><span class="mat">\( \displaystyle \sum_j y^B_j = {{n_usb}}, \qquad \sum_j y^A_j = {{n_usa}} \)</span><span class="ex">a frota de hoje, nem mais nem menos.</span></span></div>
+<div class="lin"><span class="rot">(R2) Capacidade</span><span><span class="mat">\( y^B_j + y^A_j \le {{cap}} \quad \text{para todo } j \)</span><span class="ex">no máximo {{cap}} unidades por local.</span></span></div>
+<div class="lin"><span class="rot">(R3) Mudança</span><span><span class="mat">\( \displaystyle \sum_j \Big[ \big(x^B_j - y^B_j\big)^+ + \big(x^A_j - y^A_j\big)^+ \Big] \le K \)</span><span class="ex">\(x^B_j, x^A_j\) são as unidades no local \(j\) hoje, e \((a)^+ = \max(0, a)\). A soma conta as unidades que saem de onde estão: trocar uma USB de base conta 1.</span></span></div>
+<div class="lin"><span class="rot">(R4) Pisos</span><span><span class="mat">\( \text{cob}_{\text{básico}}(y) \ge \text{cob}_{\text{básico}}(\text{hoje}) \)</span><span class="mat">\( \text{cob}_{\text{grave}}(y) \ge \text{cob}_{\text{grave}}(\text{hoje}) \)</span><span class="ex">os pisos de cobertura da §4.5. Na versão "piso p-median", a segunda vira \(\text{cob}_{\text{grave}}(y) \ge \text{cob}_{\text{grave}}(\text{p-median})\).</span></span></div>
+</div>
+<p><strong>O que os parâmetros significam.</strong> \(\lambda\) é o peso da equidade. Com \(\lambda = 0\) só conta a média da cidade. Na margem, aumentar a sobrevida de quem está nos 10% piores pesa \(1 + \lambda / 0{,}10\) vezes o mesmo aumento para qualquer outra pessoa: com \(\lambda = 1\), 11 vezes. \(K\) é o tamanho da mudança que a gestão aceita fazer ("livre" = sem limite). Cada combinação de \(\lambda\), \(K\) e piso é uma <strong>configuração</strong>, resolvida separadamente. Varremos λ ∈ {{lams}} e K ∈ {{ks}}; o piso do p-median só foi testado sem limite K, com λ = 0 e λ = 1.</p>
+<p class="nota">Nas tabelas, a coluna "km" é a distância em linha reta percorrida pelas unidades movidas, no emparelhamento que a minimiza. Ela é só informativa: não entra no problema.</p>
+
+<h3>4.7 Por que dá para escrever exatamente</h3>
+<p>Com despacho à unidade livre mais próxima, alguma unidade chega ao setor \(i\) em até \(\tau\) minutos se, e só se, alguma das que estão a até \(\tau\) estiver livre. Com ocupações independentes:</p>
+<div class="eq">\[ \begin{aligned}
+P(T_i \le \tau) &= 1 - q_B^{\;n^B_i(\tau)}\; q_A^{\;n^A_i(\tau)} \\[2pt]
+&= 1 - e^{L_i(\tau)} \\[6pt]
+L_i(\tau) &= n^B_i(\tau)\,\ln q_B + n^A_i(\tau)\,\ln q_A \\[6pt]
+n^B_i(\tau) &= \sum_j y^B_j \,\mathbf{1}\big[t'_{ij} \le \tau\big]
+\end{aligned} \]</div>
+<p>e o mesmo para \(n^A_i(\tau)\), em que \(\mathbf{1}[\cdot]\) vale 1 se a condição é verdadeira e 0 se não. Assim, \(L_i(\tau)\) é <strong>linear</strong> nas variáveis \(y\). Para aproveitar isso, a curva de sobrevida é trocada por uma escada de {{n_bandas}} degraus, com limites \(\tau_b\) de {{tau_min}} a {{tau_max}} min (de meio em meio minuto até 14 min e mais espaçados depois). \(d_b\) é a altura do degrau \(b\), ou seja, quanto a sobrevida cai quando a primeira chegada passa de \(\tau_b\):</p>
+<div class="eq">\[ s(t) \approx \sum_b d_b\, \mathbf{1}\big[t \le \tau_b\big] \]
+\[ \begin{aligned} \Longrightarrow\quad S_i &\approx \sum_b d_b\, P(T_i \le \tau_b) \\ &= \sum_b d_b \Big(1 - e^{L_i(\tau_b)}\Big) \end{aligned} \]</div>
+<p>Como \(1 - e^{L}\) é côncava em \(L\), ela fica abaixo de qualquer reta tangente. O MILP troca cada termo por uma variável \(u_{ib}\) limitada por {{n_cortes}} tangentes, nos pontos \(\ell_1, \dots, \ell_{ {{n_cortes}} }\) (os <strong>cortes tangentes</strong>):</p>
+<div class="eq">\[ u_{ib} \le 1 - e^{\ell_k}\big(1 + L_i(\tau_b) - \ell_k\big) \]</div>
+<p>Isso transforma o problema num programa linear inteiro, com a estrutura do MEXCLP de Daskin. O CVaR₁₀ também vira linear, pela fórmula de Rockafellar–Uryasev, com uma variável auxiliar \(v_i\) por setor (o 10 é 1/0,10):</p>
+<div class="eq">\[ \text{CVaR}_{10} = 1.000 \cdot \max_{\eta,\,v} \Big( \eta - 10 \sum_i w_i\, v_i \Big) \]
+\[ v_i \ge \eta - S_i, \qquad v_i \ge 0 \]</div>
+<p>O teste do módulo confere que a fórmula fechada de \(P(T_i \le \tau)\) é igual à sobrevida calculada pelo despacho. A avaliação final de todo mapa usa a curva contínua, sem degraus.</p>
+
+<h3>4.8 Como o problema foi resolvido</h3>
+<p><strong>Por que o programa inteiro não resolve a cidade inteira.</strong> As variáveis de decisão são poucas: duas por local candidato, {{n_vars_y}} no total. O tamanho vem da avaliação. A sobrevida precisa ser escrita para cada um dos {{n_setores}} setores, em cada uma das {{n_bandas}} faixas, e cada par setor–faixa leva {{n_cortes}} cortes tangentes. São ~{{n_restr}} milhões de restrições de corte, mais {{n_linhas_L}} mil linhas que contam as unidades ao alcance de cada setor em cada faixa. Reduzir a lista de locais quase não muda essa conta, porque ela cresce com os setores. Agrupar setores em zonas reduz o problema, mas distorce a sobrevida em ~20% (a média dos tempos subestima; a cobertura fracionária superestima). Com zonas finas, o solver não acha solução em tempo útil.</p>
+<p><strong>O otimizador principal</strong> é então uma <strong>busca local com o objetivo exato em todos os setores</strong>. Cada movimento tira uma unidade de um local candidato e a põe em outro. O ganho de todos os destinos possíveis é avaliado de uma vez, com um produto de matriz esparsa por faixa. Uma busca de um movimento por vez para em ótimos locais, por isso ela é <strong>iterada</strong>: realoca {{tam_chute}} unidades ao acaso para locais vizinhos, reotimiza e fica com o melhor ({{chutes}} vezes por configuração). Cada configuração parte de cinco sementes aleatórias e, sem limite K, também do mapa do p-median; a melhor partida é a que vai para a busca iterada.</p>
+<p>O programa inteiro continua com dois papéis: (1) nos casos pequenos, busca e MILP encontram o mesmo ótimo que a força bruta; (2) em zonas de {{lado_km}} km, o limite dual do MILP é um <strong>teto</strong> válido para o ótimo verdadeiro, porque a média por zona só pode superestimar uma função côncava.</p>
+
+<h3>4.9 Simulação e robustez</h3>
+<p>A simulação de eventos discretos sorteia um ano de chamados (Poisson, nas taxas do SIA, onde as pessoas moram), despacha pela regra real e ocupa as unidades de verdade, sem a hipótese de independência. No instante de cada chamado, ela mede o tempo até o primeiro desfibrilador numa PCR naquele setor. A robustez reavalia os finalistas em 18 cenários (tempo por saída 45/70/100 min × trânsito livre/calibrado/pesado × carga do SIA ou dos "350 por dia" da Prefeitura) e escolhe pelo menor <strong>arrependimento máximo</strong>: a maior perda, em qualquer cenário, contra o melhor mapa daquele cenário.</p>
+</section>
+
+<section id="resultados">
+<h2><span class="n">Seção 5</span>Resultados</h2>
+
+<h3>5.1 Calibração dos tempos</h3>
+<div class="rolagem"><table>{{T_CALIB}}</table></div>
+<p class="legenda">Rede de hoje, ocupação do cenário central. Com o atraso de 2 ou 5 min o fator recalibrado seria {{fator_a2}} ou {{fator_a5}}.</p>
+
+<h3>5.2 Os mapas que já existiam, medidos em vidas</h3>
+<div class="rolagem"><table>{{T_REAVALIA}}</table></div>
+{{TXT_REAVALIA}}
+
+<h3>5.3 Vidas × equidade × tamanho da mudança</h3>
+<figure>{{F_FRONTEIRA}}<figcaption>Cada linha é um limite K de unidades que mudam de base; os pontos de uma linha são os pesos λ da equidade. Losangos: mapas das fases anteriores.</figcaption></figure>
+<div class="rolagem"><table>{{T_BUSCA}}</table></div>
+{{TXT_BUSCA}}
+
+<h3>5.4 O piso de cobertura do chamado grave</h3>
+{{TXT_GUARDA}}
+
+<h3>5.5 Qualidade da busca</h3>
+{{TXT_QUALIDADE}}
+
+<h3>5.6 Conferência na simulação</h3>
+<figure>{{F_VALIDACAO}}<figcaption>Sobreviventes por 1.000 PCR previstos pelo modelo × simulados, tempo por saída central; barras = faixa de 3 sementes.</figcaption></figure>
+<div class="rolagem"><table>{{T_SIM}}</table></div>
+{{TXT_SIM}}
+
+<h3>5.7 Robustez em 18 cenários</h3>
+<figure>{{F_ROBUSTEZ}}<figcaption>Maior perda de cada mapa contra o melhor mapa de cada cenário.</figcaption></figure>
+<div class="rolagem"><table>{{T_ROBUSTEZ}}</table></div>
+{{TXT_ROBUSTEZ}}
+
+<h3>5.8 Onde a sobrevida muda</h3>
+<figure>{{F_MAPA}}<figcaption>Sobrevida a PCR em cada setor; círculos = USB, triângulos = USA (tamanho = unidades no local).</figcaption></figure>
+
+<h3>5.9 Em vidas por ano</h3>
+{{TXT_ANO}}
+
+<h3>5.10 Teste sem a PCR: só as duas classes de chamado</h3>
+<p>Para saber o que a PCR traçadora muda, o mesmo problema foi resolvido sem ela. O objetivo passa a ser a fração dos chamados alcançados em até {{tau_guarda}} min, só com as duas classes observadas no SIA — chamado grave (só USA) e chamado básico (USB primeiro):</p>
+<div class="eq">\[ \begin{aligned} \max_{y}\;\; & \theta\; P\big(\text{USA livre a} \le {{tau_guarda}}\text{ min}\big) \\ +\; & (1 - \theta)\; P\big(\text{USB livre a} \le {{tau_guarda}}\text{ min}\big) \end{aligned} \]</div>
+<p>com θ = {{theta}} (a fração de envios de USA no SIA) ou θ = 0,5 (o grave pesa como o básico).</p>
+<p>Mesmos pisos de cobertura, mesmos limites K, mesma busca iterada. A sobrevida a PCR desses mapas foi só medida depois, para comparar.</p>
+<div class="rolagem"><table>{{T_CLASSES}}</table></div>
+{{TXT_CLASSES}}
+</section>
+
+<section id="conclusoes">
+<h2><span class="n">Seção 6</span>Conclusões</h2>
+{{CONCLUSOES}}
+</section>
+
+<section id="armadilhas">
+<h2><span class="n">Seção 7</span>Armadilhas e limitações</h2>
+{{ARMADILHAS}}
+</section>
+
+<section id="reproduzir">
+<h2><span class="n">Seção 8</span>Como reproduzir</h2>
+<div class="formula">uv run python -m fase3_vidas.testes.teste_vidas          # testes (sem dados reais)
+uv run python -m fase3_vidas.experimentos.vidas --teste   # orçamento mínimo, dados/fase3/_teste
+uv run python -m fase3_vidas.experimentos.vidas           # tudo (~1 h em 12 processos)
+uv run python -m fase3_vidas.experimentos.figuras
+uv run python -m fase3_vidas.docs.relatorio_gera</div>
+<p>Cada etapa é pulada se a saída já existe; apague o arquivo em <code>dados/fase3/</code> para refazê-la. Depende só de <code>dados/fase2/</code> e de <code>sp_tempos.npy</code> (reconstruível por <code>fase2_sao_paulo/experimentos/monta.py</code>).</p>
+</section>
+
+<section id="fontes">
+<h2><span class="n">Seção 9</span>Fontes</h2>
+<ol class="refs">
+<li>De Maio, V. J.; Stiell, I. G.; Wells, G. A.; Spaite, D. W. (2003). Optimal defibrillation response intervals for maximum out-of-hospital cardiac arrest survival rates. <em>Annals of Emergency Medicine</em>, 42(2), 242–250. <a href="https://doi.org/10.1067/mem.2003.266">doi:10.1067/mem.2003.266</a></li>
+<li>Erkut, E.; Ingolfsson, A.; Erdoğan, G. (2008). Ambulance location for maximum survival. <em>Naval Research Logistics</em>, 55(1), 42–58. <a href="https://doi.org/10.1002/nav.20267">doi:10.1002/nav.20267</a></li>
+<li>Daskin, M. S. (1983). A maximum expected covering location model. <em>Transportation Science</em>, 17(1), 48–70. <a href="https://doi.org/10.1287/trsc.17.1.48">doi:10.1287/trsc.17.1.48</a></li>
+<li>ReVelle, C.; Hogan, K. (1989). The maximum availability location problem. <em>Transportation Science</em>, 23(3), 192–200. <a href="https://doi.org/10.1287/trsc.23.3.192">doi:10.1287/trsc.23.3.192</a></li>
+<li>Rockafellar, R. T.; Uryasev, S. (2000). Optimization of conditional value-at-risk. <em>Journal of Risk</em>, 2(3), 21–41. <a href="https://doi.org/10.21314/JOR.2000.038">doi:10.21314/JOR.2000.038</a> — formulação linear do CVaR.</li>
+<li>Gräsner, J.-T. et al. (2020). Survival after out-of-hospital cardiac arrest in Europe — Results of the EuReCa TWO study. <em>Resuscitation</em>, 148, 218–226. <a href="https://doi.org/10.1016/j.resuscitation.2019.12.042">doi:10.1016/j.resuscitation.2019.12.042</a></li>
+<li>Gonzalez, M. M. et al. (2013). I Diretriz de Ressuscitação Cardiopulmonar e Cuidados Cardiovasculares de Emergência da SBC. <em>Arquivos Brasileiros de Cardiologia</em>, 101(2 supl. 3), 1–221. <a href="https://doi.org/10.5935/abc.2013S006">doi:10.5935/abc.2013S006</a> — a estimativa de ~200 mil PCR/ano no Brasil, metade fora do hospital, foi lida em textos que citam a diretriz, não na diretriz.</li>
+<li>Malvestio, M. A. A.; Sousa, R. M. C. (2024). Produção de procedimentos pelo SAMU 192 no Brasil. <em>Ciência &amp; Saúde Coletiva</em>, 29(1). <a href="https://doi.org/10.1590/1413-81232024291.18482022">doi:10.1590/1413-81232024291.18482022</a></li>
+<li>Prefeitura de São Paulo (21/12/2023). Samu da capital agiliza atendimento com novo sistema. <a href="https://prefeitura.sp.gov.br/web/saude/w/noticias/359560">prefeitura.sp.gov.br</a></li>
+<li>Prefeitura de São Paulo — atendimentos do SAMU em <a href="https://prefeitura.sp.gov.br/w/saiba-como-usar-corretamente-os-servi%C3%A7os-do-samu">2024</a> e <a href="https://prefeitura.sp.gov.br/web/saude/w/samu-192-como-usar-corretamente-e-evitar-sobrecarga-do-servi%C3%A7o-5">2025</a>.</li>
+<li>DATASUS — SIA/SUS, <a href="http://tabnet.datasus.gov.br/cgi/sia/qadescr.htm">notas técnicas</a>; arquivos PASP (ftp.datasus.gov.br/dissemin/publicos/SIASUS/200801_/Dados); <a href="http://sigtap.datasus.gov.br/tabela-unificada/app/sec/inicio.jsp">SIGTAP</a>.</li>
+<li>IBGE — <a href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/">Censo 2022, agregados por setor</a>. CNES — <a href="https://cnes.datasus.gov.br/">cnes.datasus.gov.br</a>. OpenStreetMap — <a href="https://www.openstreetmap.org/copyright">© colaboradores do OSM</a>.</li>
+</ol>
+</section>
+
+</div>
+<button class="tema" id="tema" type="button">◐ tema</button>
+<script>
+(function(){
+  var bt = document.getElementById("tema");
+  try { var t = localStorage.getItem("tema-vidas"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  bt.addEventListener("click", function(){
+    var escuro = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark"
+      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.dataset.theme = escuro ? "light" : "dark";
+    try { localStorage.setItem("tema-vidas", document.documentElement.dataset.theme); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

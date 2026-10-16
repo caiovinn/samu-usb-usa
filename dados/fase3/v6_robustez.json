@@ -1,0 +1,2544 @@
+{
+  "cenarios": [
+    [
+      "baixo",
+      "livre",
+      "sia"
+    ],
+    [
+      "baixo",
+      "livre",
+      "baixa"
+    ],
+    [
+      "baixo",
+      "calibrado",
+      "sia"
+    ],
+    [
+      "baixo",
+      "calibrado",
+      "baixa"
+    ],
+    [
+      "baixo",
+      "pesado",
+      "sia"
+    ],
+    [
+      "baixo",
+      "pesado",
+      "baixa"
+    ],
+    [
+      "central",
+      "livre",
+      "sia"
+    ],
+    [
+      "central",
+      "livre",
+      "baixa"
+    ],
+    [
+      "central",
+      "calibrado",
+      "sia"
+    ],
+    [
+      "central",
+      "calibrado",
+      "baixa"
+    ],
+    [
+      "central",
+      "pesado",
+      "sia"
+    ],
+    [
+      "central",
+      "pesado",
+      "baixa"
+    ],
+    [
+      "alto",
+      "livre",
+      "sia"
+    ],
+    [
+      "alto",
+      "livre",
+      "baixa"
+    ],
+    [
+      "alto",
+      "calibrado",
+      "sia"
+    ],
+    [
+      "alto",
+      "calibrado",
+      "baixa"
+    ],
+    [
+      "alto",
+      "pesado",
+      "sia"
+    ],
+    [
+      "alto",
+      "pesado",
+      "baixa"
+    ]
+  ],
+  "tabela": [
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 83.87330270455983,
+      "cvar10": 33.034369180082486,
+      "cob_grave": 80.75628857711133,
+      "cob_basico": 99.201783257009
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 105.68289688371391,
+      "cvar10": 64.98702567039497,
+      "cob_grave": 92.27371352049363,
+      "cob_basico": 99.66061320902028
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 100.62453076629,
+      "cvar10": 53.180199305228996,
+      "cob_grave": 91.55163347166967,
+      "cob_basico": 99.45434303709852
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 105.20075799218282,
+      "cvar10": 61.42771649358035,
+      "cob_grave": 91.21639913924672,
+      "cob_basico": 99.59436471299794
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 104.98710580290721,
+      "cvar10": 60.73581094777723,
+      "cob_grave": 91.54593627207835,
+      "cob_basico": 99.63497981648727
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 92.73125565449753,
+      "cvar10": 39.8366307746425,
+      "cob_grave": 81.44323291839935,
+      "cob_basico": 99.19703021305676
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 98.20396981669701,
+      "cvar10": 47.7283110077583,
+      "cob_grave": 85.68223816700082,
+      "cob_basico": 99.33936753199585
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 97.04698727320367,
+      "cvar10": 57.506155855955704,
+      "cob_grave": 81.24445773713921,
+      "cob_basico": 99.63166330080189
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 105.84381931946416,
+      "cvar10": 50.67800847087352,
+      "cob_grave": 73.92114631205588,
+      "cob_basico": 98.82153310406692
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 105.46288527689521,
+      "cvar10": 66.65113133229234,
+      "cob_grave": 91.345151848792,
+      "cob_basico": 99.62111837841813
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 104.6834848922272,
+      "cvar10": 67.21177120986414,
+      "cob_grave": 84.34616807893121,
+      "cob_basico": 99.47240420165619
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 105.83317162776234,
+      "cvar10": 51.28331721246058,
+      "cob_grave": 92.27371352049363,
+      "cob_basico": 98.78124911373823
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 105.17994108047806,
+      "cvar10": 66.89246636762282,
+      "cob_grave": 92.27371352049363,
+      "cob_basico": 99.62227834626539
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 86.76390374790735,
+      "cvar10": 33.98979916497858,
+      "cob_grave": 82.9360281819182,
+      "cob_basico": 99.38713425830083
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 111.47436213964399,
+      "cvar10": 67.85184972323155,
+      "cob_grave": 95.24976627408492,
+      "cob_basico": 99.7654753353119
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 105.25756421861394,
+      "cvar10": 55.00345288408423,
+      "cob_grave": 94.62466075818527,
+      "cob_basico": 99.68394525786016
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 110.81047670426098,
+      "cvar10": 64.09326783574485,
+      "cob_grave": 94.06596123829141,
+      "cob_basico": 99.71407652097152
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 110.50757140719928,
+      "cvar10": 63.24870476770242,
+      "cob_grave": 94.60430156398478,
+      "cob_basico": 99.72570869919544
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 96.7917390366255,
+      "cvar10": 41.242718848931936,
+      "cob_grave": 83.88499203530026,
+      "cob_basico": 99.38557842865082
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 102.6773734864646,
+      "cvar10": 49.278415375745475,
+      "cob_grave": 88.55344045416555,
+      "cob_basico": 99.42020808734962
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 101.92940279678572,
+      "cvar10": 59.35352745933318,
+      "cob_grave": 83.4644058687126,
+      "cob_basico": 99.7495289360471
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 111.06739355135358,
+      "cvar10": 52.817244567618644,
+      "cob_grave": 75.88365784235675,
+      "cob_basico": 98.95683597963969
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 111.28783987538479,
+      "cvar10": 69.40228074754857,
+      "cob_grave": 94.53108978150325,
+      "cob_basico": 99.72121817657082
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 110.52863288201782,
+      "cvar10": 69.65954040760144,
+      "cob_grave": 86.75660000019646,
+      "cob_basico": 99.56924407996799
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 111.1122826213459,
+      "cvar10": 53.49386806891607,
+      "cob_grave": 95.24976627408492,
+      "cob_basico": 98.96666716405518
+    },
+    {
+      "servico": "baixo",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 110.99746053543173,
+      "cvar10": 69.61225052809115,
+      "cob_grave": 95.24976627408492,
+      "cob_basico": 99.72128397510107
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 47.011123386072256,
+      "cvar10": 7.8270333875096085,
+      "cob_grave": 42.47763627446472,
+      "cob_basico": 88.1334653272183
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 68.72672475996636,
+      "cvar10": 27.440864736881803,
+      "cob_grave": 58.46497865124529,
+      "cob_basico": 96.50891159874342
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 63.53370119397497,
+      "cvar10": 18.653504213410955,
+      "cob_grave": 53.8387344083833,
+      "cob_basico": 95.39488446998328
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 68.29916665444021,
+      "cvar10": 24.855659465981496,
+      "cob_grave": 55.286537310935856,
+      "cob_basico": 96.52432767489738
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 68.02783269593318,
+      "cvar10": 24.27793144774636,
+      "cob_grave": 56.875104233929164,
+      "cob_basico": 96.70209457197436
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 55.54391865137089,
+      "cvar10": 11.383331450682999,
+      "cob_grave": 44.7866581422054,
+      "cob_basico": 92.2233101245467
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 60.99904676980586,
+      "cvar10": 15.820962357478377,
+      "cob_grave": 47.73242373052914,
+      "cob_basico": 94.28377866282096
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 59.171809191396655,
+      "cvar10": 21.493964976488844,
+      "cob_grave": 43.51477896259524,
+      "cob_basico": 95.14956516362432
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 69.79687183702576,
+      "cvar10": 18.672949656349456,
+      "cob_grave": 44.54682166472265,
+      "cob_basico": 94.59041209371863
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 68.38308516587193,
+      "cvar10": 28.811143701424353,
+      "cob_grave": 53.536725204896264,
+      "cob_basico": 96.42685183234163
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 67.47913777973073,
+      "cvar10": 29.047913265958538,
+      "cob_grave": 49.16188771819744,
+      "cob_basico": 96.13609874582644
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 69.73113494117179,
+      "cvar10": 19.07822556420199,
+      "cob_grave": 58.46497865124529,
+      "cob_basico": 95.58786452464314
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 68.06087144664076,
+      "cvar10": 28.97602484811174,
+      "cob_grave": 58.46497865124529,
+      "cob_basico": 96.58888043762246
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 49.54315125322673,
+      "cvar10": 8.15846459356639,
+      "cob_grave": 45.39778565916694,
+      "cob_basico": 90.44356264780433
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 74.69325480043045,
+      "cvar10": 29.207997607259397,
+      "cob_grave": 63.51566341983985,
+      "cob_basico": 98.43747996484365
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 68.14419289037916,
+      "cvar10": 19.60644388163154,
+      "cob_grave": 58.29171906015704,
+      "cob_basico": 97.56767282599228
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 74.08971479196019,
+      "cvar10": 26.440170491746663,
+      "cob_grave": 59.840795993068774,
+      "cob_basico": 98.32114725412512
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 73.74654673408877,
+      "cvar10": 25.786166980911254,
+      "cob_grave": 61.64063421372905,
+      "cob_basico": 98.47000820764889
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 59.381108232517796,
+      "cvar10": 11.951123755601753,
+      "cob_grave": 47.9480138231392,
+      "cob_basico": 94.31557018578496
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 65.44645109572548,
+      "cvar10": 16.60018493179643,
+      "cob_grave": 51.16751246001709,
+      "cob_basico": 96.23413599341049
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 63.85103205638494,
+      "cvar10": 22.495439169447945,
+      "cob_grave": 46.25876908274649,
+      "cob_basico": 97.65129313245097
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 75.30134689548234,
+      "cvar10": 19.830302894207435,
+      "cob_grave": 47.662747038852984,
+      "cob_basico": 96.30091212484552
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 74.37918672171969,
+      "cvar10": 30.543424877830326,
+      "cob_grave": 58.17451161334548,
+      "cob_basico": 98.3189699712205
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 73.46420079261507,
+      "cvar10": 30.638021138195683,
+      "cob_grave": 52.96015933906294,
+      "cob_basico": 97.934776259521
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 75.28208932610342,
+      "cvar10": 20.274715534797995,
+      "cob_grave": 63.51566341983985,
+      "cob_basico": 97.33015596311445
+    },
+    {
+      "servico": "baixo",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 74.03345673028888,
+      "cvar10": 30.699562986526782,
+      "cob_grave": 63.51566341983985,
+      "cob_basico": 98.44939141786011
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 35.23342862607923,
+      "cvar10": 3.5375034873430615,
+      "cob_grave": 28.729481373614973,
+      "cob_basico": 74.58417593181733
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 55.032013510908406,
+      "cvar10": 17.012883041550708,
+      "cob_grave": 40.76101701166701,
+      "cob_basico": 90.68704998073966
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 50.2528451966127,
+      "cvar10": 10.432033468697993,
+      "cob_grave": 36.82544144658697,
+      "cob_basico": 88.38762119535261
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 54.667001011643514,
+      "cvar10": 15.068268350785761,
+      "cob_grave": 38.47499983022452,
+      "cob_basico": 90.87412233817538
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 54.40183391110628,
+      "cvar10": 14.626056832605068,
+      "cob_grave": 39.321426603782896,
+      "cob_basico": 91.02029643726686
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 42.85293487840531,
+      "cvar10": 5.7300119174435356,
+      "cob_grave": 30.046449753111084,
+      "cob_basico": 83.52077094178148
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 47.85777892695479,
+      "cvar10": 8.619363067204382,
+      "cob_grave": 32.1691955355653,
+      "cob_basico": 86.92997780800643
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 45.911994917009686,
+      "cvar10": 12.421388233074442,
+      "cob_grave": 30.824234824115994,
+      "cob_basico": 87.04122834236902
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 56.38503371596784,
+      "cvar10": 10.80022396053998,
+      "cob_grave": 32.15909330105002,
+      "cob_basico": 88.51744647834418
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 54.65524631277088,
+      "cvar10": 18.076463019502707,
+      "cob_grave": 36.97196916177579,
+      "cob_basico": 90.49838455296839
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 53.784820719869344,
+      "cvar10": 18.201857541979344,
+      "cob_grave": 34.842442284043415,
+      "cob_basico": 89.84420144688058
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 56.295950478853406,
+      "cvar10": 11.098969559806076,
+      "cob_grave": 40.76101701166701,
+      "cob_basico": 89.94301442250293
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 54.34814611721198,
+      "cvar10": 18.196901373702307,
+      "cob_grave": 40.76101701166701,
+      "cob_basico": 90.7088754390347
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 37.416419038793926,
+      "cvar10": 3.7058329717472223,
+      "cob_grave": 31.06234118409389,
+      "cob_basico": 78.12317200461578
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 60.548537896374505,
+      "cvar10": 18.24447976872202,
+      "cob_grave": 44.4431541742034,
+      "cob_basico": 95.26853791509511
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 54.462086020907684,
+      "cvar10": 11.038756652259181,
+      "cob_grave": 40.07684142651675,
+      "cob_basico": 92.54246490980077
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 60.03057859398638,
+      "cvar10": 16.154511875415913,
+      "cob_grave": 41.900214232750784,
+      "cob_basico": 95.09032561983534
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 59.7046520204597,
+      "cvar10": 15.65926529641739,
+      "cob_grave": 42.830029441812634,
+      "cob_basico": 95.24881821230412
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 46.26864094704361,
+      "cvar10": 6.04629467220108,
+      "cob_grave": 32.54104790836047,
+      "cob_basico": 87.7585566417557
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 51.90481396568372,
+      "cvar10": 9.103342764790154,
+      "cob_grave": 34.81338046903363,
+      "cob_basico": 91.27476418677279
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 50.08329033300655,
+      "cvar10": 13.072523219557278,
+      "cob_grave": 33.20137201002317,
+      "cob_basico": 92.56172195199828
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 61.552336941889564,
+      "cvar10": 11.557459663103314,
+      "cob_grave": 34.69170704708498,
+      "cob_basico": 92.16050329980949
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 60.1913176774373,
+      "cvar10": 19.29922314541425,
+      "cob_grave": 40.309787506538136,
+      "cob_basico": 95.11050601913054
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 59.291009300673494,
+      "cvar10": 19.337756827386084,
+      "cob_grave": 37.74891386845336,
+      "cob_basico": 94.59435552874696
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 61.500746266906454,
+      "cvar10": 11.883696743529901,
+      "cob_grave": 44.4431541742034,
+      "cob_basico": 93.70957526155186
+    },
+    {
+      "servico": "baixo",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 59.854449930793166,
+      "cvar10": 19.416468918423682,
+      "cob_grave": 44.4431541742034,
+      "cob_basico": 95.49509813655116
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 80.40536046371899,
+      "cvar10": 31.725122031456937,
+      "cob_grave": 78.31896805943872,
+      "cob_basico": 98.82580111861765
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 99.37935630495032,
+      "cvar10": 61.30478285107682,
+      "cob_grave": 88.83569299255666,
+      "cob_basico": 99.43833468252355
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 95.3511955733478,
+      "cvar10": 50.79885809124643,
+      "cob_grave": 88.02374826741226,
+      "cob_basico": 99.0677826004363
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 99.0359978048552,
+      "cvar10": 58.018085505430555,
+      "cob_grave": 87.96392698427712,
+      "cob_basico": 99.35321037229727
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 98.90172037714021,
+      "cvar10": 57.531196566135364,
+      "cob_grave": 88.07409297253093,
+      "cob_basico": 99.43398108849179
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 88.08073893765217,
+      "cvar10": 37.9215532057948,
+      "cob_grave": 78.76181698791324,
+      "cob_basico": 98.8238061185719
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 93.1138480693955,
+      "cvar10": 45.69571016979468,
+      "cob_grave": 82.60154078144821,
+      "cob_basico": 99.13516495198758
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 91.63039225849614,
+      "cvar10": 54.90126990467974,
+      "cob_grave": 78.7528020991942,
+      "cob_basico": 99.40411181533662
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 100.00280894983091,
+      "cvar10": 47.98949926974328,
+      "cob_grave": 71.71769147365869,
+      "cob_basico": 98.57683448583442
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 99.11402020138313,
+      "cvar10": 63.037566792644206,
+      "cob_grave": 87.70261851925802,
+      "cob_basico": 99.41572503649732
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 98.31166148843442,
+      "cvar10": 63.92478847125592,
+      "cob_grave": 81.51904066379826,
+      "cob_basico": 99.28651275446079
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 99.95757911386282,
+      "cvar10": 48.50611398529142,
+      "cob_grave": 88.83569299255666,
+      "cob_basico": 98.48171289553692
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 98.85336704010899,
+      "cvar10": 63.302482388865556,
+      "cob_grave": 88.83569299255666,
+      "cob_basico": 99.42114264685712
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 85.68979348163249,
+      "cvar10": 33.651291744704345,
+      "cob_grave": 82.11064618909109,
+      "cob_basico": 99.33170341855649
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 109.2560474915481,
+      "cvar10": 66.81015821716217,
+      "cob_grave": 94.13804934412244,
+      "cob_basico": 99.73379745997504
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 103.5090245520995,
+      "cvar10": 54.34912817481718,
+      "cob_grave": 93.47475887500633,
+      "cob_basico": 99.60685488585207
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 108.66877156059597,
+      "cvar10": 63.12934650757822,
+      "cob_grave": 92.99600954517311,
+      "cob_basico": 99.67702510588398
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 108.4019773877973,
+      "cvar10": 62.34329426752675,
+      "cob_grave": 93.45388592018251,
+      "cob_basico": 99.69835045996108
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 95.26044570009878,
+      "cvar10": 40.74759141043726,
+      "cob_grave": 82.954539966064,
+      "cob_basico": 99.32895259625876
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 100.98703825043779,
+      "cvar10": 48.72247592074035,
+      "cob_grave": 87.44972853050423,
+      "cob_basico": 99.39821364518764
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 100.06861531804152,
+      "cvar10": 58.6992360219126,
+      "cob_grave": 82.62491792484288,
+      "cob_basico": 99.71130665761861
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 109.08352582735445,
+      "cvar10": 52.03900805937645,
+      "cob_grave": 75.14142517559851,
+      "cob_basico": 98.91258228828303
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 109.05741359174526,
+      "cvar10": 68.4151979721793,
+      "cob_grave": 93.33714397181198,
+      "cob_basico": 99.6901951790113
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 108.29058727071575,
+      "cvar10": 68.78687954014633,
+      "cob_grave": 85.86005790000979,
+      "cob_basico": 99.5381661593665
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 109.10517197712369,
+      "cvar10": 52.689819271976425,
+      "cob_grave": 94.13804934412244,
+      "cob_basico": 98.90312398024466
+    },
+    {
+      "servico": "central",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 108.7686122429112,
+      "cvar10": 68.63641005032638,
+      "cob_grave": 94.13804934412244,
+      "cob_basico": 99.69046812411634
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 44.074659909265414,
+      "cvar10": 7.397750245307579,
+      "cob_grave": 39.55355810247748,
+      "cob_basico": 84.87156149046417
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 62.48962723116205,
+      "cvar10": 25.3251770468135,
+      "cob_grave": 53.60781528643801,
+      "cob_basico": 93.26198370167909
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 58.48447993944046,
+      "cvar10": 17.47779309450272,
+      "cob_grave": 49.524520663314256,
+      "cob_basico": 92.08245739392767
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 62.19785095535535,
+      "cvar10": 22.95802936290234,
+      "cob_grave": 50.87056260827939,
+      "cob_basico": 93.46606105854313
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 61.99122524095128,
+      "cvar10": 22.462167009537772,
+      "cob_grave": 52.268374759346116,
+      "cob_basico": 93.60867419146648
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 51.31977290889424,
+      "cvar10": 10.650866743228988,
+      "cob_grave": 41.63331072920924,
+      "cob_basico": 89.03216653796304
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 56.145266300238,
+      "cvar10": 14.851203574143762,
+      "cob_grave": 44.32037833550605,
+      "cob_basico": 91.1694990125316
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 54.16977731085922,
+      "cvar10": 20.189521572138286,
+      "cob_grave": 40.723506617698405,
+      "cob_basico": 91.25032320824779
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 63.893277239085364,
+      "cvar10": 17.300324107063105,
+      "cob_grave": 41.436557165523006,
+      "cob_basico": 91.85358510597848
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 62.111780335352314,
+      "cvar10": 26.682476357550883,
+      "cob_grave": 49.078736525305914,
+      "cob_basico": 93.19473194334182
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 61.22583951542002,
+      "cvar10": 27.06522026528395,
+      "cob_grave": 45.44039515513175,
+      "cob_basico": 92.8936004769342
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 63.7994755185078,
+      "cvar10": 17.654313985569058,
+      "cob_grave": 53.60781528643801,
+      "cob_basico": 92.744109235508
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 61.827302646126384,
+      "cvar10": 26.855335544088774,
+      "cob_grave": 53.60781528643801,
+      "cob_basico": 93.29867859936714
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 48.59294490632632,
+      "cvar10": 8.039413041025695,
+      "cob_grave": 44.25313957238256,
+      "cob_basico": 89.62917395451568
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 72.38114033167179,
+      "cvar10": 28.55575125425754,
+      "cob_grave": 61.510347601352834,
+      "cob_basico": 97.80672410217231
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 66.38441112781055,
+      "cvar10": 19.25762229111183,
+      "cob_grave": 56.527799671597435,
+      "cob_basico": 96.82208798810639
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 71.85156282124326,
+      "cvar10": 25.854817911640573,
+      "cob_grave": 58.037238208812056,
+      "cob_basico": 97.73571362246678
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 71.53743307494625,
+      "cvar10": 25.231024170056074,
+      "cob_grave": 59.75158941326424,
+      "cob_basico": 97.90268332852965
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 57.917144490469866,
+      "cvar10": 11.747032622029279,
+      "cob_grave": 46.70733494467165,
+      "cob_basico": 93.60182875902855
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 63.74575486478869,
+      "cvar10": 16.315061804114553,
+      "cob_grave": 49.817538348683485,
+      "cob_basico": 95.57982464856936
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 62.04942444497035,
+      "cvar10": 22.13599024381095,
+      "cob_grave": 45.18867625159378,
+      "cob_basico": 96.80918610062214
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 73.18536226462938,
+      "cvar10": 19.40009725088272,
+      "cob_grave": 46.440115531691134,
+      "cob_basico": 95.72326619951123
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 72.05587260187899,
+      "cvar10": 29.90948190640442,
+      "cob_grave": 56.332862618983,
+      "cob_basico": 97.7051686221993
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 71.1445342445275,
+      "cvar10": 30.05732913796539,
+      "cob_grave": 51.46085264811349,
+      "cob_basico": 97.36786899109711
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 73.14625643455646,
+      "cvar10": 19.831730008898354,
+      "cob_grave": 61.510347601352834,
+      "cob_basico": 96.74952495845399
+    },
+    {
+      "servico": "central",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 71.71795543769191,
+      "cvar10": 30.069145534677823,
+      "cob_grave": 61.510347601352834,
+      "cob_basico": 97.85641811237767
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 32.735881191941225,
+      "cvar10": 3.3234172374988513,
+      "cob_grave": 26.461728782698568,
+      "cob_basico": 70.0473325518512
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 49.36293958891289,
+      "cvar10": 15.569728245102816,
+      "cob_grave": 37.246225536381075,
+      "cob_basico": 84.41216753802779
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 45.718160548914724,
+      "cvar10": 9.698256518851528,
+      "cob_grave": 33.710068156342466,
+      "cob_basico": 82.76951574978216
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 49.115302392210864,
+      "cvar10": 13.8014375539903,
+      "cob_grave": 35.19758366154026,
+      "cob_basico": 84.94980656955389
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 48.90592114598076,
+      "cvar10": 13.409554187868826,
+      "cob_grave": 35.965493212754,
+      "cob_basico": 85.03832380998058
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 39.152817029607874,
+      "cvar10": 5.330088277353187,
+      "cob_grave": 27.630936117782984,
+      "cob_basico": 78.07136221945893
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 43.517532734307636,
+      "cvar10": 8.02762797609747,
+      "cob_grave": 29.604309889129254,
+      "cob_basico": 81.25736127006886
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 41.521654745764444,
+      "cvar10": 11.593624364635131,
+      "cob_grave": 28.491712226337988,
+      "cob_basico": 80.15880583022759
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 50.94400902508187,
+      "cvar10": 9.919578036011018,
+      "cob_grave": 29.68349113238544,
+      "cob_basico": 83.44081358733351
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 48.96511208424428,
+      "cvar10": 16.606110536920866,
+      "cob_grave": 33.78553004694085,
+      "cob_basico": 84.18012523265578
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 48.1332504288068,
+      "cvar10": 16.82056078613969,
+      "cob_grave": 32.03043756380823,
+      "cob_basico": 83.338768188949
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 50.833057615959966,
+      "cvar10": 10.18122443785665,
+      "cob_grave": 37.246225536381075,
+      "cob_basico": 84.6057496012274
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 48.69986555929491,
+      "cvar10": 16.72941036426915,
+      "cob_grave": 37.246225536381075,
+      "cob_basico": 84.1297322932715
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 36.59397888981087,
+      "cvar10": 3.644709434800454,
+      "cob_grave": 30.13922769192635,
+      "cob_basico": 76.83767979137946
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 58.40022421447673,
+      "cvar10": 17.786292528995066,
+      "cob_grave": 42.97782682270178,
+      "cob_basico": 93.6597945644744
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 52.84767500485935,
+      "cvar10": 10.81558678052462,
+      "cob_grave": 38.784438633769405,
+      "cob_basico": 91.07060501672493
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 57.94662335988426,
+      "cvar10": 15.750437705638658,
+      "cob_grave": 40.53814302165725,
+      "cob_basico": 93.62478359602598
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 57.64514951779908,
+      "cvar10": 15.275876170034792,
+      "cob_grave": 41.43463425371271,
+      "cob_basico": 93.78473793971054
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 44.95934539853345,
+      "cvar10": 5.9316687583350864,
+      "cob_grave": 31.552718479559083,
+      "cob_basico": 86.22364855898837
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 50.34936151936188,
+      "cvar10": 8.925108015479067,
+      "cob_grave": 33.76636886067912,
+      "cob_basico": 89.71062424455268
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 48.47025365730112,
+      "cvar10": 12.837342985067549,
+      "cob_grave": 32.263529977584504,
+      "cob_basico": 90.54805043902934
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 59.555260090167856,
+      "cvar10": 11.274144423261788,
+      "cob_grave": 33.69130894553382,
+      "cob_basico": 90.88256077355324
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 58.03544568093254,
+      "cvar10": 18.847952478230145,
+      "cob_grave": 38.98152466049664,
+      "cob_basico": 93.49262491918708
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 57.145972117984,
+      "cvar10": 18.920234176403845,
+      "cob_grave": 36.59710617948234,
+      "cob_basico": 92.92996529077385
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 59.48747882175144,
+      "cvar10": 11.590383145415798,
+      "cob_grave": 42.97782682270178,
+      "cob_basico": 92.401887601509
+    },
+    {
+      "servico": "central",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 57.709010204095335,
+      "cvar10": 18.966679189160114,
+      "cob_grave": 42.97782682270178,
+      "cob_basico": 93.82170322174694
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 74.91386468819708,
+      "cvar10": 29.41868115855657,
+      "cob_grave": 74.84217262982519,
+      "cob_basico": 97.83537688738649
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 90.45335469432436,
+      "cvar10": 55.2657930352627,
+      "cob_grave": 83.8508736643625,
+      "cob_basico": 98.7871466174628
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 87.53413989450405,
+      "cvar10": 46.73342174387668,
+      "cob_grave": 82.9484101849817,
+      "cob_basico": 98.11919131575644
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 90.22348866835344,
+      "cvar10": 52.4175582008235,
+      "cob_grave": 83.27595612261207,
+      "cob_basico": 98.67946269956744
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 90.17708599038222,
+      "cvar10": 52.20754568470324,
+      "cob_grave": 83.10152482217885,
+      "cob_basico": 98.80649030394153
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 81.08950782147659,
+      "cvar10": 34.56220549647314,
+      "cob_grave": 74.9989366909239,
+      "cob_basico": 97.87717041400853
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 85.5254334414654,
+      "cvar10": 42.16201859673018,
+      "cob_grave": 78.35380576512978,
+      "cob_basico": 98.4904457181535
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 83.74653481273023,
+      "cvar10": 50.226231383105066,
+      "cob_grave": 75.18368013024956,
+      "cob_basico": 98.70945489059454
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 91.47473731882226,
+      "cvar10": 43.61347229065962,
+      "cob_grave": 68.55760102494786,
+      "cob_basico": 97.9347561542761
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 90.10250368742254,
+      "cvar10": 57.00858786690423,
+      "cob_grave": 82.48283273617352,
+      "cob_basico": 98.80565964660772
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 89.26881400568487,
+      "cvar10": 58.29066480445146,
+      "cob_grave": 77.34301489110351,
+      "cob_basico": 98.7381250166725
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 91.4482720012715,
+      "cvar10": 43.97870956429574,
+      "cob_grave": 83.8508736643625,
+      "cob_basico": 97.749617024955
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 89.9062101276376,
+      "cvar10": 57.276400430436944,
+      "cob_grave": 83.8508736643625,
+      "cob_basico": 98.82360621995221
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 84.26902145659449,
+      "cvar10": 33.17370549582047,
+      "cob_grave": 81.04680583840918,
+      "cob_basico": 99.23391667126629
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 106.44361642829513,
+      "cvar10": 65.39065741058427,
+      "cob_grave": 92.67716375408972,
+      "cob_basico": 99.67881084430334
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 101.24536530630385,
+      "cvar10": 53.43948121618911,
+      "cob_grave": 91.96721349350754,
+      "cob_basico": 99.49016375624478
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 105.94084747070349,
+      "cvar10": 61.803247997235665,
+      "cob_grave": 91.60025548714242,
+      "cob_basico": 99.61467032214759
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 105.71639904425967,
+      "cvar10": 61.090274167819366,
+      "cob_grave": 91.95694246685221,
+      "cob_basico": 99.65085601338389
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 93.2762149949994,
+      "cvar10": 40.04151596798042,
+      "cob_grave": 81.76595679666522,
+      "cob_basico": 99.2295233623169
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 98.80273053840233,
+      "cvar10": 47.94969049479403,
+      "cob_grave": 86.05740529185776,
+      "cob_basico": 99.3547222938509
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 97.69302363045108,
+      "cvar10": 57.775790501623376,
+      "cob_grave": 81.54084401647015,
+      "cob_basico": 99.6508698785471
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 106.53799722826102,
+      "cvar10": 50.97899951374116,
+      "cob_grave": 74.18314875004401,
+      "cob_basico": 98.84328250524479
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 106.22837940549978,
+      "cvar10": 67.04344536829156,
+      "cob_grave": 91.7751735932894,
+      "cob_basico": 99.6381064504392
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 105.45169096230173,
+      "cvar10": 67.56526128217227,
+      "cob_grave": 84.67492158227358,
+      "cob_basico": 99.48828661218715
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 106.53358887411716,
+      "cvar10": 51.5948791211041,
+      "cob_grave": 92.67716375408972,
+      "cob_basico": 98.80953386710667
+    },
+    {
+      "servico": "alto",
+      "transito": "livre",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 105.94381919344394,
+      "cvar10": 67.28057210495909,
+      "cob_grave": 92.67716375408972,
+      "cob_basico": 99.63900389815544
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 39.63547461339629,
+      "cvar10": 6.68197224590765,
+      "cob_grave": 35.86253094894893,
+      "cob_basico": 78.688330800083
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 54.11676863188429,
+      "cvar10": 22.086905724301094,
+      "cob_grave": 47.72681988885948,
+      "cob_basico": 86.355468222636
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 51.37117812823108,
+      "cvar10": 15.627228486983475,
+      "cob_grave": 44.26003237629163,
+      "cob_basico": 85.38503532039705
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 53.939477281186214,
+      "cvar10": 20.06144060235388,
+      "cob_grave": 45.4774740664923,
+      "cob_basico": 86.86771218202396
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 53.806452757783255,
+      "cvar10": 19.697195273495137,
+      "cob_grave": 46.660062418139766,
+      "cob_basico": 86.87822048181391
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 45.29193714228883,
+      "cvar10": 9.456850562041964,
+      "cob_grave": 37.669766523099646,
+      "cob_basico": 82.6684674725922
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 49.302410397852796,
+      "cvar10": 13.30368584672839,
+      "cob_grave": 40.04885828869478,
+      "cob_basico": 84.72106074026713
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 47.263834963267634,
+      "cvar10": 17.983721783308685,
+      "cob_grave": 37.14440321736272,
+      "cob_basico": 83.53474882154201
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 55.739455947390894,
+      "cvar10": 15.21479855525172,
+      "cob_grave": 37.52304070818519,
+      "cob_basico": 86.02916689460577
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 53.68528980601414,
+      "cvar10": 23.372380776658677,
+      "cob_grave": 43.6837365735177,
+      "cob_basico": 86.27948342263505
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 52.837456115601384,
+      "cvar10": 23.903521911713984,
+      "cob_grave": 40.84481016860179,
+      "cob_basico": 85.80046995945474
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 55.652642622916154,
+      "cvar10": 15.48719386325117,
+      "cob_grave": 47.72681988885948,
+      "cob_basico": 86.681340978059
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 53.47755397524204,
+      "cvar10": 23.546006834068837,
+      "cob_grave": 47.72681988885948,
+      "cob_basico": 86.15913828735545
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 47.35309142724913,
+      "cvar10": 7.874324192773128,
+      "cob_grave": 42.84852339844443,
+      "cob_basico": 88.47193108337493
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 69.49753508915627,
+      "cvar10": 27.68414093950267,
+      "cob_grave": 59.094836272909966,
+      "cob_basico": 96.81606035034847
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 64.14185589788289,
+      "cvar10": 18.7868782941051,
+      "cob_grave": 54.39591141787474,
+      "cob_basico": 95.72386577417433
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 69.04991175531744,
+      "cvar10": 25.07320107038769,
+      "cob_grave": 55.856602018361,
+      "cob_basico": 96.81170417207309
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 68.76986395907808,
+      "cvar10": 24.486358631107002,
+      "cob_grave": 57.470788506550576,
+      "cob_basico": 96.9891287540309
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 56.05064605828845,
+      "cvar10": 11.464386129939829,
+      "cob_grave": 45.1874938701221,
+      "cob_basico": 92.541515595691
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 61.58438712490594,
+      "cvar10": 15.93001124085552,
+      "cob_grave": 48.16712166369328,
+      "cob_basico": 94.58629059563299
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 59.78194095702725,
+      "cvar10": 21.636897715421764,
+      "cob_grave": 43.86580462161515,
+      "cob_basico": 95.5352305653381
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 70.51600892342178,
+      "cvar10": 18.831447490396467,
+      "cob_grave": 44.942005859475906,
+      "cob_basico": 94.85445126242011
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 69.15785388467094,
+      "cvar10": 29.05225741265803,
+      "cob_grave": 54.114968896933966,
+      "cob_basico": 96.73060263845058
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 68.2521721295986,
+      "cvar10": 29.270464891927347,
+      "cob_grave": 49.63954734788718,
+      "cob_basico": 96.4331104027354
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 70.45534399165737,
+      "cvar10": 19.242696865035622,
+      "cob_grave": 59.094836272909966,
+      "cob_basico": 95.86025131261647
+    },
+    {
+      "servico": "alto",
+      "transito": "calibrado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 68.83196534218739,
+      "cvar10": 29.216070724702735,
+      "cob_grave": 59.094836272909966,
+      "cob_basico": 96.89290696369214
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "hoje",
+      "vidas": 29.02924561164756,
+      "cvar10": 2.973457652781882,
+      "cob_grave": 23.684916884063917,
+      "cob_basico": 62.43524231029775
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "p-median",
+      "vidas": 41.91820978954011,
+      "cvar10": 13.420322268965004,
+      "cob_grave": 33.02411606196632,
+      "cob_basico": 73.77581586953468
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2 lam=0.1",
+      "vidas": 39.4632205436524,
+      "cvar10": 8.57038578564498,
+      "cob_grave": 29.952638218370392,
+      "cob_basico": 73.161102833275
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2b central lam=0.1",
+      "vidas": 41.76890343933268,
+      "cvar10": 11.914030475146287,
+      "cob_grave": 31.250486110660127,
+      "cob_basico": 74.68104424117658
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 41.62467117891948,
+      "cvar10": 11.603108390582216,
+      "cob_grave": 31.925469764511767,
+      "cob_basico": 74.6593508867976
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=20",
+      "vidas": 33.982100915131156,
+      "cvar10": 4.691335821087923,
+      "cob_grave": 24.685178865372002,
+      "cob_basico": 69.00552557579738
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=40",
+      "vidas": 37.536253333219385,
+      "cvar10": 7.106592020644904,
+      "cob_grave": 26.470645178447622,
+      "cob_basico": 71.73286711205628
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=40",
+      "vidas": 35.587236654625556,
+      "cvar10": 10.237444613565827,
+      "cob_grave": 25.60807369593815,
+      "cob_basico": 69.26554900435833
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 43.60441762705962,
+      "cvar10": 8.61502808415222,
+      "cob_grave": 26.63488886291338,
+      "cob_basico": 74.46902696143782
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 41.490114308867206,
+      "cvar10": 14.382832599833472,
+      "cob_grave": 29.95744147312518,
+      "cob_basico": 73.49767945290802
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 40.72415665002241,
+      "cvar10": 14.685129158450032,
+      "cob_grave": 28.60410384764709,
+      "cob_basico": 72.4133098793311
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 43.49806256360125,
+      "cvar10": 8.818122528280323,
+      "cob_grave": 33.02411606196632,
+      "cob_basico": 75.17501296688498
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "sia",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 41.30073589072059,
+      "cvar10": 14.503033847268116,
+      "cob_grave": 33.02411606196632,
+      "cob_basico": 73.07163242207565
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "hoje",
+      "vidas": 35.52665790168741,
+      "cvar10": 3.56132618075623,
+      "cob_grave": 29.021823752915353,
+      "cob_basico": 75.08312107343203
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "p-median",
+      "vidas": 55.739639325688955,
+      "cvar10": 17.180744742370077,
+      "cob_grave": 41.21867296570473,
+      "cob_basico": 91.35789160083215
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2 lam=0.1",
+      "vidas": 50.80430824545844,
+      "cvar10": 10.515808902035696,
+      "cob_grave": 37.230246506373156,
+      "cob_basico": 88.99046997228356
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2b central lam=0.1",
+      "vidas": 55.357224845638626,
+      "cvar10": 15.21631223663895,
+      "cob_grave": 38.90118230143741,
+      "cob_basico": 91.49880268926682
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "fase2b central_r25 lam=0.1",
+      "vidas": 55.08463365055037,
+      "cvar10": 14.767340336588932,
+      "cob_grave": 39.757910340837284,
+      "cob_basico": 91.6493563044232
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=20",
+      "vidas": 43.301024896622145,
+      "cvar10": 5.774554575318638,
+      "cob_grave": 30.358508043980827,
+      "cob_basico": 84.12001436498593
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=40",
+      "vidas": 48.38661163288284,
+      "cvar10": 8.686329006576557,
+      "cob_grave": 32.500230586302834,
+      "cob_basico": 87.54890457057586
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=40",
+      "vidas": 46.45249496957814,
+      "cvar10": 12.5131549740964,
+      "cob_grave": 31.12339400850548,
+      "cob_basico": 87.81375566759138
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre",
+      "vidas": 57.054981497897565,
+      "cvar10": 10.902737177916137,
+      "cob_grave": 32.477266198837576,
+      "cob_basico": 89.05259726076329
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre",
+      "vidas": 55.36541283016069,
+      "cvar10": 18.245321615433706,
+      "cob_grave": 37.38684800119314,
+      "cob_basico": 91.17424646306158
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=4 K=livre",
+      "vidas": 54.49076520344316,
+      "cvar10": 18.35882967274638,
+      "cob_grave": 35.20588752654322,
+      "cob_basico": 90.54093562162235
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=0 K=livre G=pm",
+      "vidas": 56.96991681490518,
+      "cvar10": 11.205693429039853,
+      "cob_grave": 41.21867296570473,
+      "cob_basico": 90.50221657345271
+    },
+    {
+      "servico": "alto",
+      "transito": "pesado",
+      "carga": "baixa",
+      "config": "vidas lam=1 K=livre G=pm",
+      "vidas": 55.05393244350995,
+      "cvar10": 18.365387558550633,
+      "cob_grave": 41.21867296570473,
+      "cob_basico": 91.41248039396255
+    }
+  ],
+  "por_config": [
+    {
+      "config": "vidas lam=0 K=livre G=pm",
+      "arrep_max": 0.3620795182980885,
+      "arrep_rel_max": 0.0032480967941714823,
+      "vidas_min": 43.49806256360125,
+      "vidas_max": 111.1122826213459,
+      "cvar_min": 8.818122528280323
+    },
+    {
+      "config": "vidas lam=0 K=livre",
+      "arrep_max": 0.40696858829041105,
+      "arrep_rel_max": 0.0036507819419554183,
+      "vidas_min": 43.60441762705962,
+      "vidas_max": 111.06739355135358,
+      "cvar_min": 8.61502808415222
+    },
+    {
+      "config": "p-median",
+      "arrep_max": 1.686207837519511,
+      "arrep_rel_max": 0.0386705735171452,
+      "vidas_min": 41.91820978954011,
+      "vidas_max": 111.47436213964399,
+      "cvar_min": 13.420322268965004
+    },
+    {
+      "config": "fase2b central lam=0.1",
+      "arrep_max": 1.835514187726936,
+      "arrep_rel_max": 0.0420946841539255,
+      "vidas_min": 41.76890343933268,
+      "vidas_max": 110.81047670426098,
+      "cvar_min": 11.914030475146287
+    },
+    {
+      "config": "fase2b central_r25 lam=0.1",
+      "arrep_max": 2.0380878791011057,
+      "arrep_rel_max": 0.045402428374861914,
+      "vidas_min": 41.62467117891948,
+      "vidas_max": 110.50757140719928,
+      "cvar_min": 11.603108390582216
+    },
+    {
+      "config": "vidas lam=1 K=livre",
+      "arrep_max": 2.1143033181924125,
+      "arrep_rel_max": 0.04848828245513221,
+      "vidas_min": 41.490114308867206,
+      "vidas_max": 111.28783987538479,
+      "cvar_min": 14.382832599833472
+    },
+    {
+      "config": "vidas lam=1 K=livre G=pm",
+      "arrep_max": 2.30368173633903,
+      "arrep_rel_max": 0.052831384105206644,
+      "vidas_min": 41.30073589072059,
+      "vidas_max": 110.99746053543173,
+      "cvar_min": 14.503033847268116
+    },
+    {
+      "config": "vidas lam=4 K=livre",
+      "arrep_max": 2.90199983178951,
+      "arrep_rel_max": 0.06605433884409466,
+      "vidas_min": 40.72415665002241,
+      "vidas_max": 110.52863288201782,
+      "cvar_min": 14.685129158450032
+    },
+    {
+      "config": "fase2 lam=0.1",
+      "arrep_max": 7.15715400510318,
+      "arrep_rel_max": 0.11519060482911732,
+      "vidas_min": 39.4632205436524,
+      "vidas_max": 105.25756421861394,
+      "cvar_min": 8.57038578564498
+    },
+    {
+      "config": "vidas lam=0 K=40",
+      "arrep_max": 9.85489579975686,
+      "arrep_rel_max": 0.15673690806108453,
+      "vidas_min": 37.536253333219385,
+      "vidas_max": 102.6773734864646,
+      "cvar_min": 7.106592020644904
+    },
+    {
+      "config": "vidas lam=1 K=40",
+      "arrep_max": 11.469046608883012,
+      "arrep_rel_max": 0.1863299945818585,
+      "vidas_min": 35.587236654625556,
+      "vidas_max": 101.92940279678572,
+      "cvar_min": 10.237444613565827
+    },
+    {
+      "config": "vidas lam=0 K=20",
+      "arrep_max": 15.920238662964543,
+      "arrep_rel_max": 0.24830407347937114,
+      "vidas_min": 33.982100915131156,
+      "vidas_max": 96.7917390366255,
+      "cvar_min": 4.691335821087923
+    },
+    {
+      "config": "hoje",
+      "arrep_max": 25.758195642255608,
+      "arrep_rel_max": 0.39212025249150034,
+      "vidas_min": 29.02924561164756,
+      "vidas_max": 86.76390374790735,
+      "cvar_min": 2.973457652781882
+    }
+  ],
+  "minimax_arrependimento": "vidas lam=0 K=livre G=pm",
+  "carga_baixa_fator_q": 0.4174304582095746
+}

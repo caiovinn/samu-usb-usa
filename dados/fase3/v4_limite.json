@@ -1,0 +1,28 @@
+{
+  "lado_km": 3.0,
+  "tempo_max_s": 900.0,
+  "por_K": [
+    {
+      "K": null,
+      "zonas": 192,
+      "lado_km": 3.0,
+      "status": 1,
+      "msg": "Time limit reached. (HiGHS Status 13: Time limit reached)",
+      "segundos": 900.3,
+      "limite": 0.07500935921352592,
+      "valor": 0.07420793342164547,
+      "gap": 0.010799731981846018,
+      "exato_da_solucao_zonas": {
+        "vidas": 56.50191076266792,
+        "cvar10": 12.882473256941665,
+        "cob_grave": 42.045404736947695,
+        "et_grave": 19.73152119621255,
+        "cob_basico": 91.76174478896525,
+        "et_basico": 10.903687234678635
+      },
+      "busca_degraus": 0.06392992905437284,
+      "folga_max_rel": 0.1733058416149649
+    }
+  ],
+  "nota": "limite = limite dual do MILP em zonas com cobertura fracionaria; vale como teto do otimo por setor (1 - e^L concava: a media por zona so superestima)"
+}
