@@ -70,8 +70,10 @@ Keep this file short: edit or delete rules, don't just append.
   results, caveats, and what is not done.
 - Don't expand scope silently; offer follow-ups instead.
 - Deliverables match their audience and the project's language.
+- Always convey ideas clearly. Don't try to summarize complex contexts in a few words, use as many words as necessary, but don't extend the text just to make it longer, nor use difficult words unnecessarily.
 
 ## Documents and figures
 - Render and look at every page, slide and figure before handing it over:
   overlaps, overflow, phone width, light and dark themes.
 - Charts: never a dual y-axis; consistent colours per entity; data from result files.
+- Always transmit the idea 
