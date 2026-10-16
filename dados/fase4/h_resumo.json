@@ -1,0 +1,135 @@
+{
+ "pares": {
+  "hc lam=0 K=20": {
+   "fase3": "vidas lam=0 K=20",
+   "sim_fase3": 48.48916438118517,
+   "sim_hc": 49.19234439327465,
+   "dif_pareada_media": 0.7031800120894781,
+   "dif_min": 0.6896262159349718,
+   "dif_max": 0.7154934334519467,
+   "hc_vidas": 49.72954945367366,
+   "movidas_desde_hoje": 20,
+   "unidades_diferentes_da_fase3": 21
+  },
+  "hc lam=0 K=40": {
+   "fase3": "vidas lam=0 K=40",
+   "sim_fase3": 54.31051976913329,
+   "sim_hc": 54.55781267316246,
+   "dif_pareada_media": 0.2472929040291613,
+   "dif_min": 0.22068810627269642,
+   "dif_max": 0.2720292954801593,
+   "hc_vidas": 54.773267848441066,
+   "movidas_desde_hoje": 40,
+   "unidades_diferentes_da_fase3": 16
+  },
+  "hc lam=0 K=livre": {
+   "fase3": "vidas lam=0 K=livre",
+   "sim_fase3": 63.59423361621734,
+   "sim_hc": 63.878847783385034,
+   "dif_pareada_media": 0.28461416716769605,
+   "dif_min": 0.2510096497684984,
+   "dif_max": 0.3267710642139292,
+   "hc_vidas": 63.830235191454086,
+   "movidas_desde_hoje": 113,
+   "unidades_diferentes_da_fase3": 48
+  },
+  "hc lam=1 K=40": {
+   "fase3": "vidas lam=1 K=40",
+   "sim_fase3": 51.81365354717581,
+   "sim_hc": 52.138833680263154,
+   "dif_pareada_media": 0.3251801330873434,
+   "dif_min": 0.2622149418365112,
+   "dif_max": 0.38025131964715086,
+   "hc_vidas": 52.22797321081937,
+   "movidas_desde_hoje": 40,
+   "unidades_diferentes_da_fase3": 42
+  },
+  "hc lam=1 K=livre": {
+   "fase3": "vidas lam=1 K=livre",
+   "sim_fase3": 61.507061110963114,
+   "sim_hc": 58.28245364959238,
+   "dif_pareada_media": -3.2246074613707427,
+   "dif_min": -3.269353102159805,
+   "dif_max": -3.1669249126377252,
+   "hc_vidas": 58.02801327160166,
+   "movidas_desde_hoje": 96,
+   "unidades_diferentes_da_fase3": 82
+  },
+  "reot vidas lam=0 K=40": {
+   "fase3": "vidas lam=0 K=40",
+   "sim_fase3": 54.31051976913329,
+   "sim_hc": 54.55045001520318,
+   "dif_pareada_media": 0.2399302460698891,
+   "dif_min": 0.22415235041031423,
+   "dif_max": 0.2489548440240199,
+   "hc_vidas": 54.697164084649565,
+   "movidas_desde_hoje": 40,
+   "unidades_diferentes_da_fase3": null
+  },
+  "reot vidas lam=0 K=livre": {
+   "fase3": "vidas lam=0 K=livre",
+   "sim_fase3": 63.59423361621734,
+   "sim_hc": 63.78607261288886,
+   "dif_pareada_media": 0.1918389966715163,
+   "dif_min": 0.16810474103518658,
+   "dif_max": 0.20436689255054574,
+   "hc_vidas": 63.741877295027756,
+   "movidas_desde_hoje": 114,
+   "unidades_diferentes_da_fase3": null
+  },
+  "reot vidas lam=1 K=livre": {
+   "fase3": "vidas lam=1 K=livre",
+   "sim_fase3": 61.507061110963114,
+   "sim_hc": 61.52837720712473,
+   "dif_pareada_media": 0.0213160961616173,
+   "dif_min": 0.012677870796345303,
+   "dif_max": 0.028818701349926812,
+   "hc_vidas": 61.118095249043805,
+   "movidas_desde_hoje": 119,
+   "unidades_diferentes_da_fase3": null
+  },
+  "reot p-median": {
+   "fase3": "vidas lam=0 K=livre G=pm",
+   "sim_fase3": 63.820864748447214,
+   "sim_hc": 63.98049101194047,
+   "dif_pareada_media": 0.15962626349326095,
+   "dif_min": 0.10838520693455678,
+   "dif_max": 0.21094545441402346,
+   "hc_vidas": 63.740032004762,
+   "movidas_desde_hoje": 118,
+   "unidades_diferentes_da_fase3": null
+  }
+ },
+ "vidas_hc_entre_sementes": {
+  "lam=0 K=40": {
+   "min": 53.182875057805305,
+   "max": 54.773267848441066,
+   "n": 3
+  },
+  "lam=0 K=20": {
+   "min": 47.31072179200256,
+   "max": 49.72954945367366,
+   "n": 3
+  },
+  "lam=1 K=20": {
+   "min": 46.21303192758234,
+   "max": 48.422545770376495,
+   "n": 3
+  },
+  "lam=1 K=40": {
+   "min": 50.896588710978776,
+   "max": 52.22797321081937,
+   "n": 3
+  },
+  "lam=0 K=livre": {
+   "min": 63.72628142048345,
+   "max": 63.79670350307275,
+   "n": 3
+  },
+  "lam=1 K=livre": {
+   "min": 57.046560588596556,
+   "max": 57.56342010597295,
+   "n": 3
+  }
+ }
+}
