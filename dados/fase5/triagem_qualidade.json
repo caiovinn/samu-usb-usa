@@ -1,0 +1,452 @@
+{
+ "parametros": {
+  "n_unid": 10,
+  "top": 15,
+  "aleat": 10,
+  "s_min": 70.0
+ },
+ "mapas": {
+  "hoje": {
+   "vidas_base": 42.08496259940206,
+   "unidades": [
+    {
+     "unidade": 96,
+     "tipo": "B",
+     "local": 1037,
+     "ocupacao": 0.3849784501997643,
+     "n_avaliados": 28,
+     "melhor_real": 0.4664479943180879,
+     "q": {
+      "spearman": 0.8940597104772393,
+      "acerto4": false,
+      "perda4": 0.009602090419754461,
+      "real_top1": 0.45684590389833346
+     },
+     "rho": {
+      "spearman": 0.7544484268448473,
+      "acerto4": false,
+      "perda4": 0.009602090419754461,
+      "real_top1": 0.43077374742975394
+     }
+    },
+    {
+     "unidade": 100,
+     "tipo": "B",
+     "local": 1042,
+     "ocupacao": 0.07615229384094148,
+     "n_avaliados": 26,
+     "melhor_real": 0.6019735196744875,
+     "q": {
+      "spearman": 0.8731190661088134,
+      "acerto4": false,
+      "perda4": 0.00932077566912426,
+      "real_top1": 0.5926527440053633
+     },
+     "rho": {
+      "spearman": 0.6911765110089745,
+      "acerto4": false,
+      "perda4": 0.00932077566912426,
+      "real_top1": 0.5665804700173922
+     }
+    },
+    {
+     "unidade": 73,
+     "tipo": "B",
+     "local": 1017,
+     "ocupacao": 0.36777805697005944,
+     "n_avaliados": 27,
+     "melhor_real": 0.4805562633274292,
+     "q": {
+      "spearman": 0.8879389726910549,
+      "acerto4": false,
+      "perda4": 0.015868412242483032,
+      "real_top1": 0.46468785108494615
+     },
+     "rho": {
+      "spearman": 0.7279389652322816,
+      "acerto4": false,
+      "perda4": 0.015868412242483032,
+      "real_top1": 0.4387376573837898
+     }
+    },
+    {
+     "unidade": 59,
+     "tipo": "B",
+     "local": 1005,
+     "ocupacao": 0.29642287536085826,
+     "n_avaliados": 29,
+     "melhor_real": 0.5216714888028946,
+     "q": {
+      "spearman": 0.8888889158650036,
+      "acerto4": false,
+      "perda4": 0.00902235590233147,
+      "real_top1": 0.5126491329005631
+     },
+     "rho": {
+      "spearman": 0.7213599627640606,
+      "acerto4": false,
+      "perda4": 0.00902235590233147,
+      "real_top1": 0.4869261650843981
+     }
+    },
+    {
+     "unidade": 31,
+     "tipo": "B",
+     "local": 965,
+     "ocupacao": 0.3930069953634886,
+     "n_avaliados": 27,
+     "melhor_real": 0.32634538795071677,
+     "q": {
+      "spearman": 0.8592366812766948,
+      "acerto4": false,
+      "perda4": 0.009350478501701787,
+      "real_top1": 0.316994909449015
+     },
+     "rho": {
+      "spearman": 0.6796946881741018,
+      "acerto4": false,
+      "perda4": 0.009350478501701787,
+      "real_top1": 0.29092586934460485
+     }
+    },
+    {
+     "unidade": 4,
+     "tipo": "B",
+     "local": 926,
+     "ocupacao": 0.42796418973721545,
+     "n_avaliados": 28,
+     "melhor_real": 0.4170138588447685,
+     "q": {
+      "spearman": 0.8623049871412442,
+      "acerto4": false,
+      "perda4": 0.04399649311541509,
+      "real_top1": 0.3730173657293534
+     },
+     "rho": {
+      "spearman": 0.7188612368993357,
+      "acerto4": false,
+      "perda4": 0.04399649311541509,
+      "real_top1": 0.34690593502963907
+     }
+    },
+    {
+     "unidade": 1,
+     "tipo": "B",
+     "local": 425,
+     "ocupacao": 0.19698899411296278,
+     "n_avaliados": 27,
+     "melhor_real": 0.4996100122659044,
+     "q": {
+      "spearman": 0.8885496597424244,
+      "acerto4": false,
+      "perda4": 0.011737993174612882,
+      "real_top1": 0.4878720190912915
+     },
+     "rho": {
+      "spearman": 0.7248855299754348,
+      "acerto4": false,
+      "perda4": 0.011737993174612882,
+      "real_top1": 0.46163459293941145
+     }
+    },
+    {
+     "unidade": 36,
+     "tipo": "B",
+     "local": 969,
+     "ocupacao": 0.4013300597701115,
+     "n_avaliados": 27,
+     "melhor_real": 0.602491007994935,
+     "q": {
+      "spearman": 0.8891603467937936,
+      "acerto4": false,
+      "perda4": 0.00931973141192799,
+      "real_top1": 0.5931712765830071
+     },
+     "rho": {
+      "spearman": 0.7248855299754348,
+      "acerto4": false,
+      "perda4": 0.00931973141192799,
+      "real_top1": 0.5671010630780202
+     }
+    },
+    {
+     "unidade": 21,
+     "tipo": "B",
+     "local": 958,
+     "ocupacao": 0.4277345554756964,
+     "n_avaliados": 27,
+     "melhor_real": 0.3674558200139444,
+     "q": {
+      "spearman": 0.889771033845163,
+      "acerto4": false,
+      "perda4": 0.00934986991589426,
+      "real_top1": 0.35810595009805013
+     },
+     "rho": {
+      "spearman": 0.7279389652322816,
+      "acerto4": false,
+      "perda4": 0.00934986991589426,
+      "real_top1": 0.33203661433277887
+     }
+    },
+    {
+     "unidade": 9,
+     "tipo": "B",
+     "local": 950,
+     "ocupacao": 0.4965755502580818,
+     "n_avaliados": 29,
+     "melhor_real": 0.2535355472819987,
+     "q": {
+      "spearman": 0.872628752769912,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.2535355472819987
+     },
+     "rho": {
+      "spearman": 0.8100517614645598,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.2519711271243139
+     }
+    }
+   ],
+   "resumo": {
+    "q": {
+     "spearman_medio": 0.8805658126711343,
+     "acerto4": 0.1,
+     "perda4_media": 0.012756820035324523,
+     "perda4_max": 0.04399649311541509
+    },
+    "rho": {
+     "spearman_medio": 0.7281241577571312,
+     "acerto4": 0.1,
+     "perda4_media": 0.012756820035324523,
+     "perda4_max": 0.04399649311541509
+    }
+   },
+   "segundos": 54.3,
+   "avaliacoes": 276
+  },
+  "fase3 lam=0 K=40": {
+   "vidas_base": 54.41789046196059,
+   "unidades": [
+    {
+     "unidade": 65,
+     "tipo": "B",
+     "local": 980,
+     "ocupacao": 0.49162936170609634,
+     "n_avaliados": 27,
+     "melhor_real": 0.06982042093428475,
+     "q": {
+      "spearman": 0.6373626373626373,
+      "acerto4": false,
+      "perda4": 0.05845902733972963,
+      "real_top1": 0.0066005338546801795
+     },
+     "rho": {
+      "spearman": 0.8663003663003663,
+      "acerto4": false,
+      "perda4": 0.05845902733972963,
+      "real_top1": 0.011361393594555125
+     }
+    },
+    {
+     "unidade": 96,
+     "tipo": "B",
+     "local": 1030,
+     "ocupacao": 0.29945499299873485,
+     "n_avaliados": 30,
+     "melhor_real": 0.23883185026432585,
+     "q": {
+      "spearman": 0.4913217623497999,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.14565286921025944
+     },
+     "rho": {
+      "spearman": 0.8624833110814422,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.23883185026432585
+     }
+    },
+    {
+     "unidade": 56,
+     "tipo": "B",
+     "local": 966,
+     "ocupacao": 0.11112192872520407,
+     "n_avaliados": 30,
+     "melhor_real": 0.43948974033815347,
+     "q": {
+      "spearman": 0.6662216288384514,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.34647262033332993
+     },
+     "rho": {
+      "spearman": 0.952825990209168,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.43948974033815347
+     }
+    },
+    {
+     "unidade": 23,
+     "tipo": "B",
+     "local": 519,
+     "ocupacao": 0.43960064530421866,
+     "n_avaliados": 27,
+     "melhor_real": 0.011770171670818286,
+     "q": {
+      "spearman": 0.7996946937681819,
+      "acerto4": false,
+      "perda4": 0.043000332782114015,
+      "real_top1": -0.03123016111129573
+     },
+     "rho": {
+      "spearman": 0.9035114925009737,
+      "acerto4": false,
+      "perda4": 0.043000332782114015,
+      "real_top1": -0.03123016111129573
+     }
+    },
+    {
+     "unidade": 24,
+     "tipo": "B",
+     "local": 582,
+     "ocupacao": 0.3517600307923536,
+     "n_avaliados": 30,
+     "melhor_real": 0.05568750821524304,
+     "q": {
+      "spearman": 0.5812194036493102,
+      "acerto4": false,
+      "perda4": 0.06784403220976998,
+      "real_top1": -0.012156523994526935
+     },
+     "rho": {
+      "spearman": 0.878059635068981,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.05568750821524304
+     }
+    },
+    {
+     "unidade": 25,
+     "tipo": "B",
+     "local": 681,
+     "ocupacao": 0.4392205414921388,
+     "n_avaliados": 30,
+     "melhor_real": 0.043282630989921245,
+     "q": {
+      "spearman": 0.6487929731992615,
+      "acerto4": false,
+      "perda4": 0.06026890842648669,
+      "real_top1": -0.016986277436565445
+     },
+     "rho": {
+      "spearman": 0.8828568304714232,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": -0.016986277436565445
+     }
+    },
+    {
+     "unidade": 61,
+     "tipo": "B",
+     "local": 973,
+     "ocupacao": 0.2940204002642188,
+     "n_avaliados": 33,
+     "melhor_real": 0.14533496537401192,
+     "q": {
+      "spearman": 0.5186361357178673,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.05291396177262442
+     },
+     "rho": {
+      "spearman": 0.8916931305365202,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.14533496537401192
+     }
+    },
+    {
+     "unidade": 70,
+     "tipo": "B",
+     "local": 1000,
+     "ocupacao": 0.43602223150432573,
+     "n_avaliados": 29,
+     "melhor_real": 0.18846130091741742,
+     "q": {
+      "spearman": 0.6114806788184419,
+      "acerto4": false,
+      "perda4": 0.09769146039521104,
+      "real_top1": 0.09076984052220638
+     },
+     "rho": {
+      "spearman": 0.903178150100084,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.18846130091741742
+     }
+    },
+    {
+     "unidade": 59,
+     "tipo": "B",
+     "local": 969,
+     "ocupacao": 0.4520175658136,
+     "n_avaliados": 30,
+     "melhor_real": 0.34203956438670957,
+     "q": {
+      "spearman": 0.6478967282439352,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.24901590763548143
+     },
+     "rho": {
+      "spearman": 0.9483641219675051,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.34203956438670957
+     }
+    },
+    {
+     "unidade": 98,
+     "tipo": "B",
+     "local": 1031,
+     "ocupacao": 0.040403958986243015,
+     "n_avaliados": 30,
+     "melhor_real": 0.48336246795105353,
+     "q": {
+      "spearman": 0.5655801570207555,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.39017680708382585
+     },
+     "rho": {
+      "spearman": 0.9189008845380489,
+      "acerto4": true,
+      "perda4": 0.0,
+      "real_top1": 0.48336246795105353
+     }
+    }
+   ],
+   "resumo": {
+    "q": {
+     "spearman_medio": 0.6168206798968643,
+     "acerto4": 0.5,
+     "perda4_media": 0.032726376115331135,
+     "perda4_max": 0.09769146039521104
+    },
+    "rho": {
+     "spearman_medio": 0.9008173912774513,
+     "acerto4": 0.8,
+     "perda4_media": 0.010145936012184364,
+     "perda4_max": 0.05845902733972963
+    }
+   },
+   "segundos": 57.1,
+   "avaliacoes": 297
+  }
+ }
+}
